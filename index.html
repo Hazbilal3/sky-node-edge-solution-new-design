@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo-skynode-dark-bg.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skynode Partners | Edge compute. Live broadcast. Private comms. One network.</title>
+    <meta name="description" content="Skynode Partners turns urban rooftops into distributed edge colocation, AI inference, broadcast, and private communications nodes across NYC, Miami, and Chicago." />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet" />
+    <script>
+      (function(){
+        try {
+          var t = localStorage.getItem('sk-theme');
+          if (t !== 'dark' && t !== 'light') t = 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch(e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
