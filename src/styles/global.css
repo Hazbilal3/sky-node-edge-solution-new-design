@@ -17,7 +17,7 @@
   --border-accent:  rgba(64,156,188,0.38);
   --font: 'Satoshi', system-ui, -apple-system, sans-serif;
   --r-sm:  8px;  --r-md: 16px;  --r-lg: 24px;  --r-btn: 50px;
-  --max-w: 1180px;
+  --max-w: 1440px;
 }
 
 :root[data-theme="dark"] {
@@ -424,7 +424,7 @@ footer .container { position:relative; z-index:2; }
 .metro-feature-title { font-size:15px; font-weight:700; color:var(--light-text); margin-bottom:4px; }
 .metro-feature-desc  { font-size:13px; color:var(--light-muted); line-height:1.65; }
 .metro-anim-wrap { display:flex; align-items:center; justify-content:center; padding:16px 0; }
-.metro-anim-wrap canvas { max-width:100%; height:auto; border-radius:var(--r-lg); }
+.metro-anim-wrap canvas { max-width:100%; height:auto; }
 .metro-anim-legend { display:flex; gap:22px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
 .metro-legend-item { display:flex; align-items:center; gap:7px; font-size:11px; font-weight:700; color:rgba(32,101,132,0.50); text-transform:uppercase; letter-spacing:0.09em; }
 .metro-legend-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
