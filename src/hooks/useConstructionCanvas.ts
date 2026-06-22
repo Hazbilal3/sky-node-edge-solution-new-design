@@ -1,6 +1,7 @@
-import { RefObject, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { RefObject } from 'react';
 
-export function useConstructionCanvas(canvasRef: RefObject<HTMLCanvasElement>) {
+export function useConstructionCanvas(canvasRef: RefObject<HTMLCanvasElement | null>) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -11,7 +12,7 @@ export function useConstructionCanvas(canvasRef: RefObject<HTMLCanvasElement>) {
     let W: number, H: number, ground: number, maxH: number;
     let towers: { x: number; w: number; floorH: number; floors: number; top: number; delay: number }[] = [];
     let cranes: { x: number; base: number; mastTop: number; span: number; back: number; phase: number; speed: number }[] = [];
-    let raf: number;
+    let raf: number = 0;
     let start: number | null = null;
 
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

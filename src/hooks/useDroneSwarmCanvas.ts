@@ -1,4 +1,5 @@
-import { RefObject, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { RefObject } from 'react';
 
 interface DroneSwarmOptions {
   links?: number;
@@ -8,7 +9,7 @@ interface DroneSwarmOptions {
 }
 
 export function useDroneSwarmCanvas(
-  canvasRef: RefObject<HTMLCanvasElement>,
+  canvasRef: RefObject<HTMLCanvasElement | null>,
   options: DroneSwarmOptions
 ) {
   useEffect(() => {
