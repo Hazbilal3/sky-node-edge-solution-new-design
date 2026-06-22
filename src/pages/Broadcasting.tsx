@@ -55,6 +55,7 @@ export default function Broadcasting() {
         .footer-links a.active-page { color: var(--sky-blue); }
         .section-h2 em { color: var(--sky-blue); }
         .feature-icon { width:42px; height:42px; border-radius:var(--r-sm); background:rgba(32,101,132,0.10); border:1px solid rgba(32,101,132,0.20); display:flex; align-items:center; justify-content:center; color:var(--teal-primary); flex-shrink:0; }
+        .feature-icon svg { width:18px; height:18px; }
         .feature-item { display:flex; gap:14px; }
         .feature-title { font-size:14px; font-weight:700; color:rgb(var(--fg)); margin-bottom:4px; }
         .feature-desc { font-size:13px; color:var(--tx-4); line-height:1.65; }
@@ -87,10 +88,14 @@ export default function Broadcasting() {
         <div className="hero-scrim" />
         <div className="hero-iso-bg">
           <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
-            <g stroke="#6BC0DD" opacity="0.5">
+            <g stroke="#6BC0DD">
               <line x1="0" y1="400" x2="720" y2="0"/><line x1="0" y1="500" x2="900" y2="50"/>
-              <line x1="0" y1="600" x2="1080" y2="60"/><line x1="200" y1="800" x2="1440" y2="200"/>
+              <line x1="0" y1="600" x2="1080" y2="60"/><line x1="100" y1="700" x2="1300" y2="100"/>
+              <line x1="200" y1="800" x2="1440" y2="200"/><line x1="400" y1="800" x2="1440" y2="400"/>
+              <line x1="600" y1="800" x2="1440" y2="560"/><line x1="800" y1="800" x2="1440" y2="680"/>
               <line x1="720" y1="0" x2="1440" y2="400"/><line x1="540" y1="0" x2="1440" y2="540"/>
+              <line x1="360" y1="0" x2="1440" y2="680"/><line x1="180" y1="0" x2="1280" y2="800"/>
+              <line x1="0" y1="0" x2="1100" y2="800"/><line x1="0" y1="100" x2="900" y2="800"/>
             </g>
           </svg>
         </div>
@@ -148,11 +153,11 @@ export default function Broadcasting() {
                 <div className="hero-card-footer">
                   <div className="hero-card-stat">
                     <div className="hero-card-stat-val">22<span style={{fontSize:'14px',fontWeight:600}}>+</span></div>
-                    <div className="hero-card-stat-lbl">Active broadcast-rated nodes</div>
+                    <div className="hero-card-stat-lbl">Active broadcast-rated nodes<br/>(to be confirmed)</div>
                   </div>
                   <div className="hero-card-stat">
                     <div className="hero-card-stat-val">6</div>
-                    <div className="hero-card-stat-lbl">Service categories supported</div>
+                    <div className="hero-card-stat-lbl">Service categories<br/>supported</div>
                   </div>
                 </div>
               </div>
@@ -351,23 +356,27 @@ export default function Broadcasting() {
               <h2 className="section-h2">Latency. Uptime. Bandwidth. Connectivity.<br/><em>All four. One fabric.</em></h2>
               <p className="section-body">Every network problem reduces to the same four concerns. Metro Fabric is a rooftop wireless mesh across urban markets that addresses all of them — direct point-to-point paths that cut latency, multiple simultaneous links that eliminate single points of failure, dedicated capacity without carrier congestion, and coverage that moves both north-south and east-west across the metro.</p>
               <div className="metro-features">
-                {[
-                  {title:'Latency: direct path, faster medium',desc:'Fiber follows conduit. Conduit follows streets. Skynode links go point-to-point — shorter distance, and wireless propagates faster than optical fiber does.'},
-                  {title:'Uptime: multiple paths, automatic failover',desc:'Single-path networks have a single point of failure. Metro Fabric routes across simultaneous links — when one degrades, traffic reroutes automatically.'},
-                  {title:'Bandwidth: dedicated capacity, no shared lanes',desc:'Leased carrier circuits get oversold, throttled at peak, and repriced at renewal. Skynode links are dedicated to your deployment.'},
-                  {title:'Connectivity: north-south and east-west',desc:'Getting between your own sites across the metro — without the latency penalty and cost of a carrier circuit — is where Metro Fabric earns its place.'},
-                ].map((f,i)=>(
-                  <div key={i} className="metro-feature">
-                    <div className="metro-feature-icon">
-                      <svg viewBox="0 0 18 18" fill="none"><path d="M10.5 2L4 10h6.5l-3 6L16 8h-6.5l3-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
-                    </div>
-                    <div><div className="metro-feature-title">{f.title}</div><div className="metro-feature-desc">{f.desc}</div></div>
-                  </div>
-                ))}
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M10.5 2L4 10h6.5l-3 6L16 8h-6.5l3-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg></div>
+                  <div><div className="metro-feature-title">Latency: direct path, faster medium</div><div className="metro-feature-desc">Fiber follows conduit. Conduit follows streets. Skynode links go point-to-point — shorter distance, and wireless propagates faster than optical fiber does. Both advantages compound. The result shows up in your measurements, not just our marketing.</div></div>
+                </div>
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2l5.5 2.3v4.9C14.5 13 12 15.8 9 17c-3-1.2-5.5-4-5.5-7.8V4.3L9 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M6.5 9l2 2 3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+                  <div><div className="metro-feature-title">Uptime: multiple paths, automatic failover</div><div className="metro-feature-desc">Single-path networks have a single point of failure. Metro Fabric routes across simultaneous links — when one degrades, traffic reroutes automatically. SLA-backed uptime with contractual teeth, not a best-effort promise.</div></div>
+                </div>
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="6" width="14" height="6" rx="2" stroke="currentColor" strokeWidth="1.4"/><path d="M6 9h6M5 6V4.5M9 6V4M13 6V4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg></div>
+                  <div><div className="metro-feature-title">Bandwidth: dedicated capacity, no shared lanes</div><div className="metro-feature-desc">Leased carrier circuits get oversold, throttled at peak, and repriced at renewal. Skynode links are dedicated to your deployment. No shared congestion. Capacity that scales with your footprint, not with what a carrier will sell you this quarter.</div></div>
+                </div>
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="2" fill="currentColor"/><line x1="9" y1="2" x2="9" y2="7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="9" y1="11" x2="9" y2="16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="2" y1="9" x2="7" y2="9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="11" y1="9" x2="16" y2="9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="4" y1="4" x2="7" y2="7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.45"/><line x1="11" y1="11" x2="14" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.45"/></svg></div>
+                  <div><div className="metro-feature-title">Connectivity: north-south and east-west</div><div className="metro-feature-desc">Getting to your upstream infrastructure is usually solved. Getting between your own sites across the metro — without the latency penalty and cost of a carrier circuit — is where Metro Fabric earns its place. Extends to your private locations where fiber isn't practical.</div></div>
+                </div>
               </div>
               <div className="metro-usecases">
                 {['Edge Compute','Broadcasting','Private Comms','Experimental'].map(t=><span key={t} className="metro-usecase-tag">{t}</span>)}
               </div>
+              <a href="#" className="btn btn-outline-dark" style={{marginTop:'28px'}}>Learn About Metro Fabric <svg className="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
             </div>
             <div className="metro-anim-wrap reveal">
               <canvas ref={metroRef} id="metroCanvas" width={480} height={560} />
@@ -390,18 +399,26 @@ export default function Broadcasting() {
               <h2 className="section-h2">Tell us what you need.<br/><em>We'll tell you if we have it.</em></h2>
               <p className="section-body--dark" style={{marginBottom:'32px'}}>We're not going to sell you on a site before we know what you're building. Fill in the basics. A real person reviews every inquiry. If we have what you need, we'll tell you. If we don't, we'll tell you that too.</p>
               <div className="reassurance-list">
-                {[
-                  {title:'We manage the compliance',desc:'Permits, RF filings, structural assessments, municipal approvals — all handled by Skynode. You focus on the broadcast, not the paperwork.'},
-                  {title:"Broadcast-rated means something",desc:'We don\'t apply the label loosely. Sites are evaluated for RF environment, line of sight, power availability, and long-term maintainability.'},
-                  {title:'No hidden gotchas',desc:"We'll tell you what we know about a site upfront — including the things that might make it wrong for you."},
-                  {title:'Real sites in real markets',desc:'New York. Miami. Chicago. Not concept art. Not renderings. Rooftops we operate — and have been operating.'},
-                  {title:'One business day response',desc:"We review every broadcast inquiry within one business day. Because your coverage gap isn't getting smaller while you wait."},
-                ].map((r,i)=>(
-                  <div key={i} className="reassurance-item">
-                    <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" strokeWidth="1.5"/><path d="M4.5 13.5A6.5 6.5 0 0 1 2 7.5M13.5 13.5A6.5 6.5 0 0 0 16 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
-                    <div><div className="reassurance-title">{r.title}</div><div className="reassurance-desc">{r.desc}</div></div>
-                  </div>
-                ))}
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="4" y="2" width="10" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 6h6M6 9h6M6 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">We manage the compliance</div><div className="reassurance-desc">Permits, RF filings, structural assessments, municipal approvals — all handled by Skynode. You focus on the broadcast, not the paperwork.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" strokeWidth="1.5"/><path d="M4.5 13.5A6.5 6.5 0 0 1 2 7.5M13.5 13.5A6.5 6.5 0 0 0 16 7.5M9 10v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">Broadcast-rated means something</div><div className="reassurance-desc">We don't apply the label loosely. Sites are evaluated for RF environment, line of sight, power availability, and long-term maintainability.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="3" y="8" width="12" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/></svg></div>
+                  <div><div className="reassurance-title">No hidden gotchas</div><div className="reassurance-desc">We'll tell you what we know about a site upfront — including the things that might make it wrong for you. Transparency is cheaper than surprises.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16V7l5-4v13M7 16V4l9-2v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 9h1M4 12h1M10 6h1M10 9h1M10 12h1M13 6h1M13 9h1M13 12h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">Real sites in real markets</div><div className="reassurance-desc">New York. Miami. Chicago. Not concept art. Not renderings. Rooftops we operate — and have been operating.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="10" r="6" stroke="currentColor" strokeWidth="1.5"/><path d="M9 7v3.5l2 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 2h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">One business day response</div><div className="reassurance-desc">We review every broadcast inquiry within one business day. Because your coverage gap isn't getting smaller while you wait.</div></div>
+                </div>
               </div>
             </div>
             <div className="inquiry-form reveal">
@@ -435,9 +452,17 @@ export default function Broadcasting() {
                       <select className="form-input"><option value="">Select range</option><option>&lt;1 kW TPO</option><option>1–5 kW</option><option>5–20 kW</option><option>20 kW+</option><option>Not Sure</option></select>
                     </div>
                   </div>
+                  <div className="form-2col">
+                    <div className="form-group"><label className="form-label">Indoor Space Needed?</label>
+                      <select className="form-input"><option value="">Select</option><option>Yes</option><option>No</option><option>Not Sure</option></select>
+                    </div>
+                    <div className="form-group"><label className="form-label">Timeline</label>
+                      <select className="form-input"><option value="">Select</option><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select>
+                    </div>
+                  </div>
                   <div className="form-group"><label className="form-label">Additional Notes</label><textarea className="form-input" placeholder="Current site situation, specific RF requirements, backup redundancy goals…"/></div>
                   <button className="btn btn-primary form-submit" type="submit">Submit Broadcast Inquiry</button>
-                  <div className="form-privacy">Your info is used only to evaluate site fit. No spam. No auto-dialers.</div>
+                  <div className="form-privacy">Your info is used only to evaluate site fit. No spam. No auto-dialers. We're in the infrastructure business, not the harassment business.</div>
                 </form>
               )}
             </div>

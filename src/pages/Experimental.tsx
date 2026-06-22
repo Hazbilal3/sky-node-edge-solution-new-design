@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
-import { useBroadcastWaveCanvas } from '../hooks/useBroadcastWaveCanvas';
+import { useDroneSwarmCanvas } from '../hooks/useDroneSwarmCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
 
@@ -17,13 +17,27 @@ export default function Experimental() {
   const [formSuccess, setFormSuccess] = useState(false);
 
   useReveal();
-  useBroadcastWaveCanvas(heroCanvasRef, { receiverCount:18, waveCount:5, waveSpeed:0.65 });
-  useBroadcastWaveCanvas(ctaCanvasRef,  { receiverCount:10, waveCount:4, waveSpeed:0.55, centered:true });
+  useDroneSwarmCanvas(heroCanvasRef, {
+    links: 2, count: 16, speed: 1.15,
+    nodes: [
+      {rx:0.08, ry:0.18}, {rx:0.27, ry:0.11}, {rx:0.46, ry:0.20}, {rx:0.66, ry:0.12}, {rx:0.88, ry:0.22},
+      {rx:0.16, ry:0.44}, {rx:0.37, ry:0.38}, {rx:0.58, ry:0.46}, {rx:0.80, ry:0.40}, {rx:0.95, ry:0.55},
+      {rx:0.10, ry:0.70}, {rx:0.31, ry:0.80}, {rx:0.52, ry:0.70}, {rx:0.72, ry:0.80}, {rx:0.90, ry:0.72}
+    ]
+  });
+  useDroneSwarmCanvas(ctaCanvasRef, {
+    links: 2, count: 9, speed: 0.9,
+    nodes: [
+      {rx:0.08, ry:0.22}, {rx:0.26, ry:0.14}, {rx:0.44, ry:0.24}, {rx:0.62, ry:0.13}, {rx:0.82, ry:0.20}, {rx:0.93, ry:0.40},
+      {rx:0.14, ry:0.50}, {rx:0.88, ry:0.62},
+      {rx:0.10, ry:0.78}, {rx:0.30, ry:0.86}, {rx:0.50, ry:0.74}, {rx:0.70, ry:0.85}, {rx:0.90, ry:0.80}
+    ]
+  });
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIndex, zoom);
   useMetroFabricCanvas(metroRef);
 
   const CITY_NAMES = CITIES.map(c=>c.name);
-  const filters = ['All','Sensing','Mesh','Research','Prototype'];
+  const filters = ['All','UAS','Sensing','AR','Smart City'];
 
   function handleSubmit(e: React.FormEvent) { e.preventDefault(); setFormSuccess(true); }
 
@@ -32,6 +46,8 @@ export default function Experimental() {
       <style>{`
         :root[data-theme="dark"]  { --sky-blue: #FBBF24; }
         :root[data-theme="light"] { --sky-blue: #B45309; }
+        .hero-iso-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+        .hero-iso-bg svg { position:absolute; width:100%; height:100%; opacity:0.06; }
         .eyebrow--pc { color:var(--sky-blue); }
         .eyebrow--pc::before { background:var(--sky-blue); }
         .filter-chip { border:1px solid rgba(245,158,11,0.35); color:var(--sky-blue); background:rgba(245,158,11,0.10); }
@@ -50,6 +66,7 @@ export default function Experimental() {
         .node-type { color:var(--sky-blue); }
         .node-dot--on { background:var(--green); }
         .feature-icon { width:40px; height:40px; border-radius:var(--r-sm); background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.18); display:flex; align-items:center; justify-content:center; color:var(--sky-blue); flex-shrink:0; }
+        .feature-icon svg { width:18px; height:18px; }
         .feature-item { display:flex; gap:14px; }
         .feature-title { font-size:14px; font-weight:700; color:rgb(var(--fg)); margin-bottom:4px; }
         .feature-desc { font-size:13px; color:var(--tx-4); line-height:1.65; }
@@ -66,7 +83,7 @@ export default function Experimental() {
         .section-body { font-size:15px; color:var(--tx-3); line-height:1.75; margin-bottom:20px; }
         .section-body--dark { font-size:15px; color:var(--tx-3); line-height:1.75; }
         .credibility-inner { display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
-        .hero { padding-top:100px; min-height:auto; padding-bottom:80px; }
+        .hero { padding-top:68px; min-height:100vh; display:flex; align-items:center; background: radial-gradient(ellipse 50% 60% at 72% 42%,rgba(32,101,132,0.20) 0%,transparent 65%), radial-gradient(ellipse 55% 45% at 15% 60%,rgba(var(--bg-base),0.70) 0%,transparent 70%), radial-gradient(ellipse 35% 30% at 85% 78%,rgba(180,83,9,0.10) 0%,transparent 55%), linear-gradient(100deg,rgba(var(--bg-base),0.88) 0%,rgba(var(--bg-base),0.55) 55%,rgba(var(--bg-base),0.30) 100%); }
         #heroCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
         .final-cta { position:relative; padding:120px 28px; text-align:center; overflow:hidden; background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(180,83,9,0.10) 0%, transparent 70%), linear-gradient(180deg,rgba(var(--bg-base),0.96) 0%,rgba(var(--bg-base),0.92) 100%); }
         .final-cta > * { position:relative; z-index:1; }
@@ -75,6 +92,19 @@ export default function Experimental() {
       {/* ═══ HERO ═══ */}
       <section className="hero" style={{position:'relative',overflow:'hidden'}}>
         <canvas ref={heroCanvasRef} id="heroCanvas" aria-hidden="true" />
+        <div className="hero-iso-bg" aria-hidden="true">
+          <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#6BC0DD">
+              <line x1="0" y1="400" x2="720" y2="0" /><line x1="0" y1="500" x2="900" y2="50" />
+              <line x1="0" y1="600" x2="1080" y2="60" /><line x1="100" y1="700" x2="1300" y2="100" />
+              <line x1="200" y1="800" x2="1440" y2="200" /><line x1="400" y1="800" x2="1440" y2="400" />
+              <line x1="600" y1="800" x2="1440" y2="560" /><line x1="800" y1="800" x2="1440" y2="680" />
+              <line x1="720" y1="0" x2="1440" y2="400" /><line x1="540" y1="0" x2="1440" y2="540" />
+              <line x1="360" y1="0" x2="1440" y2="680" /><line x1="180" y1="0" x2="1280" y2="800" />
+              <line x1="0" y1="0" x2="1100" y2="800" /><line x1="0" y1="100" x2="900" y2="800" />
+            </g>
+          </svg>
+        </div>
         <div className="hero-scrim" />
         <div className="container" style={{position:'relative',zIndex:2}}>
           <div className="hero-inner">
@@ -84,17 +114,17 @@ export default function Experimental() {
                 <span className="city-tag">Illinois</span><span className="city-tag">New York</span>
               </div>
               <div className="eyebrow eyebrow--pc">Experimental Systems</div>
-              <h1>The infrastructure doesn't exist yet.<br/><em>We're building it anyway.</em></h1>
-              <p className="hero-sub">Skynode provides urban rooftop infrastructure for experimental, research, and next-generation wireless deployments — sensing networks, mesh systems, prototype deployments, and emerging spectrum use cases that don't fit legacy frameworks.</p>
+              <h1>Urban infrastructure for the systems<br/><em>that come next.</em></h1>
+              <p className="hero-sub">Drones, autonomous systems, AI sensing, augmented reality, smart-city infrastructure, the emerging applications that benefit most from distributed, elevated, low-latency urban nodes. Real sites, on real buildings, with the access and compliance path already cleared.</p>
               <div className="hero-actions">
-                <a href="#exp-inquiry" className="btn btn-primary">Explore Experimental Sites</a>
+                <a href="#exp-inquiry" className="btn btn-primary">Browse Experimental-Rated Nodes</a>
                 <a href="#exp-inquiry" className="btn btn-outline-light">Talk to Skynode</a>
               </div>
             </div>
             <div className="hero-visual">
               <div className="hero-visual-card">
                 <div className="hero-visual-header">
-                  <span className="visual-title">Experimental-Ready Skynodes</span>
+                  <span className="visual-title">Experimental-Rated Skynodes</span>
                   <span className="visual-status">Sites Available</span>
                 </div>
                 <div className="hero-filter-row">
@@ -103,28 +133,29 @@ export default function Experimental() {
                 </div>
                 <div className="node-table">
                   {[
-                    {id:'NYC-EXP-1',asl:"Floor 38",types:['Sensing','Mesh']},
-                    {id:'NYC-EXP-2',asl:"Rooftop",types:['Research','Prototype']},
-                    {id:'MIA-EXP-1',asl:"Floor 22",types:['Sensing']},
-                    {id:'CHI-EXP-1',asl:"Floor 44",types:['Mesh','Research']},
+                    {id:'0302.NY',asl:"924'",svcs:['UAS','SENSE']},
+                    {id:'0118.CT',asl:"641'",svcs:['SENSE','SMART']},
+                    {id:'0445.FL',asl:"522'",svcs:['UAS','AR','SMART']},
+                    {id:'0277.IL',asl:"788'",svcs:['SENSE','AR']},
+                    {id:'0391.IL',asl:"435'",svcs:['UAS','SMART']},
                   ].map(node=>(
                     <div key={node.id} className="node-row-item">
                       <div className="node-name-cell">
                         <span className="node-dot node-dot--on"/>
                         <span className="node-site-id">{node.id}</span>
-                        <span className="node-asl">| {node.asl}</span>
+                        <span className="node-asl">| ASL: {node.asl}</span>
                       </div>
                       <div className="node-svc-row">
-                        {['Sensing','Mesh','Research','Prototype'].map(s=>(
-                          <span key={s} className={`svc-btn${node.types.includes(s)?' svc-btn--on':''}`} style={{fontSize:'9px'}}>{s.slice(0,4)}</span>
+                        {['UAS','SENSE','AR','SMART'].map(s=>(
+                          <span key={s} className={`svc-btn${node.svcs.includes(s)?' svc-btn--on':''}`}>{s}</span>
                         ))}
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="hero-card-footer">
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">8<span style={{fontSize:'14px',fontWeight:600}}>+</span></div><div className="hero-card-stat-lbl">Experimental-ready nodes</div></div>
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">4</div><div className="hero-card-stat-lbl">Active markets</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">18<span style={{fontSize:'14px',fontWeight:600}}>+</span></div><div className="hero-card-stat-lbl">Experimental-rated nodes<br/>(to be confirmed)</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">6</div><div className="hero-card-stat-lbl">Application categories<br/>supported</div></div>
                 </div>
               </div>
             </div>
@@ -133,19 +164,19 @@ export default function Experimental() {
       </section>
 
       {/* Credibility strip */}
-      <div className="credibility"><div className="container"><div className="credibility-inner"><span className="cred-label">Research teams and early deployers building with Skynode</span></div></div></div>
+      <div className="credibility"><div className="container"><div className="credibility-inner"><span className="cred-label">Operators deploying emerging systems on Skynode infrastructure</span><div className="cred-logo" style={{width:'88px'}}/><div className="cred-logo" style={{width:'110px'}}/><div className="cred-logo" style={{width:'76px'}}/><div className="cred-logo" style={{width:'96px'}}/><div className="cred-logo" style={{width:'84px'}}/></div></div></div>
 
       {/* ═══ WHY SECTION ═══ */}
       <section className="section-light" id="why">
         <div className="container">
           <div className="why-header-split reveal">
             <div>
-              <div className="eyebrow eyebrow--pc">Built for What's Next</div>
-              <h2 className="section-h2">Most infrastructure<br/><em>wasn't built for this.</em></h2>
+              <div className="eyebrow eyebrow--dark">Built for Emerging Systems</div>
+              <h2 className="section-h2">Lab-proven is one thing.<br/><em>The city is another.</em></h2>
             </div>
             <div style={{paddingTop:'8px'}}>
-              <p className="section-body">Experimental and next-generation wireless deployments have a problem: they need infrastructure that doesn't exist yet. Legacy frameworks weren't designed for sensing networks, urban mesh systems, or prototype deployments that will become the standard use cases of 2030.</p>
-              <p className="section-body">Skynode provides the urban rooftop foundation that experimental systems need — carrier-neutral, physically accessible, and evaluated for the geographic and RF characteristics that matter for non-standard deployments.</p>
+              <p className="section-body">Emerging systems work in the lab. Then real-world urban deployment stalls, blocked by access, permitting, and building owners reluctant to host unfamiliar equipment. The technology was never the problem. The ground was.</p>
+              <p className="section-body">Skynode gives you elevated, connected, distributed sites across real buildings, with the access and compliance path already cleared. You stop negotiating rooftops one at a time and start testing where your system actually has to perform: in the field, at metro scale.</p>
             </div>
           </div>
 
@@ -157,9 +188,10 @@ export default function Experimental() {
                 ))}
               </div>
               <div className="hex-legend">
-                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'#FBBF24'}}/> Sensing</span>
-                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'#409CBC'}}/> Mesh</span>
-                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'#A78BFA'}}/> Research</span>
+                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'#FBBF24'}}/> UAS / Drone</span>
+                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'#6BC0DD'}}/> AI Sensing</span>
+                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'#A78BFA'}}/> AR</span>
+                <span className="hex-leg-item"><span className="hex-leg-swatch" style={{background:'var(--green)'}}/> Smart City</span>
               </div>
             </div>
             <div className="hex-map-wrap">
@@ -173,21 +205,30 @@ export default function Experimental() {
           </div>
 
           <div className="why-feature-grid" style={{marginTop:'44px'}}>
-            {[
-              {title:'Urban sensing infrastructure',desc:'High-density rooftop nodes in verified urban positions for environmental sensing, air quality monitoring, and urban data collection networks.'},
-              {title:'Mesh and relay systems',desc:'Urban high points connected via Metro Fabric — the physical backbone for experimental mesh, relay, and cooperative communications systems.'},
-              {title:'Research and academic deployments',desc:'Carrier-neutral sites for university research programs, government testbeds, and industry trials that need real urban infrastructure, not a lab environment.'},
-              {title:'Prototype and pre-commercial systems',desc:'Flexible infrastructure for systems that are too early for a standard colocation agreement but need real rooftops to prove their value.'},
-              {title:'Emerging spectrum use cases',desc:'Urban nodes positioned for 6GHz, CBRS, mmWave, and other emerging spectrum deployments that require real metro geometry to characterize and test.'},
-              {title:'Standards development support',desc:'Infrastructure for organizations participating in standards development that need real-world deployment data to support their technical submissions.'},
-            ].map((f,i)=>(
-              <div key={i} className="feature-item reveal">
-                <div className="feature-icon">
-                  <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                </div>
-                <div><div className="feature-title">{f.title}</div><div className="feature-desc">{f.desc}</div></div>
-              </div>
-            ))}
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Real sites, not a testbed</div><div className="feature-desc">Real urban buildings with real elevation. Not a sandbox, not a lab. The same conditions your system will face in production.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M2 9h14M9 2l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+              <div><div className="feature-title">Distributed by design</div><div className="feature-desc">Operate across multiple nodes to validate metro-scale coverage and performance, not a single isolated rooftop. Prove it works city-wide.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2l1.5 3.5H14l-2.8 2 1.1 3.5L9 9.5l-3.3 1.5 1.1-3.5L4 5.5h3.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/><path d="M9 12v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Compliance-supported</div><div className="feature-desc">Skynode manages permitting and building coordination so you can deploy. We've already cleared the access path most operators get stuck on.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Connectivity-ready</div><div className="feature-desc">Fiber, interconnect, and Metro Fabric access where applicable, with communications, transport, and compute positioned close enough and fast enough.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 16h6M9 13v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Elevation that matters</div><div className="feature-desc">Rooftops and elevated points give sensing, line-of-sight, and propagation advantages you can't get from street level or a single ground site.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.5"/></svg></div>
+              <div><div className="feature-title">Operators who get emerging tech</div><div className="feature-desc">We work with drone, autonomy, sensing, and smart-city teams. You won't be explaining why your system matters to a real-estate broker.</div></div>
+            </div>
           </div>
         </div>
       </section>
@@ -196,8 +237,9 @@ export default function Experimental() {
       <section className="section-dark" id="services">
         <div className="container">
           <div className="section-header-center reveal">
-            <div className="eyebrow eyebrow--pc">Use Cases</div>
-            <h2 className="section-h2">Next-generation systems.<br/><em>Real urban infrastructure.</em></h2>
+            <div className="eyebrow eyebrow--pc">Supported Applications</div>
+            <h2 className="section-h2 section-h2--dark">Emerging systems.<br/><em>Real deployment ground.</em></h2>
+            <p style={{fontSize:'15px',color:'var(--tx-3)',lineHeight:'1.7'}}>Experimental-rated Skynodes support drone and robotics operations, AI spatial sensing, augmented reality, smart-city infrastructure, smart-building deployment, and resilient utility metering, each evaluated for technical relevance in its market.</p>
           </div>
           <div className="usecases-grid">
 
@@ -270,17 +312,20 @@ export default function Experimental() {
         <div className="container">
           <div className="callout-inner">
             <div>
-              <div className="eyebrow eyebrow--light">Infrastructure for What's Next</div>
-              <h2 className="callout-h2">If it needs a rooftop<br/>and real urban geometry,<br/><em>we probably have a node.</em></h2>
-              <p className="callout-body">Experimental and next-generation wireless deployments need infrastructure that's carrier-neutral, physically accessible, and positioned for real urban RF environments. Skynode provides the rooftop foundation so you can focus on the system, not the site.</p>
+              <div className="eyebrow eyebrow--light">Why Operators Choose Skynode</div>
+              <h2 className="callout-h2">The lab proved it.<br/>The city is next.<br/><em>We've cleared the path.</em></h2>
+              <p className="callout-body">The hard part of emerging systems is rarely the technology. It's getting real-world urban sites where you can actually test and deploy. Skynode has already done the access and compliance work: elevated, connected, distributed nodes on real buildings, ready for the systems that don't have a procurement category yet.</p>
               <div className="callout-actions">
-                <a href="#exp-inquiry" className="btn btn-outline-light">Explore Experimental Sites</a>
+                <a href="#exp-inquiry" className="btn btn-outline-light">Talk to Skynode</a>
               </div>
             </div>
             <div className="metric-stack">
-              <div className="metric-item"><span className="metric-lbl">Active markets</span><span className="metric-val">NYC · CHI · MIA · CT</span></div>
-              <div className="metric-item"><span className="metric-lbl">Use case categories</span><span className="metric-val">Sensing · Mesh · Research · Prototype · Spectrum</span></div>
-              <div className="metric-item"><span className="metric-lbl">Infrastructure type</span><span className="metric-val">Carrier-Neutral · Managed · Flexible</span></div>
+              <div className="metric-item"><span className="metric-lbl">Active markets</span><span className="metric-val">NYC · CHI · MIA · New Haven · Springfield</span></div>
+              <div className="metric-item"><span className="metric-lbl">Application types</span><span className="metric-val">UAS · Sensing · AR · Smart City · Metering</span></div>
+              <div className="metric-item"><span className="metric-lbl">Site evaluation criteria</span><span className="metric-val">Elevation · Backhaul · LOS · Compute</span></div>
+              <div className="metric-item"><span className="metric-lbl">Permitting management</span><span className="metric-val">Local · State · Federal</span></div>
+              <div className="metric-item"><span className="metric-lbl">Rooftop experience</span><span className="metric-val">40+ years*</span></div>
+              <div className="metric-note">*Figure to be confirmed before publishing</div>
             </div>
           </div>
         </div>
@@ -291,21 +336,31 @@ export default function Experimental() {
         <div className="container">
           <div className="metro-grid">
             <div className="reveal">
-              <div className="eyebrow eyebrow--pc">Metro Fabric</div>
-              <h2 className="section-h2">The backbone for<br/><em>experimental deployments.</em></h2>
-              <p className="section-body">Metro Fabric provides the carrier-neutral backhaul that experimental systems need to collect data, coordinate nodes, and connect to analysis infrastructure — without a single carrier dependency or a bespoke fiber agreement.</p>
+              <div className="eyebrow eyebrow--dark">Metro Fabric</div>
+              <h2 className="section-h2">Latency. Uptime. Bandwidth. Connectivity.<br/><em>All four. One fabric.</em></h2>
+              <p className="section-body">Every network problem reduces to the same four concerns. Metro Fabric is a rooftop wireless mesh across urban markets that addresses all of them: direct point-to-point paths that cut latency, multiple simultaneous links that eliminate single points of failure, dedicated capacity without carrier congestion, and coverage that moves both north-south and east-west across the metro.</p>
               <div className="metro-features">
-                {[
-                  {title:'Distributed node connectivity',desc:'Connect your experimental nodes across the metro without bespoke fiber agreements or carrier circuits. Metro Fabric handles the inter-node backhaul.'},
-                  {title:'Flexible configuration',desc:'Metro Fabric can be configured to support sensing backhaul, mesh relay, or research data collection — depending on what your system actually needs.'},
-                  {title:'Real-world performance data',desc:'Deployments on Metro Fabric give you real-world latency, throughput, and availability data in the urban environment your system will eventually serve.'},
-                ].map((f,i)=>(
-                  <div key={i} className="metro-feature">
-                    <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="2" fill="currentColor"/><path d="M9 2v5M9 11v5M2 9h5M11 9h5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg></div>
-                    <div><div className="metro-feature-title">{f.title}</div><div className="metro-feature-desc">{f.desc}</div></div>
-                  </div>
-                ))}
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M10.5 2L4 10h6.5l-3 6L16 8h-6.5l3-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg></div>
+                  <div><div className="metro-feature-title">Latency: direct path, faster medium</div><div className="metro-feature-desc">Fiber follows conduit. Conduit follows streets. Skynode links go point-to-point, with shorter distance, and wireless propagates faster than optical fiber does. Both advantages compound. The result shows up in your measurements, not just our marketing.</div></div>
+                </div>
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2l5.5 2.3v4.9C14.5 13 12 15.8 9 17c-3-1.2-5.5-4-5.5-7.8V4.3L9 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M6.5 9l2 2 3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+                  <div><div className="metro-feature-title">Uptime: multiple paths, automatic failover</div><div className="metro-feature-desc">Single-path networks have a single point of failure. Metro Fabric routes across simultaneous links, so when one degrades, traffic reroutes automatically. SLA-backed uptime with contractual teeth, not a best-effort promise.</div></div>
+                </div>
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="6" width="14" height="6" rx="2" stroke="currentColor" strokeWidth="1.4"/><path d="M6 9h6M5 6V4.5M9 6V4M13 6V4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg></div>
+                  <div><div className="metro-feature-title">Bandwidth: dedicated capacity, no shared lanes</div><div className="metro-feature-desc">Leased carrier circuits get oversold, throttled at peak, and repriced at renewal. Skynode links are dedicated to your deployment. No shared congestion. Capacity that scales with your footprint.</div></div>
+                </div>
+                <div className="metro-feature">
+                  <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="2" fill="currentColor"/><line x1="9" y1="2" x2="9" y2="7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="9" y1="11" x2="9" y2="16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="2" y1="9" x2="7" y2="9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><line x1="11" y1="9" x2="16" y2="9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg></div>
+                  <div><div className="metro-feature-title">Connectivity: north-south and east-west</div><div className="metro-feature-desc">Getting between your own nodes across the metro — without the latency penalty and cost of a carrier circuit — is where Metro Fabric earns its place for experimental deployments.</div></div>
+                </div>
               </div>
+              <div className="metro-usecases">
+                {['Edge Compute','Broadcasting','Private Comms','Experimental'].map(t=><span key={t} className="metro-usecase-tag">{t}</span>)}
+              </div>
+              <a href="#" className="btn btn-outline-dark" style={{marginTop:'28px'}}>Learn About Metro Fabric <svg className="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
             </div>
             <div className="metro-anim-wrap reveal">
               <canvas ref={metroRef} id="metroCanvas" width={480} height={560} />
@@ -324,46 +379,74 @@ export default function Experimental() {
         <div className="container">
           <div className="inquiry-grid">
             <div className="reveal">
-              <div className="eyebrow eyebrow--light">Start Your Deployment</div>
-              <h2 className="section-h2">Tell us what you're building.<br/><em>We'll figure out the rest.</em></h2>
-              <p className="section-body--dark" style={{marginBottom:'32px'}}>Experimental deployments don't always fit a standard intake form. Tell us what you're working on and a real person will follow up within one business day. If we can help, we'll tell you how. If we can't, we'll tell you that too.</p>
+              <div className="eyebrow eyebrow--light">Start Deploying</div>
+              <h2 className="section-h2 section-h2--dark">Tell us what you're building.<br/><em>We'll find you ground.</em></h2>
+              <p className="section-body--dark" style={{marginBottom:'32px',fontSize:'15px',lineHeight:'1.75'}}>We won't sell you a site before we understand the system. Fill in the basics. A real person reviews every inquiry. If we have nodes that fit your application, we'll tell you. If we don't, we'll tell you that too.</p>
               <div className="reassurance-list">
-                {[
-                  {title:'We work with pre-commercial systems',desc:'Not everything fits a standard colocation agreement. If you\'re pre-commercial, we can still work with you — we just need to understand what you\'re deploying.'},
-                  {title:'Carrier-neutral infrastructure',desc:'No single upstream dependency. Multiple backhaul options per node give your experimental system the flexibility it needs.'},
-                  {title:'Flexible site configurations',desc:'Experimental deployments have non-standard requirements. We\'re structured to handle them without a six-month negotiation.'},
-                  {title:'One business day response',desc:'Every inquiry is reviewed within one business day by a real person who understands what experimental deployments actually require.'},
-                ].map((r,i)=>(
-                  <div key={i} className="reassurance-item">
-                    <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M6.5 9l2 2 3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
-                    <div><div className="reassurance-title">{r.title}</div><div className="reassurance-desc">{r.desc}</div></div>
-                  </div>
-                ))}
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="4" y="2" width="10" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 6h6M6 9h6M6 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">We manage the access path</div><div className="reassurance-desc">Permitting, structural assessments, municipal approvals, and building coordination, all handled by Skynode. You focus on the system, not the paperwork.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" strokeWidth="1.5"/><path d="M4.5 13.5A6.5 6.5 0 0 1 2 7.5M13.5 13.5A6.5 6.5 0 0 0 16 7.5M9 10v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">Experimental-rated means something</div><div className="reassurance-desc">We don't apply the label loosely. Sites are evaluated for elevation, backhaul, power, compute readiness, and line-of-sight for the application.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="3" y="8" width="12" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/></svg></div>
+                  <div><div className="reassurance-title">Distributed, not one-off</div><div className="reassurance-desc">Validate metro-scale coverage across multiple nodes, not a single isolated rooftop. Prove your system performs across the city, not one address.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16V7l5-4v13M7 16V4l9-2v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 9h1M4 12h1M10 6h1M10 9h1M10 12h1M13 6h1M13 9h1M13 12h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">Real sites in real markets</div><div className="reassurance-desc">New York. Miami. Chicago. New Haven. Springfield. Not concept art, not renderings. Real buildings we operate, at real elevation.</div></div>
+                </div>
+                <div className="reassurance-item">
+                  <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="10" r="6" stroke="currentColor" strokeWidth="1.5"/><path d="M9 7v3.5l2 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 2h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+                  <div><div className="reassurance-title">One business day response</div><div className="reassurance-desc">We review every inquiry within one business day. Because your deployment window isn't getting wider while you wait.</div></div>
+                </div>
               </div>
             </div>
             <div className="inquiry-form reveal">
-              <div className="form-title">Explore experimental infrastructure</div>
-              <div className="form-sub">Tell us what you're building. We'll tell you if we can help.</div>
+              <div className="form-title">Find an experimental-rated site</div>
+              <div className="form-sub">Takes 2 minutes. We follow up within one business day.</div>
               {formSuccess ? (
                 <div className="form-success show">
-                  <div className="form-success-icon">⚡</div>
+                  <div className="form-success-icon">🛰️</div>
                   <div className="form-success-title">Got it.</div>
-                  <div className="form-success-body">A real person will review your inquiry within one business day.</div>
+                  <div className="form-success-body">A real person will review your inquiry within one business day. If we have nodes that fit your application, you'll hear from us. If it's urgent, that's what phones are for.</div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
                   <div className="form-2col">
                     <div className="form-group"><label className="form-label">Full Name *</label><input className="form-input" type="text" placeholder="Your name" required /></div>
-                    <div className="form-group"><label className="form-label">Organization *</label><input className="form-input" type="text" placeholder="University, agency, or company" required /></div>
+                    <div className="form-group"><label className="form-label">Company / Organization *</label><input className="form-input" type="text" placeholder="Company or organization" required /></div>
                   </div>
-                  <div className="form-group"><label className="form-label">Work Email *</label><input className="form-input" type="email" placeholder="you@org.edu" required /></div>
+                  <div className="form-2col">
+                    <div className="form-group"><label className="form-label">Work Email *</label><input className="form-input" type="email" placeholder="you@company.com" required /></div>
+                    <div className="form-group"><label className="form-label">Phone</label><input className="form-input" type="tel" placeholder="Optional" /></div>
+                  </div>
                   <div className="form-group">
-                    <label className="form-label">Deployment Category *</label>
-                    <select className="form-input" required><option value="">Select category</option><option>Urban Sensing / Monitoring</option><option>Mesh / Relay Systems</option><option>Research / Academic</option><option>Prototype / Pre-Commercial</option><option>Emerging Spectrum</option><option>Standards Development</option><option>Other</option></select>
+                    <label className="form-label">Market / DMA *</label>
+                    <select className="form-input" required><option value="">Select market</option><option>New York</option><option>Miami</option><option>Chicago</option><option>Other</option></select>
                   </div>
-                  <div className="form-group"><label className="form-label">Tell us what you're building *</label><textarea className="form-input" rows={4} placeholder="Describe your system, what it needs from the infrastructure, and what you're trying to learn or prove…" required /></div>
-                  <button className="btn btn-primary form-submit" type="submit">Submit Experimental Inquiry</button>
-                  <div className="form-privacy">Your info is used only to evaluate infrastructure fit. No spam.</div>
+                  <div className="form-2col">
+                    <div className="form-group"><label className="form-label">Application Type *</label>
+                      <select className="form-input" required><option value="">Select application</option><option>Drone / UAS</option><option>Sensing / AI</option><option>AR / VR</option><option>Smart City</option><option>Robotics</option><option>Research</option><option>Other</option></select>
+                    </div>
+                    <div className="form-group"><label className="form-label">Number of Sites</label>
+                      <select className="form-input"><option value="">Select count</option><option>1 site</option><option>2–5 sites</option><option>6–15 sites</option><option>15+ sites</option><option>Not Sure</option></select>
+                    </div>
+                  </div>
+                  <div className="form-2col">
+                    <div className="form-group"><label className="form-label">Stage (optional)</label>
+                      <select className="form-input"><option value="">Select</option><option>Research / Pre-seed</option><option>Pilot / Funded</option><option>Scaling deployment</option><option>Not Sure</option></select>
+                    </div>
+                    <div className="form-group"><label className="form-label">Timeline</label>
+                      <select className="form-input"><option value="">Select</option><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select>
+                    </div>
+                  </div>
+                  <div className="form-group"><label className="form-label">Additional Notes</label><textarea className="form-input" rows={4} placeholder="Brief description of your project: application, coverage area, number of sites, timing…" /></div>
+                  <button className="btn btn-primary form-submit" type="submit">Submit Inquiry</button>
+                  <div className="form-privacy">Your info is used only to evaluate site fit. No spam. No auto-dialers. We're in the infrastructure business, not the harassment business.</div>
                 </form>
               )}
             </div>
@@ -374,12 +457,11 @@ export default function Experimental() {
       {/* ═══ FINAL CTA ═══ */}
       <section className="final-cta" style={{position:'relative'}}>
         <canvas ref={ctaCanvasRef} id="ctaCanvas" aria-hidden="true" />
-        <div className="eyebrow" style={{justifyContent:'center'}}>Ready When You Are</div>
-        <h2>Build the system.<br/>We'll provide the rooftop.<br/><em>You handle the impossible part.</em></h2>
-        <p>Tell us what you're deploying. We'll tell you whether we have infrastructure that's worth your time.</p>
+        <div className="eyebrow eyebrow--light" style={{justifyContent:'center'}}>Ready When You Are</div>
+        <h2>Stop waiting for permission to deploy.<br/><em>Get it in the field.</em></h2>
+        <p>Tell us your market, application, and number of sites. We'll tell you whether we have nodes worth your time.</p>
         <div className="cta-actions">
-          <a href="#exp-inquiry" className="btn btn-primary" style={{padding:'16px 32px',fontSize:'15px'}}>Explore Experimental Sites</a>
-          <a href="#exp-inquiry" className="btn btn-outline-light" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to an Engineer</a>
+          <a href="#exp-inquiry" className="btn btn-outline-light" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to Skynode</a>
         </div>
       </section>
     </>
