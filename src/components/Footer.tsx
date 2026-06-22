@@ -1,8 +1,21 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useHeroBg } from '../hooks/useHeroBg';
+
+const FOOTER_CFG = {
+  rows:2, scaleBack:0.66, rowGap:24, spacing:54, rxMax:24, baseLift:14,
+  midMin:44, midMax:88, ampMin:12, ampMax:28, txBoost:30, packets:10,
+  speed:0.55, pulseEvery:2100, fog:0.42, rightTall:0.5
+};
 
 export default function Footer() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useHeroBg(canvasRef, FOOTER_CFG);
+
   return (
     <footer>
+      <canvas ref={canvasRef} className="footer-bg-canvas" aria-hidden="true" />
+      <div className="footer-scrim" aria-hidden="true" />
       <div className="container">
         <div className="footer-grid">
           <div>

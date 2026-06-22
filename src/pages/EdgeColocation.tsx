@@ -210,22 +210,67 @@ export default function EdgeColocation() {
             <h2 className="section-h2">Put your workloads next to demand.<br/><em>Not three states away.</em></h2>
           </div>
           <div className="usecases-grid">
-            {[
-              {name:'AI / GPU Inference',desc:'Edge inference nodes for LLM serving, computer vision, and real-time ML workloads that can\'t absorb centralized data center latency.',tags:['GPU Inference','LLM','Real-Time ML'],link:'Browse AI nodes'},
-              {name:'CDN / Cache Nodes',desc:'Content delivery nodes inside the metro that cut last-mile latency for streaming, gaming, and high-throughput workloads.',tags:['CDN','Cache','Streaming'],link:'Browse CDN nodes'},
-              {name:'Private Cloud Extension',desc:'Carrier-neutral colocation that extends your private cloud into the metro without building a dedicated facility.',tags:['Private Cloud','Hybrid','Carrier-Neutral'],link:'Browse colo sites'},
-              {name:'Real-Time Data Processing',desc:'Edge compute for financial trading, industrial IoT, and telemetry workloads where processing at the source beats shipping data to a central cluster.',tags:['Real-Time','IoT','Low-Latency'],link:'Explore edge nodes'},
-              {name:'Network Functions Virtualization',desc:'Urban rooftop nodes for vRAN, SD-WAN, and NFV deployments that require metro proximity to function at spec.',tags:['vRAN','SD-WAN','NFV'],link:'Browse NFV nodes'},
-              {name:'Enterprise Edge Deployments',desc:'Managed edge colocation for enterprise workloads that have outgrown the corporate data center but don\'t need a full colocation facility.',tags:['Enterprise','Managed','Scalable'],link:'Talk to an Engineer'},
-            ].map((uc,i)=>(
-              <div key={i} className="usecase-card reveal">
-                <div className="usecase-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 21h8M12 17v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></div>
-                <div className="usecase-name">{uc.name}</div>
-                <p className="usecase-desc">{uc.desc}</p>
-                <div className="usecase-tags">{uc.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
-                <a href="#edge-inquiry" className="usecase-link">{uc.link} <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="19" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7"/><path d="M7.5 12h9M13.8 7.2l3.8 3.3M10.2 7.2L6.4 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
               </div>
-            ))}
+              <div className="usecase-name">AI Inference at the Edge</div>
+              <p className="usecase-desc">Run inference close to users and sensors: lower latency, lower egress, and data that never has to leave the metro to get answered.</p>
+              <div className="usecase-tags"><span className="ptag">Inference</span><span className="ptag">Accelerators</span><span className="ptag">Low Egress</span></div>
+              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 19v2M16 19v2M8 21h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 11h10M7 14h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Content Delivery &amp; Caching</div>
+              <p className="usecase-desc">Serve and cache content from inside the city for faster page loads, smoother streams, and origin traffic you no longer have to pay to move.</p>
+              <div className="usecase-tags"><span className="ptag">CDN</span><span className="ptag">Caching</span><span className="ptag">Origin Offload</span></div>
+              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="3" fill="currentColor"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M4.5 5.5a11 11 0 0 0 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/><path d="M19.5 5.5a11 11 0 0 1 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/></svg>
+              </div>
+              <div className="usecase-name">Real-Time &amp; Interactive</div>
+              <p className="usecase-desc">Cloud gaming, AR/VR, live media, and trading, where single-digit milliseconds decide whether the experience feels instant or broken.</p>
+              <div className="usecase-tags"><span className="ptag">Sub-10ms</span><span className="ptag">Streaming</span><span className="ptag">Interactive</span></div>
+              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Private Cloud On-Ramp</div>
+              <p className="usecase-desc">A local landing zone for hybrid architectures, with direct, private connections into public cloud instead of best-effort public internet.</p>
+              <div className="usecase-tags"><span className="ptag">Hybrid</span><span className="ptag">On-Ramp</span><span className="ptag">Direct Connect</span></div>
+              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="14" r="2.5" fill="currentColor"/><path d="M9 11a4 4 0 0 0 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M15 11a4 4 0 0 1 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M6.5 8.5a8 8 0 0 0 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/><path d="M17.5 8.5a8 8 0 0 1 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/></svg>
+              </div>
+              <div className="usecase-name">IoT &amp; Sensor Aggregation</div>
+              <p className="usecase-desc">Collect, filter, and process device data at the edge, so only what matters travels onward and the core network stops drowning in raw telemetry.</p>
+              <div className="usecase-tags"><span className="ptag">IoT</span><span className="ptag">Pre-Processing</span><span className="ptag">Aggregation</span></div>
+              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v5c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V7l-8-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M8.5 12.5a5 5 0 0 0 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
+              </div>
+              <div className="usecase-name">5G Multi-Access Edge (MEC)</div>
+              <p className="usecase-desc">Multi-access edge compute co-located with metro radio infrastructure for ultra-low-latency mobile and private-5G applications.</p>
+              <div className="usecase-tags"><span className="ptag">MEC</span><span className="ptag">Private 5G</span><span className="ptag">Mobile</span></div>
+              <a href="#edge-inquiry" className="usecase-link">Explore MEC <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
           </div>
         </div>
       </section>

@@ -54,7 +54,7 @@ export default function Broadcasting() {
         .node-dot--on { background: var(--green); }
         .footer-links a.active-page { color: var(--sky-blue); }
         .section-h2 em { color: var(--sky-blue); }
-        .feature-icon { width:40px; height:40px; border-radius:var(--r-sm); background:rgba(167,139,250,0.10); border:1px solid rgba(167,139,250,0.20); display:flex; align-items:center; justify-content:center; color:var(--sky-blue); flex-shrink:0; }
+        .feature-icon { width:42px; height:42px; border-radius:var(--r-sm); background:rgba(32,101,132,0.10); border:1px solid rgba(32,101,132,0.20); display:flex; align-items:center; justify-content:center; color:var(--teal-primary); flex-shrink:0; }
         .feature-item { display:flex; gap:14px; }
         .feature-title { font-size:14px; font-weight:700; color:rgb(var(--fg)); margin-bottom:4px; }
         .feature-desc { font-size:13px; color:var(--tx-4); line-height:1.65; }
@@ -216,21 +216,30 @@ export default function Broadcasting() {
 
           {/* Feature strip */}
           <div className="why-feature-grid" style={{marginTop:'44px'}}>
-            {[
-              {title:'Broadcast-focused location strategy',desc:'Skynodes evaluated for RF environment, line of sight, and long-term maintainability — not just available square footage.'},
-              {title:'Reduced site acquisition friction',desc:'Begin with a managed portfolio. Skip the blank-page sourcing and the landlords who don\'t call back.'},
-              {title:'Compliance-first execution',desc:'Local, state, and federal permitting managed by Skynode — across FM, TV, LPFM, and auxiliary services.'},
-              {title:'Operational credibility',desc:'40+ combined years on rooftops. We speak RF, understand line runs, and know what maintainable means in year seven.'},
-              {title:'Multi-stakeholder readiness',desc:'Engineering, operations, and finance all have different needs. We\'re structured to serve all three without losing the plot.'},
-              {title:'Fast-track buildout',desc:'Site-ready infrastructure means your equipment goes up faster. From agreement to on-air in weeks, not quarters.'},
-            ].map((f,i)=>(
-              <div key={i} className="feature-item reveal">
-                <div className="feature-icon">
-                  <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M6.5 9l2 2 3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </div>
-                <div><div className="feature-title">{f.title}</div><div className="feature-desc">{f.desc}</div></div>
-              </div>
-            ))}
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Broadcast-focused location strategy</div><div className="feature-desc">Skynodes evaluated for RF environment, line of sight, and long-term maintainability — not just available square footage.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M2 9h14M9 2l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+              <div><div className="feature-title">Reduced site acquisition friction</div><div className="feature-desc">Begin with a managed portfolio. Skip the blank-page sourcing and the landlords who don't call back.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2l1.5 3.5H14l-2.8 2 1.1 3.5L9 9.5l-3.3 1.5 1.1-3.5L4 5.5h3.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/><path d="M9 12v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Compliance-first execution</div><div className="feature-desc">Local, state, and federal permitting managed by Skynode — across FM, TV, LPFM, and auxiliary services.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Operational credibility</div><div className="feature-desc">40+ combined years on rooftops. We speak RF, understand line runs, and know what maintainable means in year seven.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 16h6M9 13v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div><div className="feature-title">Multi-stakeholder readiness</div><div className="feature-desc">Engineering, operations, and finance all have different needs. We're structured to serve all three without losing the plot.</div></div>
+            </div>
+            <div className="feature-item reveal">
+              <div className="feature-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.5"/></svg></div>
+              <div><div className="feature-title">Fast-track buildout</div><div className="feature-desc">Site-ready infrastructure means your equipment goes up faster. No landlord negotiation, no RF survey from scratch. From agreement to on-air in weeks, not quarters.</div></div>
+            </div>
           </div>
         </div>
       </section>
@@ -244,24 +253,67 @@ export default function Broadcasting() {
             <p style={{fontSize:'15px',color:'var(--tx-3)',lineHeight:'1.7'}}>Broadcast-rated Skynodes support FM, television, LPFM, translators, backup facilities, and auxiliary services — each evaluated for technical relevance in its market.</p>
           </div>
           <div className="usecases-grid">
-            {[
-              {name:'FM Primary Transmission',desc:"Locations that create real coverage value while staying workable for the long term. Not every tall building is a good FM site. Ours have been evaluated to find the ones that are.",tags:['FM Primary','Full Power','ERP-Evaluated'],link:'Browse FM sites'},
-              {name:'FM Backup & Redundancy',desc:"Backup transmission facilities for stations that understand what 'primary site failure' actually costs. Spoiler: more than the backup site would have.",tags:['FM Backup','Redundancy','Auxiliary Power'],link:'Browse backup sites'},
-              {name:'Television Broadcast',desc:'Urban sites that support technically disciplined infrastructure planning for TV primary, backup, and auxiliary roles — with the operational discipline the medium demands.',tags:['TV Primary','TV Backup','Auxiliary'],link:'Browse TV sites'},
-              {name:'LPFM Infrastructure',desc:"Practical and financially rational urban site options for LPFM operators who are tired of bespoke rooftop negotiations going nowhere. You're local. Your site search should be too.",tags:['LPFM','Urban Sites','Low Power'],link:'Browse LPFM sites'},
-              {name:'Translator Sites',desc:'A portfolio of locations for translator deployment as part of a focused local strategy or a broader metro-wide coverage plan. Fill the gaps. Stop losing listeners to dead zones.',tags:['Translators','Coverage Extension','Metro'],link:'Browse translator sites'},
-              {name:'Auxiliary Broadcast Services',desc:"Specialized use cases requiring strategically located rooftop infrastructure with dependable access and support conditions. If it needs a rooftop and an FCC filing, we probably have a node for it.",tags:['STL','Auxiliary','Studio-Transmitter Link'],link:'Explore auxiliary'},
-            ].map((uc,i)=>(
-              <div key={i} className="usecase-card reveal">
-                <div className="usecase-icon">
-                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="3" fill="currentColor"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
-                </div>
-                <div className="usecase-name">{uc.name}</div>
-                <p className="usecase-desc">{uc.desc}</p>
-                <div className="usecase-tags">{uc.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
-                <a href="#broadcast-inquiry" className="usecase-link">{uc.link} <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="3" fill="currentColor"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M4.5 5.5a11 11 0 0 0 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/><path d="M19.5 5.5a11 11 0 0 1 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/></svg>
               </div>
-            ))}
+              <div className="usecase-name">FM Primary Transmission</div>
+              <p className="usecase-desc">Locations that create real coverage value while staying workable for the long term. Not every tall building is a good FM site. Ours have been evaluated to find the ones that are.</p>
+              <div className="usecase-tags"><span className="ptag">FM Primary</span><span className="ptag">Full Power</span><span className="ptag">ERP-Evaluated</span></div>
+              <a href="#broadcast-inquiry" className="usecase-link">Browse FM sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v5c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V7l-8-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M8.5 12.5a5 5 0 0 0 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
+              </div>
+              <div className="usecase-name">FM Backup &amp; Redundancy</div>
+              <p className="usecase-desc">Backup transmission facilities for stations that understand what 'primary site failure' actually costs. Spoiler: more than the backup site would have.</p>
+              <div className="usecase-tags"><span className="ptag">FM Backup</span><span className="ptag">Redundancy</span><span className="ptag">Auxiliary Power</span></div>
+              <a href="#broadcast-inquiry" className="usecase-link">Browse backup sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 19v2M16 19v2M8 21h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 11h10M7 14h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Television Broadcast</div>
+              <p className="usecase-desc">Urban sites that support technically disciplined infrastructure planning for TV primary, backup, and auxiliary roles — with the operational discipline the medium demands.</p>
+              <div className="usecase-tags"><span className="ptag">TV Primary</span><span className="ptag">TV Backup</span><span className="ptag">Auxiliary</span></div>
+              <a href="#broadcast-inquiry" className="usecase-link">Browse TV sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="14" r="2.5" fill="currentColor"/><path d="M9 11a4 4 0 0 0 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M15 11a4 4 0 0 1 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M6.5 8.5a8 8 0 0 0 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/><path d="M17.5 8.5a8 8 0 0 1 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/></svg>
+              </div>
+              <div className="usecase-name">LPFM Infrastructure</div>
+              <p className="usecase-desc">Practical and financially rational urban site options for LPFM operators who are tired of bespoke rooftop negotiations going nowhere. You're local. Your site search should be too.</p>
+              <div className="usecase-tags"><span className="ptag">LPFM</span><span className="ptag">Urban Sites</span><span className="ptag">Low Power</span></div>
+              <a href="#broadcast-inquiry" className="usecase-link">Browse LPFM sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="19" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7"/><path d="M7.5 12h9M13.8 7.2l3.8 3.3M10.2 7.2L6.4 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+              </div>
+              <div className="usecase-name">Translator Sites</div>
+              <p className="usecase-desc">A portfolio of locations for translator deployment as part of a focused local strategy or a broader metro-wide coverage plan. Fill the gaps. Stop losing listeners to dead zones.</p>
+              <div className="usecase-tags"><span className="ptag">Translators</span><span className="ptag">Coverage Extension</span><span className="ptag">Metro</span></div>
+              <a href="#broadcast-inquiry" className="usecase-link">Browse translator sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Auxiliary Broadcast Services</div>
+              <p className="usecase-desc">Specialized use cases requiring strategically located rooftop infrastructure with dependable access and support conditions. If it needs a rooftop and an FCC filing, we probably have a node for it.</p>
+              <div className="usecase-tags"><span className="ptag">STL</span><span className="ptag">Auxiliary</span><span className="ptag">Studio-Transmitter Link</span></div>
+              <a href="#broadcast-inquiry" className="usecase-link">Explore auxiliary <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
           </div>
         </div>
       </section>

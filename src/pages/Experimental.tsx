@@ -200,22 +200,67 @@ export default function Experimental() {
             <h2 className="section-h2">Next-generation systems.<br/><em>Real urban infrastructure.</em></h2>
           </div>
           <div className="usecases-grid">
-            {[
-              {name:'Urban Sensing Networks',desc:'High-density rooftop nodes for environmental monitoring, air quality sensing, and urban data collection. The coverage geometry that urban sensing actually requires.',tags:['Sensing','Air Quality','Urban Data'],link:'Explore sensing nodes'},
-              {name:'Experimental Mesh Systems',desc:'Urban rooftop infrastructure for mesh and cooperative communications research. Real metro geometry for systems that need to prove performance in the environment they\'ll eventually serve.',tags:['Mesh','Cooperative Comms','Testbed'],link:'Explore mesh sites'},
-              {name:'Research Deployments',desc:'Carrier-neutral infrastructure for university research programs, government testbeds, and industry trials. Real rooftops. Real urban RF environments. Real data.',tags:['Research','Academic','Testbed'],link:'Talk to an Engineer'},
-              {name:'Prototype Systems',desc:'Flexible infrastructure for systems that have outgrown the lab but aren\'t ready for a standard colocation agreement. We work with pre-commercial deployments.',tags:['Prototype','Pre-Commercial','Flexible'],link:'Talk to an Engineer'},
-              {name:'Emerging Spectrum',desc:'Urban nodes positioned for 6GHz, CBRS, mmWave, and other emerging spectrum use cases. Real metro geometry for characterization, testing, and early deployment.',tags:['6GHz','CBRS','mmWave'],link:'Explore spectrum nodes'},
-              {name:'Standards Development',desc:'Infrastructure for organizations participating in standards development that need real-world deployment data. Metro Fabric gives your testbed the connectivity it needs.',tags:['Standards','ITU','3GPP'],link:'Talk to an Engineer'},
-            ].map((uc,i)=>(
-              <div key={i} className="usecase-card reveal">
-                <div className="usecase-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7"/></svg></div>
-                <div className="usecase-name">{uc.name}</div>
-                <p className="usecase-desc">{uc.desc}</p>
-                <div className="usecase-tags">{uc.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
-                <a href="#exp-inquiry" className="usecase-link">{uc.link} <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="3" fill="currentColor"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M4.5 5.5a11 11 0 0 0 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/><path d="M19.5 5.5a11 11 0 0 1 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/></svg>
               </div>
-            ))}
+              <div className="usecase-name">Drone &amp; Unmanned Systems</div>
+              <p className="usecase-desc">Metro infrastructure for drone operations, mobile robotics, private wireless, and distributed machine control, with communications, transport, and compute positioned close enough, fast enough, and resilient enough.</p>
+              <div className="usecase-tags"><span className="ptag">UAS / Drone</span><span className="ptag">Robotics</span><span className="ptag">Private Wireless</span></div>
+              <a href="#exp-inquiry" className="usecase-link">Browse UAS sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v5c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V7l-8-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M8.5 12.5a5 5 0 0 0 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
+              </div>
+              <div className="usecase-name">AI Spatial Sensing &amp; Detection</div>
+              <p className="usecase-desc">Elevated rooftop nodes that supply network, compute, and interconnection for AI-powered sensing platforms analyzing Wi-Fi propagation, movement patterns, or environmental signals across the metro.</p>
+              <div className="usecase-tags"><span className="ptag">Spatial AI</span><span className="ptag">Edge Compute</span><span className="ptag">Sensing</span></div>
+              <a href="#exp-inquiry" className="usecase-link">Browse sensing sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 19v2M16 19v2M8 21h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 11h10M7 14h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Augmented Reality (Field)</div>
+              <p className="usecase-desc">Edge compute close enough to the jobsite to cut the delay between sensor input, processing, and AR headset output, for guided maintenance, construction, and inspection use cases.</p>
+              <div className="usecase-tags"><span className="ptag">AR / VR</span><span className="ptag">Low Latency</span><span className="ptag">Construction</span></div>
+              <a href="#exp-inquiry" className="usecase-link">Browse AR sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="14" r="2.5" fill="currentColor"/><path d="M9 11a4 4 0 0 0 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M15 11a4 4 0 0 1 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M6.5 8.5a8 8 0 0 0 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/><path d="M17.5 8.5a8 8 0 0 1 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/></svg>
+              </div>
+              <div className="usecase-name">Smart City Infrastructure</div>
+              <p className="usecase-desc">Traffic sensing, environmental monitoring, public-safety integration, machine vision, and curbside analytics, the distributed urban platform for collecting, transporting, and processing city-scale data.</p>
+              <div className="usecase-tags"><span className="ptag">Smart City</span><span className="ptag">Machine Vision</span><span className="ptag">Analytics</span></div>
+              <a href="#exp-inquiry" className="usecase-link">Browse smart-city sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="19" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7"/><path d="M7.5 12h9M13.8 7.2l3.8 3.3M10.2 7.2L6.4 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+              </div>
+              <div className="usecase-name">Smart Building Deployment</div>
+              <p className="usecase-desc">Elevated collection points for in-building sensor data, energy management, occupancy sensing, and building-automation systems that need metro-scale connectivity.</p>
+              <div className="usecase-tags"><span className="ptag">Building IoT</span><span className="ptag">Energy</span><span className="ptag">Automation</span></div>
+              <a href="#exp-inquiry" className="usecase-link">Browse building sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Utility Metering &amp; Submetering</div>
+              <p className="usecase-desc">Elevated rooftop collector points for resilient meter collection, secure transmission, and edge-ready infrastructure across real buildings and cities.</p>
+              <div className="usecase-tags"><span className="ptag">Metering</span><span className="ptag">Resilient</span><span className="ptag">Secure</span></div>
+              <a href="#exp-inquiry" className="usecase-link">Explore metering <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
           </div>
         </div>
       </section>

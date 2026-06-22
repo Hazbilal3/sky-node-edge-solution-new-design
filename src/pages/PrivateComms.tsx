@@ -1,8 +1,19 @@
 import { useRef, useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
-import { useBroadcastWaveCanvas } from '../hooks/useBroadcastWaveCanvas';
+import { useBeamFieldCanvas } from '../hooks/useBeamFieldCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
+
+const HERO_NODES = [
+  {rx:0.08,ry:0.18},{rx:0.27,ry:0.11},{rx:0.46,ry:0.20},{rx:0.66,ry:0.12},{rx:0.88,ry:0.22},
+  {rx:0.16,ry:0.44},{rx:0.37,ry:0.38},{rx:0.58,ry:0.46},{rx:0.80,ry:0.40},{rx:0.95,ry:0.55},
+  {rx:0.10,ry:0.70},{rx:0.31,ry:0.80},{rx:0.52,ry:0.70},{rx:0.72,ry:0.80},{rx:0.90,ry:0.72},
+];
+const CTA_NODES = [
+  {rx:0.08,ry:0.22},{rx:0.26,ry:0.14},{rx:0.44,ry:0.24},{rx:0.62,ry:0.13},{rx:0.82,ry:0.20},{rx:0.93,ry:0.40},
+  {rx:0.14,ry:0.50},{rx:0.88,ry:0.62},
+  {rx:0.10,ry:0.78},{rx:0.30,ry:0.86},{rx:0.50,ry:0.74},{rx:0.70,ry:0.85},{rx:0.90,ry:0.80},
+];
 
 export default function PrivateComms() {
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -17,8 +28,8 @@ export default function PrivateComms() {
   const [formSuccess, setFormSuccess] = useState(false);
 
   useReveal();
-  useBroadcastWaveCanvas(heroCanvasRef, { receiverCount:20, waveCount:6, waveSpeed:0.75 });
-  useBroadcastWaveCanvas(ctaCanvasRef,  { receiverCount:12, waveCount:5, waveSpeed:0.65, centered:true });
+  useBeamFieldCanvas(heroCanvasRef, { nodes:HERO_NODES, links:2, spawnEvery:32, spawnJitter:52 });
+  useBeamFieldCanvas(ctaCanvasRef,  { nodes:CTA_NODES,  links:2, spawnEvery:48, spawnJitter:68 });
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIndex, zoom);
   useMetroFabricCanvas(metroRef);
 
@@ -65,6 +76,8 @@ export default function PrivateComms() {
         .credibility-inner { display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
         .hero { padding-top:100px; min-height:auto; padding-bottom:80px; }
         #heroCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+        .hero-iso-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+        .hero-iso-bg svg { position:absolute; width:100%; height:100%; opacity:0.06; }
         .final-cta { position:relative; padding:120px 28px; text-align:center; overflow:hidden; background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(32,101,132,0.12) 0%, transparent 70%), linear-gradient(180deg, rgba(var(--bg-base),0.96) 0%, rgba(var(--bg-base),0.92) 100%); }
         .final-cta > * { position:relative; z-index:1; }
       `}</style>
@@ -72,6 +85,19 @@ export default function PrivateComms() {
       {/* ═══ HERO ═══ */}
       <section className="hero" style={{position:'relative',overflow:'hidden'}}>
         <canvas ref={heroCanvasRef} id="heroCanvas" aria-hidden="true" />
+        <div className="hero-iso-bg" aria-hidden="true">
+          <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#6BC0DD">
+              <line x1="0" y1="400" x2="720" y2="0" /><line x1="0" y1="500" x2="900" y2="50" />
+              <line x1="0" y1="600" x2="1080" y2="60" /><line x1="100" y1="700" x2="1300" y2="100" />
+              <line x1="200" y1="800" x2="1440" y2="200" /><line x1="400" y1="800" x2="1440" y2="400" />
+              <line x1="600" y1="800" x2="1440" y2="560" /><line x1="800" y1="800" x2="1440" y2="680" />
+              <line x1="720" y1="0" x2="1440" y2="400" /><line x1="540" y1="0" x2="1440" y2="540" />
+              <line x1="360" y1="0" x2="1440" y2="680" /><line x1="180" y1="0" x2="1280" y2="800" />
+              <line x1="0" y1="0" x2="1100" y2="800" /><line x1="0" y1="100" x2="900" y2="800" />
+            </g>
+          </svg>
+        </div>
         <div className="hero-scrim" />
         <div className="container" style={{position:'relative',zIndex:2}}>
           <div className="hero-inner">
@@ -84,16 +110,16 @@ export default function PrivateComms() {
               </div>
               <div className="eyebrow eyebrow--pc">Private Communications</div>
               <h1>Your network fails at the worst time.<br/>Usually it's the site.<br/><em>Start with a better one.</em></h1>
-              <p className="hero-sub">Skynode provides urban rooftop infrastructure for private communications networks — P25, private 5G, P2P microwave, and IoT — where site quality determines operational reliability.</p>
+              <p className="hero-sub">Skynode provides private-communications-rated nodes for teams that need secure, distributed, low-latency metro deployment, from P25 and simulcast to private 5G and point-to-point links. Better infrastructure means fewer redesigns and a network that performs when it matters.</p>
               <div className="hero-actions">
-                <a href="#pc-inquiry" className="btn btn-primary">Browse PC Sites</a>
+                <a href="#pc-inquiry" className="btn btn-primary">Browse Private Comms Nodes</a>
                 <a href="#pc-inquiry" className="btn btn-outline-light">Talk to Skynode</a>
               </div>
             </div>
             <div className="hero-visual">
               <div className="hero-visual-card">
                 <div className="hero-visual-header">
-                  <span className="visual-title">Private Comms-Rated Skynodes</span>
+                  <span className="visual-title">Private-Comms-Rated Skynodes</span>
                   <span className="visual-status">Sites Available</span>
                 </div>
                 <div className="hero-filter-row">
@@ -175,21 +201,49 @@ export default function PrivateComms() {
           </div>
 
           <div className="why-feature-grid" style={{marginTop:'44px'}}>
-            {[
-              {title:'P25/Simulcast infrastructure',desc:'Urban rooftop sites that support P25 conventional, trunked, and simulcast deployments — with the elevation and coverage geometry public safety actually needs.'},
-              {title:'Private 5G coverage nodes',desc:'Carrier-grade infrastructure for private LTE and 5G deployments in dense urban environments where coverage gaps cost money and sometimes lives.'},
-              {title:'P2P microwave paths',desc:'Verified point-to-point microwave paths between Skynode rooftop locations — evaluated for line of sight, clearance, and long-term reliability.'},
-              {title:'IoT and sensor infrastructure',desc:'Urban node density and indoor access for IoT and environmental sensing deployments that need consistent, low-power backhaul.'},
-              {title:'MANET and tactical systems',desc:'Flexible urban rooftop infrastructure for mesh, mobile ad-hoc, and tactical communications deployments that don\'t fit legacy frameworks.'},
-              {title:'LMR migration support',desc:'Infrastructure for organizations navigating the migration from legacy LMR systems to IP-based or hybrid private communications architectures.'},
-            ].map((f,i)=>(
-              <div key={i} className="feature-item reveal">
-                <div className="feature-icon">
-                  <svg viewBox="0 0 18 18" fill="none"><path d="M12 2s-2 4-7 4 0 8 5 8 7-4 7-4-2-8-5-8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
-                </div>
-                <div><div className="feature-title">{f.title}</div><div className="feature-desc">{f.desc}</div></div>
+
+            <div className="feature-item reveal">
+              <div className="feature-icon">
+                <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
               </div>
-            ))}
+              <div><div className="feature-title">RF-aware site selection</div><div className="feature-desc">Nodes evaluated for RF environment, path clearance, and interference, not just available rooftop square footage.</div></div>
+            </div>
+
+            <div className="feature-item reveal">
+              <div className="feature-icon">
+                <svg viewBox="0 0 18 18" fill="none"><path d="M2 9h14M9 2l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </div>
+              <div><div className="feature-title">Backhaul that's actually there</div><div className="feature-desc">Fiber and wireless backhaul at the node, plus Metro Fabric links between your sites where carrier circuits don't make sense.</div></div>
+            </div>
+
+            <div className="feature-item reveal">
+              <div className="feature-icon">
+                <svg viewBox="0 0 18 18" fill="none"><path d="M9 2l1.5 3.5H14l-2.8 2 1.1 3.5L9 9.5l-3.3 1.5 1.1-3.5L4 5.5h3.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/><path d="M9 12v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
+              </div>
+              <div><div className="feature-title">Compliance-first execution</div><div className="feature-desc">Permits, structural assessments, and municipal approvals managed by Skynode across every node in the portfolio.</div></div>
+            </div>
+
+            <div className="feature-item reveal">
+              <div className="feature-icon">
+                <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              </div>
+              <div><div className="feature-title">Operators who speak RF</div><div className="feature-desc">We talk path budgets, voted systems, and simulcast timing. You won't be explaining your deployment to a real estate broker.</div></div>
+            </div>
+
+            <div className="feature-item reveal">
+              <div className="feature-icon">
+                <svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 16h6M9 13v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              </div>
+              <div><div className="feature-title">Built for every stakeholder</div><div className="feature-desc">IT, RF engineering, operations, and finance each have different needs. We're structured to serve all four without losing the plot.</div></div>
+            </div>
+
+            <div className="feature-item reveal">
+              <div className="feature-icon">
+                <svg viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.5"/></svg>
+              </div>
+              <div><div className="feature-title">Distributed by design</div><div className="feature-desc">Repeater, receiver, and link sites across a connected metro footprint, not isolated one-off rooftops. Scale across the city, not just one address.</div></div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -199,25 +253,73 @@ export default function PrivateComms() {
         <div className="container">
           <div className="section-header-center reveal">
             <div className="eyebrow eyebrow--pc">Use Cases</div>
-            <h2 className="section-h2">Every private comms deployment.<br/><em>One infrastructure platform.</em></h2>
+            <h2 className="section-h2 section-h2--dark">Every private network.<br/><em>One infrastructure platform.</em></h2>
+            <p style={{fontSize:'15px',color:'var(--tx-3)',lineHeight:'1.7'}}>
+              Private-comms-rated Skynodes support public safety radio, private 5G, point-to-point links, sensor networks, simulcast, and office-to-office connectivity, each evaluated for technical relevance in its market.
+            </p>
           </div>
           <div className="usecases-grid">
-            {[
-              {name:'P25 / Simulcast Systems',desc:'Sites evaluated for P25 conventional, trunked, and simulcast deployments. Public safety coverage is non-negotiable — we start from that premise.',tags:['P25','Simulcast','Public Safety'],link:'Browse P25 sites'},
-              {name:'Private 5G Networks',desc:'Carrier-neutral edge infrastructure for private LTE and 5G. Enterprise-grade coverage in dense urban environments, without a carrier dependency.',tags:['Private 5G','CBRS','Enterprise'],link:'Browse 5G nodes'},
-              {name:'P2P Microwave',desc:'Verified point-to-point paths across urban rooftops. High-bandwidth, low-latency interconnects for organizations that need metro connectivity without carrier circuits.',tags:['P2P Microwave','High-Bandwidth','Metro Backhaul'],link:'Browse P2P paths'},
-              {name:'IoT / Sensing Networks',desc:'Urban node density and physical access for IoT and environmental sensing deployments. Consistent backhaul for low-power devices that need to keep running.',tags:['IoT','Sensor Networks','LoRaWAN'],link:'Browse IoT nodes'},
-              {name:'MANET / Tactical Systems',desc:'Flexible rooftop infrastructure for mesh and mobile ad-hoc network deployments. Urban high points that give your tactical systems the geometry they need.',tags:['MANET','Tactical Comms','Mesh'],link:'Explore MANET sites'},
-              {name:'LMR Migration',desc:'Infrastructure for organizations navigating the LMR-to-IP transition. Sites that support hybrid deployments and give you a path forward without a hard cutover.',tags:['LMR Migration','Hybrid','P25-to-IP'],link:'Talk to an Engineer'},
-            ].map((uc,i)=>(
-              <div key={i} className="usecase-card reveal">
-                <div className="usecase-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/></svg></div>
-                <div className="usecase-name">{uc.name}</div>
-                <p className="usecase-desc">{uc.desc}</p>
-                <div className="usecase-tags">{uc.tags.map(t=><span key={t} className="ptag">{t}</span>)}</div>
-                <a href="#pc-inquiry" className="usecase-link">{uc.link} <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="3" fill="currentColor"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M4.5 5.5a11 11 0 0 0 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/><path d="M19.5 5.5a11 11 0 0 1 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/></svg>
               </div>
-            ))}
+              <div className="usecase-name">Government &amp; Public Safety Radio</div>
+              <p className="usecase-desc">Repeater sites, receiver sites, dispatch interconnection, voted systems, and simulcast-supporting architectures, for radio where reliability is not optional.</p>
+              <div className="usecase-tags"><span className="ptag">P25</span><span className="ptag">Voted Systems</span><span className="ptag">Simulcast</span></div>
+              <a href="#pc-inquiry" className="usecase-link">Browse radio sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v5c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V7l-8-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M8.5 12.5a5 5 0 0 0 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
+              </div>
+              <div className="usecase-name">Private 5G</div>
+              <p className="usecase-desc">Sites that support controlled, localized wireless coverage with the infrastructure discipline enterprise and industrial use demands. Where you place infrastructure decides whether the network can grow.</p>
+              <div className="usecase-tags"><span className="ptag">Private 5G</span><span className="ptag">CBRS</span><span className="ptag">Enterprise</span></div>
+              <a href="#pc-inquiry" className="usecase-link">Browse 5G sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 19v2M16 19v2M8 21h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 11h10M7 14h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Point-to-Point Data Links</div>
+              <p className="usecase-desc">High-capacity links between buildings, edge locations, and critical network assets, especially where lower latency, routing control, or backup path diversity matter.</p>
+              <div className="usecase-tags"><span className="ptag">P2P Microwave</span><span className="ptag">Low Latency</span><span className="ptag">Path Diversity</span></div>
+              <a href="#pc-inquiry" className="usecase-link">Browse link sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="14" r="2.5" fill="currentColor"/><path d="M9 11a4 4 0 0 0 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M15 11a4 4 0 0 1 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M6.5 8.5a8 8 0 0 0 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/><path d="M17.5 8.5a8 8 0 0 1 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/></svg>
+              </div>
+              <div className="usecase-name">Private Sensor Networks</div>
+              <p className="usecase-desc">Elevated rooftop collection infrastructure for smart buildings, utilities, logistics, environmental monitoring, and security: LoRaWAN, Wi-SUN, and IoT.</p>
+              <div className="usecase-tags"><span className="ptag">LoRaWAN</span><span className="ptag">Wi-SUN</span><span className="ptag">IoT</span></div>
+              <a href="#pc-inquiry" className="usecase-link">Browse sensor sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="19" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7"/><path d="M7.5 12h9M13.8 7.2l3.8 3.3M10.2 7.2L6.4 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+              </div>
+              <div className="usecase-name">Two-Way Radio Simulcast</div>
+              <p className="usecase-desc">Coordinated radio networks across multiple sites with precise timing, resilient backhaul, and dependable receiver performance.</p>
+              <div className="usecase-tags"><span className="ptag">Simulcast</span><span className="ptag">Timing</span><span className="ptag">Backhaul</span></div>
+              <a href="#pc-inquiry" className="usecase-link">Browse simulcast sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
+            <div className="usecase-card reveal">
+              <div className="usecase-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+              </div>
+              <div className="usecase-name">Office-to-Office Connectivity</div>
+              <p className="usecase-desc">Private metropolitan connectivity for enterprises that need control, lower latency, and less reliance on public internet paths.</p>
+              <div className="usecase-tags"><span className="ptag">Metro Links</span><span className="ptag">Enterprise</span><span className="ptag">Private</span></div>
+              <a href="#pc-inquiry" className="usecase-link">Explore connectivity <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            </div>
+
           </div>
         </div>
       </section>
