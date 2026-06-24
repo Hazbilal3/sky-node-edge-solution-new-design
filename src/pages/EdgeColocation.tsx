@@ -247,7 +247,7 @@ export default function EdgeColocation() {
               <div className="usecase-name">Content Delivery &amp; Caching</div>
               <p className="usecase-desc">Place CDN edge nodes inside metro colocation environments for lower-latency content delivery to dense urban audiences. Serve and cache content from inside the city — faster page loads, smoother streams, lower origin traffic costs.</p>
               <div className="usecase-tags"><span className="ptag">CDN</span><span className="ptag">Caching</span><span className="ptag">Origin Offload</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/cdn-edge-node" className="usecase-link">
                 Browse edge sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -260,7 +260,7 @@ export default function EdgeColocation() {
               <div className="usecase-name">Network Equipment &amp; Interconnection</div>
               <p className="usecase-desc">Cross-connect, private routing, backhaul termination, and carrier-adjacent placement at metro nodes. A local landing zone for hybrid architectures, with direct private connections into public cloud instead of best-effort public internet.</p>
               <div className="usecase-tags"><span className="ptag">Cross-Connect</span><span className="ptag">Backhaul</span><span className="ptag">Direct Connect</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/network-colocation" className="usecase-link">
                 Browse edge sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -273,7 +273,7 @@ export default function EdgeColocation() {
               <div className="usecase-name">Enterprise Edge Compute</div>
               <p className="usecase-desc">Latency-sensitive processing for financial data, video analytics, IoT aggregation, and real-time applications. Collect, filter, and process data at the edge — so only what matters travels onward and the core network stops drowning in raw telemetry.</p>
               <div className="usecase-tags"><span className="ptag">Enterprise</span><span className="ptag">IoT</span><span className="ptag">Analytics</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/enterprise-edge" className="usecase-link">
                 Browse edge sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>

@@ -306,7 +306,7 @@ export default function PrivateComms() {
               <div className="usecase-name">Private 5G</div>
               <p className="usecase-desc">Sites that support controlled, localized wireless coverage with the infrastructure discipline enterprise and industrial use demands. Successful private 5G depends on where infrastructure can be placed, how sites interconnect, and whether the network can expand.</p>
               <div className="usecase-tags"><span className="ptag">Private 5G</span><span className="ptag">CBRS</span><span className="ptag">Enterprise</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/experimental" className="usecase-link">
                 Browse 5G sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -319,7 +319,7 @@ export default function PrivateComms() {
               <div className="usecase-name">Point-to-Point Data Links</div>
               <p className="usecase-desc">High-capacity links between buildings, edge locations, operational facilities, and critical network assets — especially where lower latency, routing control, or backup path diversity matter.</p>
               <div className="usecase-tags"><span className="ptag">P2P Microwave</span><span className="ptag">Low Latency</span><span className="ptag">Path Diversity</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/point-to-point-links" className="usecase-link">
                 Browse link sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -332,7 +332,7 @@ export default function PrivateComms() {
               <div className="usecase-name">Private Sensor Networks</div>
               <p className="usecase-desc">Elevated rooftop collection infrastructure for smart buildings, utilities, logistics, environmental monitoring, and security systems — LoRaWAN, Wi-SUN, and IoT gateway deployments.</p>
               <div className="usecase-tags"><span className="ptag">LoRaWAN</span><span className="ptag">Wi-SUN</span><span className="ptag">IoT</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/experimental" className="usecase-link">
                 Browse sensor sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>

@@ -20,6 +20,7 @@ import HowItWorks     from './pages/HowItWorks'
 import Contact        from './pages/Contact'
 import Partners       from './pages/Partners'
 import Careers        from './pages/Careers'
+import NotFound       from './pages/NotFound'
 
 import NewYork        from './pages/markets/NewYork'
 import Connecticut    from './pages/markets/Connecticut'
@@ -101,6 +102,9 @@ function Layout() {
         <Route path="/solutions/cdn-edge-node"        element={<CdnEdgeNode />}       />
         <Route path="/solutions/network-colocation"   element={<NetworkColocation />}  />
         <Route path="/solutions/enterprise-edge"      element={<EnterpriseEdge />}     />
+
+        {/* ─── 404 catch-all ───────────────────────────────────── */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

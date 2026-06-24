@@ -277,7 +277,7 @@ export default function Broadcasting() {
               <div className="usecase-name">Television Broadcast Sites</div>
               <p className="usecase-desc">Urban sites that can support technically disciplined infrastructure planning and dependable long-term operation, including backup and auxiliary roles.</p>
               <div className="usecase-tags"><span className="ptag">TV Primary</span><span className="ptag">TV Backup</span><span className="ptag">Auxiliary</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/broadcast-tv-site" className="usecase-link">
                 Browse TV sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -291,7 +291,7 @@ export default function Broadcasting() {
               <div className="usecase-name">LPFM Infrastructure</div>
               <p className="usecase-desc">Practical and financially rational urban site options for LPFM operators without the friction of bespoke rooftop negotiations. You are local. Your site search should be too.</p>
               <div className="usecase-tags"><span className="ptag">LPFM</span><span className="ptag">Urban Sites</span><span className="ptag">Low Power</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/broadcast-lpfm-site" className="usecase-link">
                 Browse LPFM sites
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -333,7 +333,7 @@ export default function Broadcasting() {
               <div className="usecase-name">Auxiliary Broadcast Services</div>
               <p className="usecase-desc">Specialized use cases requiring strategically located rooftop infrastructure with dependable access and support conditions. If it needs a rooftop and an FCC filing, there is probably a node for it.</p>
               <div className="usecase-tags"><span className="ptag">STL</span><span className="ptag">Auxiliary</span><span className="ptag">Studio-Transmitter Link</span></div>
-              <Link to="/contact" className="usecase-link">
+              <Link to="/solutions/broadcast-backup-site" className="usecase-link">
                 Explore auxiliary
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
