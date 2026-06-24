@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import { useDroneSwarmCanvas } from '../hooks/useDroneSwarmCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
@@ -14,7 +15,6 @@ export default function Experimental() {
   const [cityIndex, setCityIndex] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [formSuccess, setFormSuccess] = useState(false);
 
   useReveal();
   useDroneSwarmCanvas(heroCanvasRef, {
@@ -38,8 +38,6 @@ export default function Experimental() {
 
   const CITY_NAMES = CITIES.map(c=>c.name);
   const filters = ['All','UAS','Sensing','AR','Smart City'];
-
-  function handleSubmit(e: React.FormEvent) { e.preventDefault(); setFormSuccess(true); }
 
   return (
     <>
@@ -117,8 +115,8 @@ export default function Experimental() {
               <h1>Urban infrastructure for the systems<br/><em>that come next.</em></h1>
               <p className="hero-sub">Drones, autonomous systems, AI sensing, augmented reality, smart-city infrastructure, the emerging applications that benefit most from distributed, elevated, low-latency urban nodes. Real sites, on real buildings, with the access and compliance path already cleared.</p>
               <div className="hero-actions">
-                <a href="#exp-inquiry" className="btn btn-primary">Browse Experimental-Rated Nodes</a>
-                <a href="#exp-inquiry" className="btn btn-outline-light">Talk to Skynode</a>
+                <Link to="/skynodes" className="btn btn-primary">Browse Experimental-Rated Nodes</Link>
+                <Link to="/contact"  className="btn btn-outline-light">Talk to Skynode</Link>
               </div>
             </div>
             <div className="hero-visual">
@@ -154,7 +152,7 @@ export default function Experimental() {
                   ))}
                 </div>
                 <div className="hero-card-footer">
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">18<span style={{fontSize:'14px',fontWeight:600}}>+</span></div><div className="hero-card-stat-lbl">Experimental-rated nodes<br/>(to be confirmed)</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">TBC</div><div className="hero-card-stat-lbl">Experimental-rated nodes<br/>(to be confirmed)</div></div>
                   <div className="hero-card-stat"><div className="hero-card-stat-val">6</div><div className="hero-card-stat-lbl">Application categories<br/>supported</div></div>
                 </div>
               </div>
@@ -162,9 +160,6 @@ export default function Experimental() {
           </div>
         </div>
       </section>
-
-      {/* Credibility strip */}
-      <div className="credibility"><div className="container"><div className="credibility-inner"><span className="cred-label">Operators deploying emerging systems on Skynode infrastructure</span><div className="cred-logo" style={{width:'88px'}}/><div className="cred-logo" style={{width:'110px'}}/><div className="cred-logo" style={{width:'76px'}}/><div className="cred-logo" style={{width:'96px'}}/><div className="cred-logo" style={{width:'84px'}}/></div></div></div>
 
       {/* ═══ WHY SECTION ═══ */}
       <section className="section-light" id="why">
@@ -250,7 +245,7 @@ export default function Experimental() {
               <div className="usecase-name">Drone &amp; Unmanned Systems</div>
               <p className="usecase-desc">Metro infrastructure for drone operations, mobile robotics, private wireless, and distributed machine control, with communications, transport, and compute positioned close enough, fast enough, and resilient enough.</p>
               <div className="usecase-tags"><span className="ptag">UAS / Drone</span><span className="ptag">Robotics</span><span className="ptag">Private Wireless</span></div>
-              <a href="#exp-inquiry" className="usecase-link">Browse UAS sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">Browse UAS sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -260,7 +255,7 @@ export default function Experimental() {
               <div className="usecase-name">AI Spatial Sensing &amp; Detection</div>
               <p className="usecase-desc">Elevated rooftop nodes that supply network, compute, and interconnection for AI-powered sensing platforms analyzing Wi-Fi propagation, movement patterns, or environmental signals across the metro.</p>
               <div className="usecase-tags"><span className="ptag">Spatial AI</span><span className="ptag">Edge Compute</span><span className="ptag">Sensing</span></div>
-              <a href="#exp-inquiry" className="usecase-link">Browse sensing sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">Browse sensing sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -270,7 +265,7 @@ export default function Experimental() {
               <div className="usecase-name">Augmented Reality (Field)</div>
               <p className="usecase-desc">Edge compute close enough to the jobsite to cut the delay between sensor input, processing, and AR headset output, for guided maintenance, construction, and inspection use cases.</p>
               <div className="usecase-tags"><span className="ptag">AR / VR</span><span className="ptag">Low Latency</span><span className="ptag">Construction</span></div>
-              <a href="#exp-inquiry" className="usecase-link">Browse AR sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">Browse AR sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -280,7 +275,7 @@ export default function Experimental() {
               <div className="usecase-name">Smart City Infrastructure</div>
               <p className="usecase-desc">Traffic sensing, environmental monitoring, public-safety integration, machine vision, and curbside analytics, the distributed urban platform for collecting, transporting, and processing city-scale data.</p>
               <div className="usecase-tags"><span className="ptag">Smart City</span><span className="ptag">Machine Vision</span><span className="ptag">Analytics</span></div>
-              <a href="#exp-inquiry" className="usecase-link">Browse smart-city sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">Browse smart-city sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -290,7 +285,7 @@ export default function Experimental() {
               <div className="usecase-name">Smart Building Deployment</div>
               <p className="usecase-desc">Elevated collection points for in-building sensor data, energy management, occupancy sensing, and building-automation systems that need metro-scale connectivity.</p>
               <div className="usecase-tags"><span className="ptag">Building IoT</span><span className="ptag">Energy</span><span className="ptag">Automation</span></div>
-              <a href="#exp-inquiry" className="usecase-link">Browse building sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">Browse building sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -300,7 +295,7 @@ export default function Experimental() {
               <div className="usecase-name">Utility Metering &amp; Submetering</div>
               <p className="usecase-desc">Elevated rooftop collector points for resilient meter collection, secure transmission, and edge-ready infrastructure across real buildings and cities.</p>
               <div className="usecase-tags"><span className="ptag">Metering</span><span className="ptag">Resilient</span><span className="ptag">Secure</span></div>
-              <a href="#exp-inquiry" className="usecase-link">Explore metering <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">Explore metering <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
           </div>
@@ -316,16 +311,16 @@ export default function Experimental() {
               <h2 className="callout-h2">The lab proved it.<br/>The city is next.<br/><em>We've cleared the path.</em></h2>
               <p className="callout-body">The hard part of emerging systems is rarely the technology. It's getting real-world urban sites where you can actually test and deploy. Skynode has already done the access and compliance work: elevated, connected, distributed nodes on real buildings, ready for the systems that don't have a procurement category yet.</p>
               <div className="callout-actions">
-                <a href="#exp-inquiry" className="btn btn-outline-light">Talk to Skynode</a>
+                <Link to="/skynodes" className="btn btn-outline-light">Browse Experimental Nodes</Link>
+                <Link to="/contact"  className="btn btn-outline-dark">Talk to Skynode</Link>
               </div>
             </div>
             <div className="metric-stack">
-              <div className="metric-item"><span className="metric-lbl">Active markets</span><span className="metric-val">NYC · CHI · MIA · New Haven · Springfield</span></div>
+              <div className="metric-item"><span className="metric-lbl">Active markets</span><span className="metric-val">New York · Florida · Illinois · Connecticut</span></div>
               <div className="metric-item"><span className="metric-lbl">Application types</span><span className="metric-val">UAS · Sensing · AR · Smart City · Metering</span></div>
               <div className="metric-item"><span className="metric-lbl">Site evaluation criteria</span><span className="metric-val">Elevation · Backhaul · LOS · Compute</span></div>
               <div className="metric-item"><span className="metric-lbl">Permitting management</span><span className="metric-val">Local · State · Federal</span></div>
-              <div className="metric-item"><span className="metric-lbl">Rooftop experience</span><span className="metric-val">40+ years*</span></div>
-              <div className="metric-note">*Figure to be confirmed before publishing</div>
+              <div className="metric-item"><span className="metric-lbl">Rooftop experience</span><span className="metric-val">40+ combined years</span></div>
             </div>
           </div>
         </div>
@@ -360,7 +355,7 @@ export default function Experimental() {
               <div className="metro-usecases">
                 {['Edge Compute','Broadcasting','Private Comms','Experimental'].map(t=><span key={t} className="metro-usecase-tag">{t}</span>)}
               </div>
-              <a href="#" className="btn btn-outline-dark" style={{marginTop:'28px'}}>Learn About Metro Fabric <svg className="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/metro-fabric" className="btn btn-outline-dark" style={{marginTop:'28px'}}>Learn About Metro Fabric <svg className="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
             <div className="metro-anim-wrap reveal">
               <canvas ref={metroRef} id="metroCanvas" width={480} height={560} />
@@ -374,22 +369,22 @@ export default function Experimental() {
         </div>
       </section>
 
-      {/* ═══ LEAD CAPTURE ═══ */}
+      {/* ═══ CTA SECTION ═══ */}
       <section className="section-dark" id="exp-inquiry">
         <div className="container">
           <div className="inquiry-grid">
             <div className="reveal">
               <div className="eyebrow eyebrow--light">Start Deploying</div>
               <h2 className="section-h2 section-h2--dark">Tell us what you're building.<br/><em>We'll find you ground.</em></h2>
-              <p className="section-body--dark" style={{marginBottom:'32px',fontSize:'15px',lineHeight:'1.75'}}>We won't sell you a site before we understand the system. Fill in the basics. A real person reviews every inquiry. If we have nodes that fit your application, we'll tell you. If we don't, we'll tell you that too.</p>
+              <p className="section-body--dark" style={{marginBottom:'32px',fontSize:'15px',lineHeight:'1.75'}}>We won't sell you a site before we understand the system. A real person reviews every inquiry. If we have nodes that fit your application, we'll tell you. If we don't, we'll tell you that too.</p>
               <div className="reassurance-list">
                 <div className="reassurance-item">
                   <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="4" y="2" width="10" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 6h6M6 9h6M6 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
-                  <div><div className="reassurance-title">We manage the access path</div><div className="reassurance-desc">Permitting, structural assessments, municipal approvals, and building coordination, all handled by Skynode. You focus on the system, not the paperwork.</div></div>
+                  <div><div className="reassurance-title">We manage the access path</div><div className="reassurance-desc">Permitting, structural assessments, municipal approvals, and building coordination — all handled by Skynode. You focus on the system, not the paperwork.</div></div>
                 </div>
                 <div className="reassurance-item">
                   <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" strokeWidth="1.5"/><path d="M4.5 13.5A6.5 6.5 0 0 1 2 7.5M13.5 13.5A6.5 6.5 0 0 0 16 7.5M9 10v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
-                  <div><div className="reassurance-title">Experimental-rated means something</div><div className="reassurance-desc">We don't apply the label loosely. Sites are evaluated for elevation, backhaul, power, compute readiness, and line-of-sight for the application.</div></div>
+                  <div><div className="reassurance-title">Experimental-rated means something</div><div className="reassurance-desc">Sites are evaluated for elevation, backhaul, power, compute readiness, and line-of-sight for the application. We don't apply the label loosely.</div></div>
                 </div>
                 <div className="reassurance-item">
                   <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="3" y="8" width="12" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M6 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/></svg></div>
@@ -397,58 +392,36 @@ export default function Experimental() {
                 </div>
                 <div className="reassurance-item">
                   <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16V7l5-4v13M7 16V4l9-2v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 9h1M4 12h1M10 6h1M10 9h1M10 12h1M13 6h1M13 9h1M13 12h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
-                  <div><div className="reassurance-title">Real sites in real markets</div><div className="reassurance-desc">New York. Miami. Chicago. New Haven. Springfield. Not concept art, not renderings. Real buildings we operate, at real elevation.</div></div>
+                  <div><div className="reassurance-title">Real sites in real markets</div><div className="reassurance-desc">New York. Florida. Illinois. Connecticut. Not concept art. Rooftops Skynode operates, at real elevation, with compliance already cleared.</div></div>
                 </div>
                 <div className="reassurance-item">
                   <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="10" r="6" stroke="currentColor" strokeWidth="1.5"/><path d="M9 7v3.5l2 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 2h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
-                  <div><div className="reassurance-title">One business day response</div><div className="reassurance-desc">We review every inquiry within one business day. Because your deployment window isn't getting wider while you wait.</div></div>
+                  <div><div className="reassurance-title">One business day response</div><div className="reassurance-desc">We review every inquiry within one business day. Your deployment window isn't getting wider while you wait.</div></div>
                 </div>
               </div>
             </div>
-            <div className="inquiry-form reveal">
+            <div className="inquiry-form reveal" style={{display:'flex',flexDirection:'column',gap:'16px',alignSelf:'start',paddingTop:'8px'}}>
               <div className="form-title">Find an experimental-rated site</div>
-              <div className="form-sub">Takes 2 minutes. We follow up within one business day.</div>
-              {formSuccess ? (
-                <div className="form-success show">
-                  <div className="form-success-icon">🛰️</div>
-                  <div className="form-success-title">Got it.</div>
-                  <div className="form-success-body">A real person will review your inquiry within one business day. If we have nodes that fit your application, you'll hear from us. If it's urgent, that's what phones are for.</div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Full Name *</label><input className="form-input" type="text" placeholder="Your name" required /></div>
-                    <div className="form-group"><label className="form-label">Company / Organization *</label><input className="form-input" type="text" placeholder="Company or organization" required /></div>
-                  </div>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Work Email *</label><input className="form-input" type="email" placeholder="you@company.com" required /></div>
-                    <div className="form-group"><label className="form-label">Phone</label><input className="form-input" type="tel" placeholder="Optional" /></div>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Market / DMA *</label>
-                    <select className="form-input" required><option value="">Select market</option><option>New York</option><option>Miami</option><option>Chicago</option><option>Other</option></select>
-                  </div>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Application Type *</label>
-                      <select className="form-input" required><option value="">Select application</option><option>Drone / UAS</option><option>Sensing / AI</option><option>AR / VR</option><option>Smart City</option><option>Robotics</option><option>Research</option><option>Other</option></select>
+              <div className="form-sub">Tell us your application, market, and number of sites. We'll tell you what we have.</div>
+              <div style={{padding:'20px 0 8px',borderBottom:'1px solid var(--border-dark)',marginBottom:'4px'}}>
+                <p style={{fontSize:'13px',color:'var(--tx-4)',lineHeight:'1.75',marginBottom:'16px'}}>Use the contact form to describe your project. Select <strong style={{color:'rgb(var(--fg))'}}>your application type</strong> and tell us:</p>
+                {['What market you need to deploy in','What application you are building','How many sites you need','Your timeline and stage','Any specific elevation or backhaul requirements'].map((item,i)=>(
+                  <div key={i} style={{display:'flex',gap:'10px',alignItems:'flex-start',marginBottom:'8px'}}>
+                    <div style={{width:'18px',height:'18px',borderRadius:'50%',background:'rgba(245,158,11,0.15)',color:'#FBBF24',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:'1px'}}>
+                      <svg viewBox="0 0 16 16" fill="none" width="10" height="10"><path d="M3 8.5l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
-                    <div className="form-group"><label className="form-label">Number of Sites</label>
-                      <select className="form-input"><option value="">Select count</option><option>1 site</option><option>2–5 sites</option><option>6–15 sites</option><option>15+ sites</option><option>Not Sure</option></select>
-                    </div>
+                    <span style={{fontSize:'13px',color:'var(--tx-3)',lineHeight:'1.55'}}>{item}</span>
                   </div>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Stage (optional)</label>
-                      <select className="form-input"><option value="">Select</option><option>Research / Pre-seed</option><option>Pilot / Funded</option><option>Scaling deployment</option><option>Not Sure</option></select>
-                    </div>
-                    <div className="form-group"><label className="form-label">Timeline</label>
-                      <select className="form-input"><option value="">Select</option><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select>
-                    </div>
-                  </div>
-                  <div className="form-group"><label className="form-label">Additional Notes</label><textarea className="form-input" rows={4} placeholder="Brief description of your project: application, coverage area, number of sites, timing…" /></div>
-                  <button className="btn btn-primary form-submit" type="submit">Submit Inquiry</button>
-                  <div className="form-privacy">Your info is used only to evaluate site fit. No spam. No auto-dialers. We're in the infrastructure business, not the harassment business.</div>
-                </form>
-              )}
+                ))}
+              </div>
+              <Link to="/skynodes" className="btn btn-primary" style={{justifyContent:'center'}}>
+                Browse Experimental Nodes
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
+              <Link to="/contact" className="btn btn-outline-light" style={{justifyContent:'center'}}>
+                Talk to Skynode
+              </Link>
+              <div className="form-privacy">Every inquiry reviewed by a real person within one business day.</div>
             </div>
           </div>
         </div>
@@ -461,7 +434,8 @@ export default function Experimental() {
         <h2>Stop waiting for permission to deploy.<br/><em>Get it in the field.</em></h2>
         <p>Tell us your market, application, and number of sites. We'll tell you whether we have nodes worth your time.</p>
         <div className="cta-actions">
-          <a href="#exp-inquiry" className="btn btn-outline-light" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to Skynode</a>
+          <Link to="/skynodes" className="btn btn-primary"       style={{padding:'16px 32px',fontSize:'15px'}}>Browse Experimental Nodes</Link>
+          <Link to="/contact"  className="btn btn-outline-light" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to Skynode</Link>
         </div>
       </section>
     </>

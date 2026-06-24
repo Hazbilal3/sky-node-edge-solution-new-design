@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import { useBroadcastWaveCanvas } from '../hooks/useBroadcastWaveCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
@@ -12,9 +13,8 @@ export default function EdgeColocation() {
   const metroRef      = useRef<HTMLCanvasElement>(null);
 
   const [cityIndex, setCityIndex] = useState(0);
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom]           = useState(1);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [formSuccess, setFormSuccess] = useState(false);
 
   useReveal();
   useBroadcastWaveCanvas(heroCanvasRef, { receiverCount:16, waveCount:5, waveSpeed:0.7 });
@@ -22,16 +22,12 @@ export default function EdgeColocation() {
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIndex, zoom);
   useMetroFabricCanvas(metroRef);
 
-  const CITY_NAMES = CITIES.map(c=>c.name);
-  const filters = ['All','PD-120kW','HD-40kW','MD-20kW'];
-
-  function handleSubmit(e: React.FormEvent) { e.preventDefault(); setFormSuccess(true); }
+  const CITY_NAMES = CITIES.map(c => c.name);
+  const filters = ['All', 'PD-120kW', 'HD-40kW', 'MD-20kW'];
 
   return (
     <>
       <style>{`
-        :root[data-theme="dark"]  { --sky-blue: #5BE49B; }
-        :root[data-theme="light"] { --sky-blue: #15994F; }
         .eyebrow--pc { color:var(--sky-blue); }
         .eyebrow--pc::before { background:var(--sky-blue); }
         .filter-chip { border:1px solid rgba(91,228,155,0.35); color:var(--sky-blue); background:rgba(91,228,155,0.10); }
@@ -66,11 +62,15 @@ export default function EdgeColocation() {
         .section-header-center { text-align:center; max-width:640px; margin:0 auto 48px; }
         .section-body { font-size:15px; color:var(--tx-3); line-height:1.75; margin-bottom:20px; }
         .section-body--dark { font-size:15px; color:var(--tx-3); line-height:1.75; }
-        .credibility-inner { display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
         .hero { padding-top:100px; min-height:auto; padding-bottom:80px; }
         #heroCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
         .final-cta { position:relative; padding:120px 28px; text-align:center; overflow:hidden; background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(21,153,79,0.12) 0%, transparent 70%), linear-gradient(180deg,rgba(var(--bg-base),0.96) 0%,rgba(var(--bg-base),0.92) 100%); }
         .final-cta > * { position:relative; z-index:1; }
+        .ec-trust-bullets { display:flex; flex-direction:column; gap:12px; margin:28px 0 32px; }
+        .ec-trust-bullet { display:flex; align-items:flex-start; gap:12px; font-size:14px; color:var(--tx-3); line-height:1.6; }
+        .ec-trust-bullet svg { color:var(--sky-blue); flex-shrink:0; margin-top:2px; }
+        .ai-sub-card { display:flex; gap:16px; padding:22px; background:rgba(91,228,155,0.05); border:1px solid rgba(91,228,155,0.18); border-radius:var(--r-lg); margin-top:28px; align-items:flex-start; }
+        .ai-sub-card-ico { width:40px; height:40px; border-radius:var(--r-sm); background:rgba(91,228,155,0.12); border:1px solid rgba(91,228,155,0.22); display:flex; align-items:center; justify-content:center; color:var(--sky-blue); flex-shrink:0; }
       `}</style>
 
       {/* ═══ HERO ═══ */}
@@ -93,11 +93,11 @@ export default function EdgeColocation() {
                 <span className="city-tag">Illinois</span><span className="city-tag">New York</span>
               </div>
               <div className="eyebrow eyebrow--pc">Edge Colocation</div>
-              <h1>Your users are in the building.<br/><em>Your compute should be too.</em></h1>
-              <p className="hero-sub">Skynode provides carrier-neutral edge colocation in distributed urban rooftop and micro–data-center nodes: power, cooling, backhaul, and physical security inside the metro, milliseconds from where data is generated and consumed.</p>
+              <h1>Deploy compute where<br/><em>the city actually operates.</em></h1>
+              <p className="hero-sub">Secure edge colocation for AI inference, GPU workloads, CDN, and network infrastructure — distributed across metropolitan nodes.</p>
               <div className="hero-actions">
-                <a href="#edge-inquiry" className="btn btn-primary">Browse Edge Sites</a>
-                <a href="#edge-inquiry" className="btn btn-outline-light">Talk to Skynode</a>
+                <Link to="/skynodes" className="btn btn-primary">Browse Edge Colocation Nodes</Link>
+                <Link to="/contact" className="btn btn-outline-light">Talk to Skynode</Link>
               </div>
             </div>
             <div className="hero-visual">
@@ -108,16 +108,19 @@ export default function EdgeColocation() {
                 </div>
                 <div className="hero-filter-row">
                   <span className="filter-label">Filter:</span>
-                  {filters.map(f=><span key={f} className={`filter-chip${activeFilter===f?' active':''}`} onClick={()=>setActiveFilter(f)}>{f}</span>)}
+                  {filters.map(f => (
+                    <span key={f} className={`filter-chip${activeFilter === f ? ' active' : ''}`}
+                      onClick={() => setActiveFilter(f)}>{f}</span>
+                  ))}
                 </div>
                 <div className="node-table">
                   {[
-                    {id:'NYC-EDGE-1',asl:"Floor 38",tier:'PD-120kW'},
-                    {id:'NYC-EDGE-2',asl:"Penthouse",tier:'HD-40kW'},
-                    {id:'MIA-EDGE-1',asl:"Floor 22",tier:'MD-20kW'},
-                    {id:'CHI-EDGE-1',asl:"Floor 44",tier:'PD-120kW'},
-                    {id:'CT-EDGE-1', asl:"Floor 12",tier:'HD-40kW'},
-                  ].map(node=>(
+                    {id:'NYC-EDGE-1', asl:'Floor 38',   tier:'PD-120kW'},
+                    {id:'NYC-EDGE-2', asl:'Penthouse',  tier:'HD-40kW'},
+                    {id:'MIA-EDGE-1', asl:'Floor 22',   tier:'MD-20kW'},
+                    {id:'CHI-EDGE-1', asl:'Floor 44',   tier:'PD-120kW'},
+                    {id:'CT-EDGE-1',  asl:'Floor 12',   tier:'HD-40kW'},
+                  ].map(node => (
                     <div key={node.id} className="node-row-item">
                       <div className="node-name-cell">
                         <span className="node-dot node-dot--on"/>
@@ -125,15 +128,15 @@ export default function EdgeColocation() {
                         <span className="node-asl">| {node.asl}</span>
                       </div>
                       <div className="node-svc-row">
-                        <span className={`svc-btn${node.tier==='PD-120kW'?' svc-btn--on':''}`}>PD</span>
-                        <span className={`svc-btn${node.tier==='HD-40kW'?' svc-btn--on':''}`}>HD</span>
-                        <span className={`svc-btn${node.tier==='MD-20kW'?' svc-btn--on':''}`}>MD</span>
+                        <span className={`svc-btn${node.tier === 'PD-120kW' ? ' svc-btn--on' : ''}`}>PD</span>
+                        <span className={`svc-btn${node.tier === 'HD-40kW'  ? ' svc-btn--on' : ''}`}>HD</span>
+                        <span className={`svc-btn${node.tier === 'MD-20kW'  ? ' svc-btn--on' : ''}`}>MD</span>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="hero-card-footer">
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">12<span style={{fontSize:'14px',fontWeight:600}}>+</span></div><div className="hero-card-stat-lbl">Edge-rated nodes</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">TBC<span style={{fontSize:'14px',fontWeight:600}}></span></div><div className="hero-card-stat-lbl">Edge-rated nodes</div></div>
                   <div className="hero-card-stat"><div className="hero-card-stat-val">&lt;5<span style={{fontSize:'12px'}}>ms</span></div><div className="hero-card-stat-lbl">Metro latency</div></div>
                 </div>
               </div>
@@ -142,28 +145,40 @@ export default function EdgeColocation() {
         </div>
       </section>
 
-      {/* Credibility strip */}
-      <div className="credibility"><div className="container"><div className="credibility-inner"><span className="cred-label">Teams deploying compute at the edge with Skynode</span></div></div></div>
-
-      {/* ═══ WHY SECTION ═══ */}
+      {/* ═══ TRUST / WHY ═══ */}
       <section className="section-light" id="why">
         <div className="container">
           <div className="why-header-split reveal">
             <div>
-              <div className="eyebrow eyebrow--pc">Built for Edge Compute</div>
-              <h2 className="section-h2">Milliseconds matter.<br/><em>Location determines them.</em></h2>
+              <div className="eyebrow eyebrow--pc">Built for Serious Compute</div>
+              <h2 className="section-h2">Built for serious compute deployment,<br/><em>not concept art.</em></h2>
             </div>
             <div style={{paddingTop:'8px'}}>
-              <p className="section-body">The speed of light is not the bottleneck. Distance is. Three states away from your users means 40ms of round-trip you can't optimize away. Skynode puts your compute inside the metro — on verified rooftops with carrier-neutral backhaul, physical security, and managed power — where your latency is determined by blocks, not miles.</p>
-              <p className="section-body">Edge colocation nodes are evaluated for power density, cooling capacity, physical security, and network redundancy — not just available floor space.</p>
+              <p className="section-body">The speed of light is not the bottleneck. Distance is. Three states away from your users means 40ms of round-trip you cannot optimize away. Skynode puts your compute inside the metro — at broadcast facilities we operate, with carrier-neutral backhaul, physical security, and managed power — where your latency is determined by blocks, not miles.</p>
+              <div className="ec-trust-bullets">
+                {[
+                  'Real urban rooftop locations with available power and equipment space.',
+                  'Neutral host — your equipment, your network, your operations.',
+                  'Metro-distributed architecture for latency-sensitive workloads.',
+                  '40+ combined years of rooftop infrastructure management experience.',
+                  'Compliance-first project execution: permitting, structural, and utility coordination managed by Skynode.',
+                ].map((b, i) => (
+                  <div key={i} className="ec-trust-bullet">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 8l4 4 8-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    {b}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
+          {/* Node map */}
           <div className="hex-map-widget reveal">
             <div className="hex-map-topbar">
               <div className="hex-city-tabs">
-                {CITY_NAMES.map((name,i)=>(
-                  <button key={name} className={`hex-tab${cityIndex===i?' active':''}`} onClick={()=>setCityIndex(i)}>{name}</button>
+                {CITY_NAMES.map((name, i) => (
+                  <button key={name} className={`hex-tab${cityIndex === i ? ' active' : ''}`}
+                    onClick={() => setCityIndex(i)}>{name}</button>
                 ))}
               </div>
               <div className="hex-legend">
@@ -175,22 +190,23 @@ export default function EdgeColocation() {
             <div className="hex-map-wrap">
               <canvas ref={hexCanvasRef} id="hexMapCanvas" width={900} height={400} />
               <div className="hex-zoom-btns">
-                <button onClick={()=>setZoom(z=>Math.min(z+0.2,2.5))}>+</button>
-                <button onClick={()=>setZoom(z=>Math.max(z-0.2,0.5))}>−</button>
+                <button onClick={() => setZoom(z => Math.min(z + 0.2, 2.5))}>+</button>
+                <button onClick={() => setZoom(z => Math.max(z - 0.2, 0.5))}>−</button>
               </div>
               <div ref={hexTipRef} className="hex-tip" style={{display:'none'}} />
             </div>
           </div>
 
+          {/* Feature grid */}
           <div className="why-feature-grid" style={{marginTop:'44px'}}>
             {[
-              {title:'Sub-5ms metro latency',desc:'Rooftop compute nodes inside the metro deliver sub-5ms round-trip to your users. Three states away delivers 40ms. The math is not subtle.'},
-              {title:'Carrier-neutral backhaul',desc:'Multiple upstream providers per node. No single carrier dependency. 99.9%+ availability with contractual teeth.'},
+              {title:'Sub-5ms metro latency',desc:'Compute nodes inside the metro deliver sub-5ms round-trip to your users. Three states away delivers 40ms. The math is not subtle.'},
+              {title:'Carrier-neutral backhaul',desc:'Multiple upstream providers per node. No single carrier dependency. Availability backed by contractual terms.'},
               {title:'Managed power and cooling',desc:'Power density up to 120kW per rack, N+1 cooling, and UPS-backed power with generator backup at every primary node.'},
-              {title:'Physical security',desc:'Controlled access, video monitoring, and biometric entry at primary nodes. We operate the site; you control your equipment.'},
-              {title:'AI inference ready',desc:'GPU-dense configurations available at select nodes for inference workloads that can\'t tolerate the latency of a centralized data center.'},
-              {title:'Carrier-grade fiber diversity',desc:'Multiple fiber entry points and diverse path options at primary nodes. Your backhaul doesn\'t share a single conduit.'},
-            ].map((f,i)=>(
+              {title:'Physical security',desc:'Controlled access, video monitoring, and biometric entry at primary nodes. Skynode operates the site; you control your equipment.'},
+              {title:'AI inference ready',desc:'GPU-dense configurations available at select nodes for inference workloads that cannot tolerate the latency of a centralized data center.'},
+              {title:'Carrier-grade fiber diversity',desc:'Multiple fiber entry points and diverse path options at primary nodes. Your backhaul does not share a single conduit.'},
+            ].map((f, i) => (
               <div key={i} className="feature-item reveal">
                 <div className="feature-icon">
                   <svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M5 7h8M5 10h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -202,11 +218,11 @@ export default function EdgeColocation() {
         </div>
       </section>
 
-      {/* ═══ USE CASES ═══ */}
+      {/* ═══ WHAT SKYNODE SUPPORTS ═══ */}
       <section className="section-dark" id="services">
         <div className="container">
           <div className="section-header-center reveal">
-            <div className="eyebrow eyebrow--pc">Edge Use Cases</div>
+            <div className="eyebrow eyebrow--pc">What Skynode Supports</div>
             <h2 className="section-h2">Put your workloads next to demand.<br/><em>Not three states away.</em></h2>
           </div>
           <div className="usecases-grid">
@@ -215,10 +231,13 @@ export default function EdgeColocation() {
               <div className="usecase-icon">
                 <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="19" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7"/><path d="M7.5 12h9M13.8 7.2l3.8 3.3M10.2 7.2L6.4 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
               </div>
-              <div className="usecase-name">AI Inference at the Edge</div>
-              <p className="usecase-desc">Run inference close to users and sensors: lower latency, lower egress, and data that never has to leave the metro to get answered.</p>
-              <div className="usecase-tags"><span className="ptag">Inference</span><span className="ptag">Accelerators</span><span className="ptag">Low Egress</span></div>
-              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <div className="usecase-name">AI Inference &amp; GPU Compute</div>
+              <p className="usecase-desc">Deploy GPU racks and inference infrastructure at distributed urban nodes closer to users, cameras, sensors, and operational environments. Support for edge AI, real-time inference, and cascading model architectures.</p>
+              <div className="usecase-tags"><span className="ptag">Inference</span><span className="ptag">GPU Racks</span><span className="ptag">Edge AI</span></div>
+              <Link to="/edge-colocation/ai-inference" className="usecase-link">
+                AI inference sub-page
+                <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -226,49 +245,38 @@ export default function EdgeColocation() {
                 <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 19v2M16 19v2M8 21h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 11h10M7 14h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
               </div>
               <div className="usecase-name">Content Delivery &amp; Caching</div>
-              <p className="usecase-desc">Serve and cache content from inside the city for faster page loads, smoother streams, and origin traffic you no longer have to pay to move.</p>
+              <p className="usecase-desc">Place CDN edge nodes inside metro colocation environments for lower-latency content delivery to dense urban audiences. Serve and cache content from inside the city — faster page loads, smoother streams, lower origin traffic costs.</p>
               <div className="usecase-tags"><span className="ptag">CDN</span><span className="ptag">Caching</span><span className="ptag">Origin Offload</span></div>
-              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <Link to="/contact" className="usecase-link">
+                Browse edge sites
+                <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
             </div>
 
             <div className="usecase-card reveal">
               <div className="usecase-icon">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="3" fill="currentColor"/><path d="M7.5 8.5a6.5 6.5 0 0 0 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16.5 8.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M4.5 5.5a11 11 0 0 0 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/><path d="M19.5 5.5a11 11 0 0 1 0 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.45"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="4" cy="12" r="2" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="5" r="2" stroke="currentColor" strokeWidth="1.7"/><circle cx="20" cy="12" r="2" stroke="currentColor" strokeWidth="1.7"/><circle cx="12" cy="19" r="2" stroke="currentColor" strokeWidth="1.7"/><path d="M6 12h6M12 7v6M14 12h4M12 17v-4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
               </div>
-              <div className="usecase-name">Real-Time &amp; Interactive</div>
-              <p className="usecase-desc">Cloud gaming, AR/VR, live media, and trading, where single-digit milliseconds decide whether the experience feels instant or broken.</p>
-              <div className="usecase-tags"><span className="ptag">Sub-10ms</span><span className="ptag">Streaming</span><span className="ptag">Interactive</span></div>
-              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <div className="usecase-name">Network Equipment &amp; Interconnection</div>
+              <p className="usecase-desc">Cross-connect, private routing, backhaul termination, and carrier-adjacent placement at metro nodes. A local landing zone for hybrid architectures, with direct private connections into public cloud instead of best-effort public internet.</p>
+              <div className="usecase-tags"><span className="ptag">Cross-Connect</span><span className="ptag">Backhaul</span><span className="ptag">Direct Connect</span></div>
+              <Link to="/contact" className="usecase-link">
+                Browse edge sites
+                <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
             </div>
 
             <div className="usecase-card reveal">
               <div className="usecase-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M7 12l3 3 7-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </div>
-              <div className="usecase-name">Private Cloud On-Ramp</div>
-              <p className="usecase-desc">A local landing zone for hybrid architectures, with direct, private connections into public cloud instead of best-effort public internet.</p>
-              <div className="usecase-tags"><span className="ptag">Hybrid</span><span className="ptag">On-Ramp</span><span className="ptag">Direct Connect</span></div>
-              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
-            </div>
-
-            <div className="usecase-card reveal">
-              <div className="usecase-icon">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="14" r="2.5" fill="currentColor"/><path d="M9 11a4 4 0 0 0 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M15 11a4 4 0 0 1 0 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><path d="M6.5 8.5a8 8 0 0 0 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/><path d="M17.5 8.5a8 8 0 0 1 0 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/></svg>
-              </div>
-              <div className="usecase-name">IoT &amp; Sensor Aggregation</div>
-              <p className="usecase-desc">Collect, filter, and process device data at the edge, so only what matters travels onward and the core network stops drowning in raw telemetry.</p>
-              <div className="usecase-tags"><span className="ptag">IoT</span><span className="ptag">Pre-Processing</span><span className="ptag">Aggregation</span></div>
-              <a href="#edge-inquiry" className="usecase-link">Browse edge sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
-            </div>
-
-            <div className="usecase-card reveal">
-              <div className="usecase-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v5c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V7l-8-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M8.5 12.5a5 5 0 0 0 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
-              </div>
-              <div className="usecase-name">5G Multi-Access Edge (MEC)</div>
-              <p className="usecase-desc">Multi-access edge compute co-located with metro radio infrastructure for ultra-low-latency mobile and private-5G applications.</p>
-              <div className="usecase-tags"><span className="ptag">MEC</span><span className="ptag">Private 5G</span><span className="ptag">Mobile</span></div>
-              <a href="#edge-inquiry" className="usecase-link">Explore MEC <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+              <div className="usecase-name">Enterprise Edge Compute</div>
+              <p className="usecase-desc">Latency-sensitive processing for financial data, video analytics, IoT aggregation, and real-time applications. Collect, filter, and process data at the edge — so only what matters travels onward and the core network stops drowning in raw telemetry.</p>
+              <div className="usecase-tags"><span className="ptag">Enterprise</span><span className="ptag">IoT</span><span className="ptag">Analytics</span></div>
+              <Link to="/contact" className="usecase-link">
+                Browse edge sites
+                <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
             </div>
 
           </div>
@@ -284,15 +292,15 @@ export default function EdgeColocation() {
               <h2 className="callout-h2">Your users are in the building.<br/><em>Your compute should be too.</em></h2>
               <p className="callout-body">Latency is a function of distance. Skynode puts your workloads inside the metro — carrier-neutral, managed, and milliseconds from your users. Stop shipping data three states away for compute that needs to happen in the building.</p>
               <div className="callout-actions">
-                <a href="#edge-inquiry" className="btn btn-outline-light">Browse Edge Sites</a>
-                <a href="#edge-inquiry" className="btn btn-outline-dark">Talk to an Engineer</a>
+                <Link to="/skynodes" className="btn btn-outline-light">Browse Edge Nodes</Link>
+                <Link to="/contact" className="btn btn-outline-dark">Talk to Skynode</Link>
               </div>
             </div>
             <div className="metric-stack">
               <div className="metric-item"><span className="metric-lbl">Metro latency</span><span className="metric-val">&lt;5ms round-trip</span></div>
               <div className="metric-item"><span className="metric-lbl">Power density</span><span className="metric-val">Up to 120kW per rack</span></div>
               <div className="metric-item"><span className="metric-lbl">Backhaul options</span><span className="metric-val">Fiber · Wireless · Hybrid</span></div>
-              <div className="metric-item"><span className="metric-lbl">Active markets</span><span className="metric-val">NYC · CHI · MIA · CT</span></div>
+              <div className="metric-item"><span className="metric-lbl">Active markets</span><span className="metric-val">NYC · FL · IL · CT</span></div>
             </div>
           </div>
         </div>
@@ -304,14 +312,14 @@ export default function EdgeColocation() {
           <div className="metro-grid">
             <div className="reveal">
               <div className="eyebrow eyebrow--pc">Metro Fabric</div>
-              <h2 className="section-h2">Carrier-neutral backhaul.<br/><em>Metro-wide compute fabric.</em></h2>
-              <p className="section-body">Metro Fabric connects your edge compute nodes into a unified platform — carrier-neutral backhaul, multiple simultaneous paths, and dedicated capacity that scales with your deployment footprint.</p>
+              <h2 className="section-h2">A single node solves a proximity problem.<br/><em>Connected nodes solve a network problem.</em></h2>
+              <p className="section-body">Skynode Metro Fabric links multiple nodes through available fiber and high-capacity interconnection — enabling distributed compute architectures that span a city, not just a building.</p>
               <div className="metro-features">
                 {[
-                  {title:'Distributed compute fabric',desc:'Multiple edge nodes connected via Metro Fabric give your workloads geographic distribution within the metro — active-active, not active-passive.'},
+                  {title:'Distributed compute fabric', desc:'Multiple edge nodes connected via Metro Fabric give your workloads geographic distribution within the metro — active-active, not active-passive.'},
                   {title:'Carrier-neutral interconnect',desc:'Connect your edge nodes to your upstream data center, cloud regions, or other edge deployments without a single carrier dependency.'},
-                  {title:'Dedicated capacity',desc:'Metro Fabric links are dedicated to your deployment. No shared congestion. Throughput that doesn\'t degrade at peak.'},
-                ].map((f,i)=>(
+                  {title:'Dedicated capacity',         desc:'Metro Fabric links are dedicated to your deployment. No shared congestion. Throughput that does not degrade at peak.'},
+                ].map((f, i) => (
                   <div key={i} className="metro-feature">
                     <div className="metro-feature-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="6" width="14" height="6" rx="2" stroke="currentColor" strokeWidth="1.4"/><path d="M6 9h6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg></div>
                     <div><div className="metro-feature-title">{f.title}</div><div className="metro-feature-desc">{f.desc}</div></div>
@@ -319,8 +327,14 @@ export default function EdgeColocation() {
                 ))}
               </div>
               <div className="metro-usecases">
-                {['AI Inference','CDN / Cache','Private Cloud','NFV / vRAN','IoT Gateway'].map(t=><span key={t} className="metro-usecase-tag">{t}</span>)}
+                {['AI Inference','CDN / Cache','Private Cloud','NFV / vRAN','IoT Gateway'].map(t => (
+                  <span key={t} className="metro-usecase-tag">{t}</span>
+                ))}
               </div>
+              <Link to="/metro-fabric" className="text-link" style={{display:'inline-flex',alignItems:'center',gap:'6px',marginTop:'20px',fontSize:'14px',fontWeight:700,color:'var(--sky-blue)'}}>
+                Learn About Metro Fabric
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
             </div>
             <div className="metro-anim-wrap reveal">
               <canvas ref={metroRef} id="metroCanvas" width={480} height={560} />
@@ -334,21 +348,21 @@ export default function EdgeColocation() {
         </div>
       </section>
 
-      {/* ═══ LEAD CAPTURE ═══ */}
-      <section className="section-dark" id="edge-inquiry">
+      {/* ═══ NODE SPECS / CTA BAND ═══ */}
+      <section className="section-dark">
         <div className="container">
           <div className="inquiry-grid">
             <div className="reveal">
-              <div className="eyebrow eyebrow--light">Start Your Edge Deployment</div>
-              <h2 className="section-h2">Tell us what you're deploying.<br/><em>We'll tell you where to put it.</em></h2>
-              <p className="section-body--dark" style={{marginBottom:'32px'}}>Edge compute deployments start with the right site. Tell us your workload, power requirements, and market. A real person will follow up within one business day.</p>
+              <div className="eyebrow eyebrow--light">Explore Edge Colocation Nodes</div>
+              <h2 className="section-h2">Browse actual nodes.<br/><em>Not abstract coverage claims.</em></h2>
+              <p className="section-body--dark" style={{marginBottom:'28px'}}>Each Skynode is a specific location with specific characteristics you can evaluate — power availability, equipment space, connectivity, and physical access. Browse by market and capability, then request an evaluation call.</p>
               <div className="reassurance-list">
                 {[
-                  {title:'Carrier-neutral from day one',desc:'Multiple upstream providers per node. No carrier lock-in. Your backhaul options stay open.'},
-                  {title:'Managed power and cooling',desc:'Power, cooling, and physical security handled by Skynode. You deploy; we operate.'},
-                  {title:'Compliance and permitting',desc:'Site permitting, structural assessments, and utility coordination — all managed by Skynode.'},
-                  {title:'One business day response',desc:'Every edge inquiry is reviewed within one business day. Because your deployment timeline isn\'t getting shorter.'},
-                ].map((r,i)=>(
+                  {title:'Carrier-neutral from day one',    desc:'Multiple upstream providers per node. No carrier lock-in. Your backhaul options stay open.'},
+                  {title:'Managed power and cooling',       desc:'Power, cooling, and physical security handled by Skynode. You deploy; Skynode operates.'},
+                  {title:'Compliance and permitting',       desc:'Site permitting, structural assessments, and utility coordination — all managed by Skynode.'},
+                  {title:'One business day response',       desc:'Every edge inquiry is reviewed by a real person within one business day.'},
+                ].map((r, i) => (
                   <div key={i} className="reassurance-item">
                     <div className="reassurance-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M5 7h8M5 10h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
                     <div><div className="reassurance-title">{r.title}</div><div className="reassurance-desc">{r.desc}</div></div>
@@ -356,42 +370,26 @@ export default function EdgeColocation() {
                 ))}
               </div>
             </div>
-            <div className="inquiry-form reveal">
-              <div className="form-title">Find an edge colocation site</div>
-              <div className="form-sub">Takes 2 minutes. We follow up within one business day.</div>
-              {formSuccess ? (
-                <div className="form-success show">
-                  <div className="form-success-icon">🖥️</div>
-                  <div className="form-success-title">Got it.</div>
-                  <div className="form-success-body">A real person will review your inquiry within one business day.</div>
+            <div className="reveal" style={{display:'flex',flexDirection:'column',gap:'16px',alignSelf:'start',paddingTop:'8px'}}>
+              <div className="ai-sub-card">
+                <div className="ai-sub-card-ico">
+                  <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M7 10l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Full Name *</label><input className="form-input" type="text" placeholder="Your name" required /></div>
-                    <div className="form-group"><label className="form-label">Company *</label><input className="form-input" type="text" placeholder="Company name" required /></div>
-                  </div>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Work Email *</label><input className="form-input" type="email" placeholder="you@company.com" required /></div>
-                    <div className="form-group"><label className="form-label">Phone</label><input className="form-input" type="tel" placeholder="Optional" /></div>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Workload Type *</label>
-                    <select className="form-input" required><option value="">Select type</option><option>AI / GPU Inference</option><option>CDN / Cache</option><option>Private Cloud</option><option>NFV / vRAN</option><option>IoT / Sensing</option><option>Enterprise Edge</option><option>Other</option></select>
-                  </div>
-                  <div className="form-2col">
-                    <div className="form-group"><label className="form-label">Power Requirement</label>
-                      <select className="form-input"><option value="">Select</option><option>MD-20kW</option><option>HD-40kW</option><option>PD-120kW</option><option>Not Sure</option></select>
-                    </div>
-                    <div className="form-group"><label className="form-label">Market *</label>
-                      <select className="form-input" required><option value="">Select market</option><option>New York</option><option>Miami</option><option>Chicago</option><option>Connecticut</option><option>Other</option></select>
-                    </div>
-                  </div>
-                  <div className="form-group"><label className="form-label">Additional Notes</label><textarea className="form-input" placeholder="Rack requirements, latency targets, timeline…"/></div>
-                  <button className="btn btn-primary form-submit" type="submit">Submit Edge Inquiry</button>
-                  <div className="form-privacy">Your info is used only to evaluate site fit. No spam.</div>
-                </form>
-              )}
+                <div>
+                  <div style={{fontSize:'13px',fontWeight:700,color:'rgb(var(--fg))',marginBottom:'4px'}}>AI / Inference Colocation</div>
+                  <div style={{fontSize:'12px',color:'var(--tx-4)',lineHeight:'1.6',marginBottom:'12px'}}>Distributed GPU and inference infrastructure at urban edge nodes. Closer to users, devices, and cameras — built for the last-mile AI layer.</div>
+                  <Link to="/edge-colocation/ai-inference" className="text-link" style={{fontSize:'12px',fontWeight:700,color:'var(--sky-blue)',display:'inline-flex',alignItems:'center',gap:'5px'}}>
+                    Explore AI Inference →
+                  </Link>
+                </div>
+              </div>
+              <Link to="/skynodes" className="btn btn-primary" style={{justifyContent:'center',width:'100%'}}>
+                Browse Edge Colocation Nodes
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
+              <Link to="/contact" className="btn btn-outline-light" style={{justifyContent:'center',width:'100%'}}>
+                Talk to Skynode
+              </Link>
             </div>
           </div>
         </div>
@@ -401,11 +399,11 @@ export default function EdgeColocation() {
       <section className="final-cta" style={{position:'relative'}}>
         <canvas ref={ctaCanvasRef} id="ctaCanvas" aria-hidden="true" />
         <div className="eyebrow" style={{justifyContent:'center'}}>Ready When You Are</div>
-        <h2>Put your compute<br/>next to your users.<br/><em>Not three states away.</em></h2>
-        <p>Tell us your workload, power requirements, and target market. We'll tell you whether we have a node that's worth your time.</p>
+        <h2>Put your compute next to your users.<br/><em>Not three states away.</em></h2>
+        <p>Tell us your workload, power requirements, and target market. We'll tell you whether we have a node that is worth your time.</p>
         <div className="cta-actions">
-          <a href="#edge-inquiry" className="btn btn-primary" style={{padding:'16px 32px',fontSize:'15px'}}>Browse Edge Sites</a>
-          <a href="#edge-inquiry" className="btn btn-outline-light" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to an Engineer</a>
+          <Link to="/skynodes" className="btn btn-primary" style={{padding:'16px 32px',fontSize:'15px'}}>Browse Edge Nodes</Link>
+          <Link to="/contact"  className="btn btn-outline-light" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to Skynode</Link>
         </div>
       </section>
     </>

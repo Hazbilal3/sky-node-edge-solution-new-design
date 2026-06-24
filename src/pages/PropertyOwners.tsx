@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import { useConstructionCanvas } from '../hooks/useConstructionCanvas';
 
@@ -7,19 +7,9 @@ export default function PropertyOwners() {
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
   const ctaCanvasRef  = useRef<HTMLCanvasElement>(null);
 
-  const [formData, setFormData] = useState({ name:'', title:'', role:'', email:'', phone:'', address:'', buildingType:'', access:'', power:'', comments:'' });
-  const [formSuccess, setFormSuccess] = useState(false);
-
   useReveal();
   useConstructionCanvas(heroCanvasRef);
   useConstructionCanvas(ctaCanvasRef);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const f = formData;
-    if(!f.name || !f.role || !f.email || !f.address) return;
-    setFormSuccess(true);
-  }
 
   return (
     <>
@@ -191,7 +181,7 @@ export default function PropertyOwners() {
                 Your building may already have what modern communications, media, and edge-network operators need: elevation, access, power, and location — on the roof and in the back-of-house, mechanical, and otherwise vacant spaces that sit idle today. Skynode is the experienced partner who turns that potential into recurring revenue, without operational burden or building risk.
               </p>
               <div className="hero-actions">
-                <a href="#po-inquiry" className="btn btn-primary">Let's Evaluate Your Property</a>
+                <Link to="/contact" className="btn btn-primary">Let's Evaluate Your Property</Link>
                 <a href="#how" className="btn btn-outline-light">Learn How It Works</a>
               </div>
             </div>
@@ -234,7 +224,7 @@ export default function PropertyOwners() {
 
                 <div className="hero-card-footer">
                   <div>
-                    <div className="hero-card-stat-val">5</div>
+                    <div className="hero-card-stat-val">4</div>
                     <div className="hero-card-stat-lbl">Active metro<br />markets</div>
                   </div>
                   <div>
@@ -247,20 +237,6 @@ export default function PropertyOwners() {
           </div>
         </div>
       </section>
-
-      {/* ═══ CREDIBILITY STRIP ═══ */}
-      <div className="credibility">
-        <div className="container">
-          <div className="credibility-inner reveal">
-            <span className="cred-label">Trusted by building owners &amp; managers across our metro markets</span>
-            <div className="cred-logo" style={{ width: '88px' }}></div>
-            <div className="cred-logo" style={{ width: '110px' }}></div>
-            <div className="cred-logo" style={{ width: '76px' }}></div>
-            <div className="cred-logo" style={{ width: '96px' }}></div>
-            <div className="cred-logo" style={{ width: '84px' }}></div>
-          </div>
-        </div>
-      </div>
 
       {/* ═══ THE PARTNER MODEL ═══ */}
       <section className="section-light" id="how">
@@ -342,7 +318,7 @@ export default function PropertyOwners() {
                 For most owners, the real fear isn't the equipment — it's the paperwork, the liability, and the approvals. Skynode understands how to navigate and expedite the process across local, state, and federal jurisdictions, so the opportunity never becomes a distraction for your team. Bring it to your ownership group or investment committee with confidence, not caveats.
               </p>
               <div className="callout-actions">
-                <a href="#po-inquiry" className="btn btn-primary">Let's Evaluate Your Property</a>
+                <Link to="/contact" className="btn btn-primary">Let's Evaluate Your Property</Link>
               </div>
             </div>
 
@@ -432,10 +408,10 @@ export default function PropertyOwners() {
               <p className="qual-note">
                 Every building is different, and final fit depends on a site-specific evaluation. The fastest way to know is to ask — it costs nothing to find out.
               </p>
-              <a href="#po-inquiry" className="btn btn-outline-dark" style={{ marginTop: '8px' }}>
+              <Link to="/contact" className="btn btn-outline-dark" style={{ marginTop: '8px' }}>
                 Ask About Your Building
                 <svg className="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </a>
+              </Link>
             </div>
 
             <div className="qual-list reveal delay-100">
@@ -464,7 +440,7 @@ export default function PropertyOwners() {
         </div>
       </section>
 
-      {/* ═══ LEAD CAPTURE ═══ */}
+      {/* ═══ EVALUATE YOUR PROPERTY ═══ */}
       <section className="section-dark" id="po-inquiry">
         <div className="container">
           <div className="inquiry-grid">
@@ -508,96 +484,38 @@ export default function PropertyOwners() {
               </div>
             </div>
 
-            {/* Right: lead form */}
+            {/* Right: CTA card */}
             <div className="inquiry-form reveal delay-100">
               <div className="form-title">Submit your building for evaluation</div>
               <div className="form-sub">Takes 2 minutes. A real person follows up within one business day.</div>
 
-              {formSuccess ? (
-                <div className="form-success show">
-                  <div className="form-success-icon">🏙️</div>
-                  <div className="form-success-title">Got it.</div>
-                  <div className="form-success-body">A real person will review your building within one business day. If it looks like a fit, we'll reach out to set up a short call — no pressure, no obligation.</div>
+              <div style={{ padding: '20px 0 24px' }}>
+                <p style={{ fontSize: '14px', color: 'var(--tx-4)', lineHeight: '1.75', marginBottom: '18px' }}>
+                  Building evaluations are handled through the Skynode contact form. Select <strong style={{ color: 'rgb(var(--fg))' }}>"I own a building"</strong> and tell us what you have. We'll need:
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {[
+                    'City / neighborhood your building is in',
+                    'Building type (commercial, residential, mixed-use, industrial)',
+                    'Whether rooftop or mechanical room access is available',
+                    'Whether power is on-site',
+                    'Anything else you think is relevant',
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                      <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(21,153,79,0.12)', color: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '1px' }}>
+                        <svg viewBox="0 0 16 16" fill="none" width="11" height="11"><path d="M3 8.5l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                      </div>
+                      <span style={{ fontSize: '13px', color: 'var(--tx-3)', lineHeight: '1.55' }}>{item}</span>
+                    </div>
+                  ))}
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="form-2col">
-                    <div className="form-group">
-                      <label className="form-label">Name / Title *</label>
-                      <input className="form-input" type="text" placeholder="Your name &amp; role" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">Your Role *</label>
-                      <select className="form-input" required value={formData.role} onChange={e => setFormData({ ...formData, role: e.target.value })}>
-                        <option value="">Select role</option>
-                        <option>Property Owner</option>
-                        <option>Property Manager</option>
-                        <option>Asset Manager</option>
-                        <option>Building Operations</option>
-                        <option>Legal / Counsel</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                  </div>
+              </div>
 
-                  <div className="form-2col">
-                    <div className="form-group">
-                      <label className="form-label">Work Email *</label>
-                      <input className="form-input" type="email" placeholder="you@company.com" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">Phone</label>
-                      <input className="form-input" type="tel" placeholder="Optional" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Building Address or Location *</label>
-                    <input className="form-input" type="text" placeholder="Address, or city / neighborhood" required value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} />
-                  </div>
-
-                  <div className="form-2col">
-                    <div className="form-group">
-                      <label className="form-label">Building Type</label>
-                      <select className="form-input" value={formData.buildingType} onChange={e => setFormData({ ...formData, buildingType: e.target.value })}>
-                        <option value="">Select type</option>
-                        <option>Commercial office</option>
-                        <option>Residential</option>
-                        <option>Mixed-use</option>
-                        <option>Industrial</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">Space Access Available?</label>
-                      <select className="form-input" value={formData.access} onChange={e => setFormData({ ...formData, access: e.target.value })}>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>Not sure</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Existing Power On-Site?</label>
-                    <select className="form-input" value={formData.power} onChange={e => setFormData({ ...formData, power: e.target.value })}>
-                      <option value="">Select</option>
-                      <option>Yes</option>
-                      <option>No</option>
-                      <option>Not sure</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Any Comments</label>
-                    <textarea className="form-input" placeholder="Anything that helps us understand the building or your goals…" value={formData.comments} onChange={e => setFormData({ ...formData, comments: e.target.value })}></textarea>
-                  </div>
-
-                  <button className="btn btn-primary form-submit" type="submit">Submit for Evaluation</button>
-                  <div className="form-privacy">Your info is used only to evaluate your building. No spam, no auto-dialers. We're in the infrastructure business, not the harassment business.</div>
-                </form>
-              )}
+              <Link to="/contact" className="btn btn-primary form-submit" style={{ justifyContent: 'center' }}>
+                Evaluate My Building
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </Link>
+              <div className="form-privacy">Your info is used only to evaluate your building. No spam, no auto-dialers. We're in the infrastructure business, not the harassment business.</div>
             </div>
           </div>
         </div>
@@ -610,7 +528,7 @@ export default function PropertyOwners() {
         <h2 className="reveal">That space is sitting there anyway.<br /><em>Let's see what it's worth.</em></h2>
         <p className="reveal">Tell us where your building is and what space you've got — rooftop, mechanical, or back-of-house. We'll tell you whether it's worth evaluating, honestly, and within one business day.</p>
         <div className="cta-actions reveal">
-          <a href="#po-inquiry" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>Let's Evaluate Your Property</a>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>Let's Evaluate Your Property</Link>
           <a href="#how" className="btn btn-outline-light" style={{ padding: '16px 32px', fontSize: '15px' }}>Learn How It Works</a>
         </div>
       </section>
