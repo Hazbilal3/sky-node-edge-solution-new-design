@@ -7,7 +7,7 @@ import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 
 /* ─── Shared node dataset ──────────────────────────────────────────── */
 import { NODES, SVC_META, ALL_SVCS } from '../data/nodes';
-import type { SvcCode, SkynodeEntry } from '../data/nodes';
+import type { SvcCode } from '../data/nodes';
 
 const MARKETS = ['All','New York','Connecticut','Florida','Illinois'] as const;
 type MarketFilter = typeof MARKETS[number];
