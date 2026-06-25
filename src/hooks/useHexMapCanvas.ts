@@ -16,41 +16,34 @@ interface HexNode { col:number; row:number; type:SvcKey; id:string; asl:string; 
 
 const CITY_DATA: Array<{name:string; nodes:HexNode[]}> = [
   { name:'NYC', nodes:[
-    {col:11,row:7, type:'FM',         id:'0302.NY', asl:"924'", svc:['FM','TV']},
-    {col:12,row:6, type:'FM',         id:'0228.NY', asl:"712'", svc:['FM','Translator']},
-    {col:10,row:7, type:'Translator', id:'0118.CT', asl:"641'", svc:['Translator','FM']},
-    {col:11,row:8, type:'LPFM',       id:'0175.NY', asl:"543'", svc:['LPFM']},
-    {col:12,row:7, type:'TV',         id:'0389.NY', asl:"831'", svc:['TV','FM']},
-    {col:13,row:8, type:'TV',         id:'0156.NY', asl:"788'", svc:['TV']},
-    {col:10,row:9, type:'LPFM',       id:'0445.NY', asl:"420'", svc:['LPFM','Translator']},
+    {col:11,row:7, type:'FM',         id:'0001.NY', asl:"TBC", svc:['FM','TV']},
+    {col:12,row:6, type:'FM',         id:'0002.NY', asl:"TBC", svc:['FM','Translator']},
+    {col:10,row:7, type:'Translator', id:'0005.NY', asl:"TBC", svc:['Translator','FM']},
+    {col:11,row:8, type:'LPFM',       id:'0003.NY', asl:"TBC", svc:['LPFM']},
+    {col:12,row:7, type:'TV',         id:'0006.NY', asl:"TBC", svc:['TV','FM']},
+    {col:13,row:8, type:'TV',         id:'0010.NY', asl:"TBC", svc:['TV']},
+    {col:10,row:9, type:'LPFM',       id:'0012.NY', asl:"TBC", svc:['LPFM','Translator']},
   ]},
   { name:'Chicago', nodes:[
-    {col:11,row:7, type:'TV',         id:'0277.IL', asl:"788'", svc:['TV','FM']},
-    {col:12,row:6, type:'FM',         id:'0391.IL', asl:"635'", svc:['FM']},
-    {col:10,row:8, type:'Translator', id:'0144.IL', asl:"510'", svc:['Translator','LPFM']},
-    {col:12,row:8, type:'LPFM',       id:'0503.IL', asl:"445'", svc:['LPFM']},
-    {col:11,row:9, type:'FM',         id:'0318.IL', asl:"720'", svc:['FM','TV']},
+    {col:11,row:7, type:'TV',         id:'0001.IL', asl:"TBC", svc:['TV','FM']},
+    {col:12,row:6, type:'FM',         id:'0002.IL', asl:"TBC", svc:['FM']},
+    {col:10,row:8, type:'Translator', id:'0001.IL', asl:"TBC", svc:['Translator','LPFM']},
+    {col:12,row:8, type:'LPFM',       id:'0002.IL', asl:"TBC", svc:['LPFM']},
+    {col:11,row:9, type:'FM',         id:'0001.IL', asl:"TBC", svc:['FM','TV']},
   ]},
   { name:'Miami', nodes:[
-    {col:11,row:7, type:'FM',         id:'0445.FL', asl:"522'", svc:['FM','TV']},
-    {col:12,row:6, type:'Translator', id:'0331.FL', asl:"465'", svc:['Translator']},
-    {col:10,row:7, type:'LPFM',       id:'0278.FL', asl:"380'", svc:['LPFM','FM']},
-    {col:11,row:8, type:'TV',         id:'0512.FL', asl:"600'", svc:['TV']},
-    {col:12,row:8, type:'FM',         id:'0209.FL', asl:"488'", svc:['FM','Translator']},
+    {col:11,row:7, type:'FM',         id:'0001.FL', asl:"TBC", svc:['FM','TV']},
+    {col:12,row:6, type:'Translator', id:'0001.FL', asl:"TBC", svc:['Translator']},
+    {col:10,row:7, type:'LPFM',       id:'0001.FL', asl:"TBC", svc:['LPFM','FM']},
+    {col:11,row:8, type:'TV',         id:'0001.FL', asl:"TBC", svc:['TV']},
+    {col:12,row:8, type:'FM',         id:'0001.FL', asl:"TBC", svc:['FM','Translator']},
   ]},
   { name:'New Haven', nodes:[
-    {col:11,row:7, type:'FM',         id:'0184.CT', asl:"720'", svc:['FM','TV']},
-    {col:12,row:6, type:'Translator', id:'0097.CT', asl:"540'", svc:['Translator','FM']},
-    {col:10,row:7, type:'LPFM',       id:'0063.CT', asl:"380'", svc:['LPFM']},
-    {col:11,row:8, type:'TV',         id:'0221.CT', asl:"610'", svc:['TV','FM']},
-    {col:13,row:7, type:'FM',         id:'0145.CT', asl:"495'", svc:['FM']},
-  ]},
-  { name:'Springfield', nodes:[
-    {col:11,row:7, type:'FM',         id:'0312.MA', asl:"680'", svc:['FM','TV']},
-    {col:12,row:6, type:'TV',         id:'0258.MA', asl:"820'", svc:['TV']},
-    {col:10,row:8, type:'Translator', id:'0089.MA', asl:"430'", svc:['Translator','LPFM']},
-    {col:12,row:8, type:'LPFM',       id:'0174.MA', asl:"360'", svc:['LPFM']},
-    {col:11,row:9, type:'FM',         id:'0201.MA', asl:"560'", svc:['FM','Translator']},
+    {col:11,row:7, type:'FM',         id:'0001.CT', asl:"TBC", svc:['FM','TV']},
+    {col:12,row:6, type:'Translator', id:'0002.CT', asl:"TBC", svc:['Translator','FM']},
+    {col:10,row:7, type:'LPFM',       id:'0001.CT', asl:"TBC", svc:['LPFM']},
+    {col:11,row:8, type:'TV',         id:'0002.CT', asl:"TBC", svc:['TV','FM']},
+    {col:13,row:7, type:'FM',         id:'0001.CT', asl:"TBC", svc:['FM']},
   ]},
 ];
 
@@ -107,7 +100,6 @@ export function useHexMapCanvas(
       const isDark = document.documentElement.dataset.theme === 'dark';
       ctx.clearRect(0, 0, W, H);
 
-      // Background — theme-aware
       ctx.fillStyle = isDark ? '#091520' : '#E7F3F9';
       ctx.fillRect(0, 0, W, H);
       const rg = ctx.createRadialGradient(W/2, H*0.44, 0, W/2, H*0.44, W*0.62);
@@ -118,7 +110,6 @@ export function useHexMapCanvas(
 
       const r = BASE_R * zoomRef.current;
 
-      // Full hex grid
       for (let col = -2; col <= 46; col++) {
         for (let row = -2; row <= 28; row++) {
           const { x, y } = hexCenter(col, row);
@@ -127,9 +118,9 @@ export function useHexMapCanvas(
         }
       }
 
-      const nodes = CITY_DATA[cityRef.current].nodes;
+      const idx = Math.min(cityRef.current, CITY_DATA.length - 1);
+      const nodes = CITY_DATA[idx].nodes;
 
-      // Glow pass (behind hexes)
       nodes.forEach(n => {
         const { x, y } = hexCenter(n.col, n.row);
         const s = SVC[n.type];
@@ -140,7 +131,6 @@ export function useHexMapCanvas(
         ctx.fillRect(x - r*3.5, y - r*3.5, r*7, r*7);
       });
 
-      // Node hexes (no labels — colour only)
       nodes.forEach(n => {
         const { x, y } = hexCenter(n.col, n.row);
         const s = SVC[n.type];
@@ -148,15 +138,15 @@ export function useHexMapCanvas(
       });
     }
 
-    // Hover tooltip
     function onMouseMove(e: MouseEvent) {
       if (!tip) return;
       const rect = canvas!.getBoundingClientRect();
       const mx = (e.clientX - rect.left) * (W / rect.width);
       const my = (e.clientY - rect.top)  * (H / rect.height);
       const r = BASE_R * zoomRef.current;
+      const idx = Math.min(cityRef.current, CITY_DATA.length - 1);
       let hit: HexNode | null = null;
-      for (const n of CITY_DATA[cityRef.current].nodes) {
+      for (const n of CITY_DATA[idx].nodes) {
         const { x, y } = hexCenter(n.col, n.row);
         if (Math.hypot(mx - x, my - y) < r * 1.05) { hit = n; break; }
       }

@@ -22,6 +22,15 @@ const DRONE_NODES = [
 
 const CITY_NAMES = CITIES.map(c => c.name);
 
+/* Maps market filter → hex map city index (CITIES has 4 entries: NYC, Chicago, Miami, New Haven) */
+const MARKET_TO_CITY_IDX: Partial<Record<MarketFilter, number>> = {
+  'New York':    0,
+  'Illinois':    1,
+  'Florida':     2,
+  'Connecticut': 3,
+};
+const CITY_IDX_TO_MARKET: MarketFilter[] = ['New York', 'Illinois', 'Florida', 'Connecticut'];
+
 export default function Skynodes() {
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
   const hexCanvasRef  = useRef<HTMLCanvasElement>(null);
@@ -41,8 +50,8 @@ export default function Skynodes() {
   function handleMarketTab(m: MarketFilter) {
     setMarket(m);
     if (m !== 'All') {
-      const i = CITY_NAMES.indexOf(m);
-      if (i >= 0) setCityIdx(i);
+      const idx = MARKET_TO_CITY_IDX[m];
+      if (idx !== undefined) setCityIdx(idx);
     }
   }
 
@@ -65,7 +74,7 @@ export default function Skynodes() {
         .sk-hero { position:relative; overflow:hidden; padding:120px 0 80px; min-height:70vh; display:flex; align-items:center; }
         #skHeroCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
         .sk-hero-scrim { position:absolute; inset:0; z-index:1;
-          background:linear-gradient(160deg,rgba(8,18,28,0.82) 0%,rgba(8,18,28,0.65) 60%,rgba(8,18,28,0.80) 100%); }
+          background:linear-gradient(160deg,rgba(var(--bg-base),0.88) 0%,rgba(var(--bg-base),0.70) 55%,rgba(var(--bg-base),0.50) 100%); }
         .sk-hero-inner { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
         .sk-hero h1 { font-size:clamp(36px,4.8vw,62px); font-weight:900; line-height:1.08; letter-spacing:-0.025em;
           color:rgb(var(--fg)); margin-bottom:20px; }
@@ -98,18 +107,18 @@ export default function Skynodes() {
         .sk-foot-stat-lbl { font-size:10px; color:var(--tx-5); margin-top:2px; }
 
         /* ── Filter bar ─────────────────────────── */
-        .sk-filter-section { background:var(--bg-light); border-bottom:1px solid var(--light-border); padding:0; position:sticky; top:62px; z-index:40; }
-        .sk-market-tabs { display:flex; border-bottom:1px solid var(--light-border); }
+        .sk-filter-section { background:var(--bg-surface); border-bottom:1px solid var(--border-dark); padding:0; position:sticky; top:62px; z-index:40; }
+        .sk-market-tabs { display:flex; border-bottom:1px solid var(--border-dark); }
         .sk-market-tab { flex:1; padding:14px 10px; font-size:13px; font-weight:700; text-align:center; cursor:pointer;
-          border:none; background:transparent; color:var(--tx-4); letter-spacing:0.03em; border-bottom:2px solid transparent; transition:all .18s; }
+          border:none; background:transparent; color:var(--tx-2); letter-spacing:0.03em; border-bottom:2px solid transparent; transition:all .18s; }
         .sk-market-tab.active { color:var(--teal-primary); border-bottom-color:var(--teal-primary); }
-        .sk-market-tab:hover:not(.active) { color:var(--teal-mid); background:rgba(32,101,132,0.04); }
+        .sk-market-tab:hover:not(.active) { color:var(--sky-blue); background:rgba(32,101,132,0.06); }
         .sk-svc-chips { display:flex; gap:6px; flex-wrap:wrap; padding:12px 28px; }
         .sk-svc-chip { font-size:11px; font-weight:700; padding:5px 12px; border-radius:99px;
-          border:1px solid var(--light-border); color:var(--tx-4); background:transparent; cursor:pointer; transition:all .15s; letter-spacing:0.04em; }
+          border:1px solid var(--border-dark); color:var(--tx-2); background:transparent; cursor:pointer; transition:all .15s; letter-spacing:0.04em; }
         .sk-svc-chip.active { border-color:transparent; }
-        .sk-svc-chip:hover:not(.active) { background:rgba(32,101,132,0.06); border-color:rgba(32,101,132,0.25); }
-        .sk-filter-reset { margin-left:auto; font-size:11px; color:var(--tx-5); background:transparent; border:none; cursor:pointer; padding:5px 8px; }
+        .sk-svc-chip:hover:not(.active) { background:rgba(32,101,132,0.08); border-color:rgba(32,101,132,0.35); color:var(--sky-blue); }
+        .sk-filter-reset { margin-left:auto; font-size:11px; color:var(--tx-4); background:transparent; border:none; cursor:pointer; padding:5px 8px; }
         .sk-filter-reset:hover { color:var(--teal-primary); }
 
         /* ── Map + grid layout ──────────────────── */
@@ -208,11 +217,11 @@ export default function Skynodes() {
                 Browse the network.<br/><span style={{color:'var(--sky-blue)'}}>Find your node.</span>
               </h1>
               <p className="sk-hero-sub">
-                TBC distributed infrastructure nodes across New York, Connecticut, Florida, and Illinois — each evaluated for broadcasting, private communications, edge colocation, AI inference, and private networking.
+                22 distributed infrastructure nodes across New York, Connecticut, Florida, and Illinois — each evaluated for broadcasting, private communications, edge colocation, AI inference, and private networking.
               </p>
               <div className="sk-stat-row">
                 <div className="sk-stat">
-                  <div className="sk-stat-val">TBC</div>
+                  <div className="sk-stat-val">22</div>
                   <div className="sk-stat-lbl">Total nodes</div>
                 </div>
                 <div className="sk-stat">
@@ -233,11 +242,11 @@ export default function Skynodes() {
                   <span className="sk-hero-live">Network Active</span>
                 </div>
                 {[
-                  { id:'0302.NY', neighborhood:'Midtown Manhattan',  svcs:['BC','EC','AI'],   status:'active'     },
-                  { id:'0488.IL', neighborhood:'Chicago Loop',       svcs:['BC','EC','PC'],   status:'active'     },
-                  { id:'0445.FL', neighborhood:'Miami–Dade',         svcs:['BC','P2P'],       status:'active'     },
-                  { id:'0089.CT', neighborhood:'New Haven',          svcs:['PC','5G'],        status:'evaluating' },
-                  { id:'0133.IL', neighborhood:'Chicago West Loop',  svcs:['EC','5G'],        status:'evaluating' },
+                  { id:'0001.NY', neighborhood:'Midtown Manhattan',  svcs:['BC','EC','P2P'],  status:'active'     },
+                  { id:'0006.NY', neighborhood:'Financial District', svcs:['BC','EC','AI'],   status:'active'     },
+                  { id:'0001.FL', neighborhood:'Miami',              svcs:['BC','EC','AI'],   status:'evaluating' },
+                  { id:'0001.IL', neighborhood:'Chicago',            svcs:['BC','PC','EC'],   status:'evaluating' },
+                  { id:'0001.CT', neighborhood:'Hartford',           svcs:['BC','PC','P2P'],  status:'evaluating' },
                 ].map(n => (
                   <div key={n.id} className="sk-preview-row">
                     <div className="sk-preview-id">
@@ -253,8 +262,8 @@ export default function Skynodes() {
                   </div>
                 ))}
                 <div className="sk-hero-card-foot">
-                  <div><div className="sk-foot-stat-val">TBC</div><div className="sk-foot-stat-lbl">Nodes active</div></div>
-                  <div><div className="sk-foot-stat-val">TBC</div><div className="sk-foot-stat-lbl">Evaluating</div></div>
+                  <div><div className="sk-foot-stat-val">14</div><div className="sk-foot-stat-lbl">Nodes active</div></div>
+                  <div><div className="sk-foot-stat-val">8</div><div className="sk-foot-stat-lbl">Evaluating</div></div>
                   <div><div className="sk-foot-stat-val">4</div><div className="sk-foot-stat-lbl">Markets</div></div>
                 </div>
               </div>
@@ -313,7 +322,7 @@ export default function Skynodes() {
                       style={{flex:1,padding:'9px 4px',fontSize:'11px',fontWeight:700,background:'transparent',border:'none',
                         borderBottom:`2px solid ${cityIdx === i ? 'var(--sky-blue)' : 'transparent'}`,
                         color: cityIdx === i ? 'var(--sky-blue)' : 'var(--tx-5)', cursor:'pointer', transition:'all .15s'}}
-                      onClick={() => { setCityIdx(i); setMarket(CITY_NAMES[i] as MarketFilter); }}>
+                      onClick={() => { setCityIdx(i); setMarket(CITY_IDX_TO_MARKET[i] ?? 'All'); }}>
                       {name}
                     </button>
                   ))}
@@ -322,10 +331,10 @@ export default function Skynodes() {
               <canvas ref={hexCanvasRef} id="skHexCanvas" width={480} height={340} />
               <div ref={hexTipRef} className="hex-tip" style={{display:'none'}} />
               <div className="sk-map-legend">
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#409CBC'}}/> P25 / Radio</div>
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#6BC0DD'}}/> 5G</div>
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#5BE49B'}}/> Edge / AI</div>
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#F59E0B'}}/> Broadcast</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#A78BFA'}}/> FM Radio</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#6BC0DD'}}/> Television</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#5BE49B'}}/> LPFM</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#F59E0B'}}/> Translator</div>
               </div>
             </div>
 
@@ -348,7 +357,7 @@ export default function Skynodes() {
               ) : (
                 <div className="sk-node-grid">
                   {filtered.map(node => (
-                    <div key={node.id} className="sk-node-card reveal">
+                    <div key={node.id} className="sk-node-card">
                       <div className="sk-node-card-top">
                         <div className="sk-node-id">{node.id}</div>
                         <div className={`sk-node-status sk-node-status--${node.status}`}>
