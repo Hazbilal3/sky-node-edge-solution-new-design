@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core -->
+  <url><loc>https://skynodepartners.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://skynodepartners.com/solutions</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://skynodepartners.com/metro-fabric</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://skynodepartners.com/contact</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Service verticals -->
+  <url><loc>https://skynodepartners.com/broadcasting</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://skynodepartners.com/private-communications</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://skynodepartners.com/edge-colocation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://skynodepartners.com/edge-colocation/ai-inference</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/experimental</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Broadcasting solution sub-pages -->
+  <url><loc>https://skynodepartners.com/solutions/broadcast-primary-site</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/broadcast-tv-site</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/broadcast-lpfm-site</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/broadcast-translator-site</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/broadcast-backup-site</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Private Communications solution sub-pages -->
+  <url><loc>https://skynodepartners.com/solutions/two-way-radio-transmitter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/two-way-radio-receiver</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/simulcast-radio</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/office-to-office</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/point-to-point-links</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Edge Colocation solution sub-pages -->
+  <url><loc>https://skynodepartners.com/solutions/cdn-edge-node</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/network-colocation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/solutions/enterprise-edge</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Markets -->
+  <url><loc>https://skynodepartners.com/markets/new-york</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/markets/connecticut</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/markets/florida</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://skynodepartners.com/markets/illinois</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Individual nodes -->
+  <url><loc>https://skynodepartners.com/skynodes/0302.NY</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0118.NY</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0445.NY</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0277.NY</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0391.NY</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0118.CT</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0234.CT</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0089.CT</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0445.FL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0156.FL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0312.FL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0488.IL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0277.IL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0391.IL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/skynodes/0133.IL</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Company -->
+  <url><loc>https://skynodepartners.com/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/how-it-works</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/property-owners</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://skynodepartners.com/partners</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://skynodepartners.com/careers</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+</urlset>

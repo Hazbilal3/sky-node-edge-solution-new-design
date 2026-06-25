@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useBeamFieldCanvas } from '../hooks/useBeamFieldCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
@@ -51,6 +52,7 @@ export default function PrivateComms() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useReveal();
+  usePageTitle('Private Communications');
   useBeamFieldCanvas(heroCanvasRef, { nodes:HERO_NODES, links:2, spawnEvery:32, spawnJitter:52 });
   useBeamFieldCanvas(ctaCanvasRef,  { nodes:CTA_NODES,  links:2, spawnEvery:48, spawnJitter:68 });
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIndex, zoom);

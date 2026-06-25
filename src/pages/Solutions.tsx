@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const VERTICALS = [
   {
@@ -65,10 +66,10 @@ const VERTICALS = [
     headline: 'UAS, AI Sensing, AR, Smart City & IoT',
     body: 'Elevated distributed nodes for drone operations, AI spatial sensing, augmented reality, smart-city infrastructure, and utility metering — with the access and compliance path already cleared.',
     solutions: [
-      { name: 'Drone & UAS Operations',      href: '/contact' },
-      { name: 'AI Spatial Sensing',          href: '/contact' },
-      { name: 'Smart City Infrastructure',   href: '/contact' },
-      { name: 'Utility Metering & IoT',      href: '/contact' },
+      { name: 'Drone & UAS Operations',      href: '/experimental' },
+      { name: 'AI Spatial Sensing',          href: '/experimental' },
+      { name: 'Smart City Infrastructure',   href: '/experimental' },
+      { name: 'Utility Metering & IoT',      href: '/experimental' },
     ],
     pageLink: '/experimental',
   },
@@ -82,6 +83,7 @@ const METRO_FABRIC = {
 
 export default function Solutions() {
   useReveal();
+  usePageTitle('Solutions');
 
   return (
     <>

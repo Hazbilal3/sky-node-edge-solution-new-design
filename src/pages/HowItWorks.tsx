@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const STEPS_CUSTOMER = [
   {
@@ -64,6 +65,7 @@ const STEPS_OWNER = [
 
 export default function HowItWorks() {
   useReveal();
+  usePageTitle('How It Works');
 
   return (
     <>

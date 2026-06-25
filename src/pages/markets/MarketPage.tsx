@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useReveal } from '../../hooks/useReveal';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { useHexMapCanvas, CITIES } from '../../hooks/useHexMapCanvas';
 
 export interface MarketConfig {
@@ -33,6 +34,7 @@ export default function MarketPage({ cfg }: { cfg: MarketConfig }) {
   const [zoom, setZoom] = useState(1);
 
   useReveal();
+  usePageTitle(`${cfg.name} — Skynode Market`);
   useHexMapCanvas(hexCanvasRef, hexTipRef, cfg.cityIndex, zoom);
 
   const CITY_NAMES = CITIES.map(c => c.name);

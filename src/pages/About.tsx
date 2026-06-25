@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const VALUES = [
   { title: 'Operators first',        body: 'We built this for the people who actually deploy networks — RF engineers, broadcast operators, IT teams, and edge infrastructure managers. Every decision is made with their constraints in mind.' },
@@ -17,6 +18,7 @@ const STATS = [
 
 export default function About() {
   useReveal();
+  usePageTitle('About');
 
   return (
     <>

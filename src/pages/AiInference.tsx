@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useBroadcastWaveCanvas } from '../hooks/useBroadcastWaveCanvas';
 
 export default function AiInference() {
@@ -8,6 +9,7 @@ export default function AiInference() {
   const ctaCanvasRef  = useRef<HTMLCanvasElement>(null);
 
   useReveal();
+  usePageTitle('AI & Inference');
   useBroadcastWaveCanvas(heroCanvasRef, { receiverCount:20, waveCount:6, waveSpeed:0.9 });
   useBroadcastWaveCanvas(ctaCanvasRef,  { receiverCount:12, waveCount:4, waveSpeed:0.7, centered:true });
 

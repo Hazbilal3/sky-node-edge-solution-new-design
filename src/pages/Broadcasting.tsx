@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useBroadcastWaveCanvas } from '../hooks/useBroadcastWaveCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
@@ -17,6 +18,7 @@ export default function Broadcasting() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useReveal();
+  usePageTitle('Broadcasting');
   useBroadcastWaveCanvas(heroCanvasRef, { receiverCount:24, waveCount:7, waveSpeed:0.8 });
   useBroadcastWaveCanvas(ctaCanvasRef,  { receiverCount:14, waveCount:6, waveSpeed:0.7, centered:true });
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIndex, zoom);

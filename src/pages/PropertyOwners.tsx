@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useConstructionCanvas } from '../hooks/useConstructionCanvas';
 
 export default function PropertyOwners() {
@@ -8,6 +9,7 @@ export default function PropertyOwners() {
   const ctaCanvasRef  = useRef<HTMLCanvasElement>(null);
 
   useReveal();
+  usePageTitle('For Property Owners');
   useConstructionCanvas(heroCanvasRef);
   useConstructionCanvas(ctaCanvasRef);
 

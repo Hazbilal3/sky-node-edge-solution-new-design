@@ -1,11 +1,13 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { NODES, SVC_META, MARKET_TO_ROUTE } from '../data/nodes';
 
 export default function NodeDetail() {
   const { id } = useParams<{ id: string }>();
   const node = NODES.find(n => n.id === id);
   useReveal();
+  usePageTitle(node ? `Node ${node.id} — ${node.neighborhood}` : 'Node Not Found');
 
   if (!node) {
     return <Navigate to="/skynodes" replace />;

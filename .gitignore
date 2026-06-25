@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Content documents (not needed in repo)
+*.docx
+*.doc
+skynode-doc.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

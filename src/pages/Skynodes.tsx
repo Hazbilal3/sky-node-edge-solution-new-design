@@ -1,6 +1,7 @@
 import { useRef, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useDroneSwarmCanvas } from '../hooks/useDroneSwarmCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 
@@ -32,6 +33,7 @@ export default function Skynodes() {
   const [zoom, setZoom]       = useState(1);
 
   useReveal();
+  usePageTitle('Skynodes');
   useDroneSwarmCanvas(heroCanvasRef, { nodes: DRONE_NODES, count: 14, speed: 1.1, links: 2 });
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIdx, zoom);
 

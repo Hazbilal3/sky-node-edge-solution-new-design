@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useReveal } from '../../hooks/useReveal';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 /* ─── Types ──────────────────────────────────────────────────────── */
 
 export type SolutionVertical = 'broadcasting' | 'private-comms' | 'edge-colocation';
 
-export interface SolutionConfig {
+export type SolutionConfig = {
   vertical: SolutionVertical;
   breadcrumb: string;
   headline: string;           // use | to split into <em> second half
@@ -25,7 +26,7 @@ export interface SolutionConfig {
   specs: { label: string; value: string; note?: string }[];
   useCases?: { name: string; body: string; tags: string[] }[];
   related: { name: string; href: string }[];
-}
+};
 
 /* ─── Vertical theme ─────────────────────────────────────────────── */
 
@@ -50,11 +51,20 @@ const THEMES: Record<SolutionVertical, {
   },
 };
 
+/* ─── Helpers ───────────────────────────────────────────────────── */
+
+function formatHeadline(headline: string): string {
+  const parts = headline.split('|');
+  if (parts.length < 2) return headline;
+  return parts[0] + '<br/><em>' + parts[1] + '</em>';
+}
+
 /* ─── Component ──────────────────────────────────────────────────── */
 
 export default function SolutionPage({ cfg }: { cfg: SolutionConfig }) {
   const t = THEMES[cfg.vertical];
   useReveal();
+  usePageTitle(cfg.breadcrumb);
 
   const [h1main, h1em] = cfg.headline.split('|');
 
@@ -189,7 +199,7 @@ export default function SolutionPage({ cfg }: { cfg: SolutionConfig }) {
           <div className="sp-trust-grid">
             <div className="reveal">
               <div className="eyebrow eyebrow--dark">{cfg.trust.eyebrow}</div>
-              <h2 className="sp-trust-h2" dangerouslySetInnerHTML={{__html: cfg.trust.headline.replace('|', '<br/><em>').replace(/(<em>[^|]*)$/, '$1</em>')}} />
+              <h2 className="sp-trust-h2" dangerouslySetInnerHTML={{__html: formatHeadline(cfg.trust.headline)}} />
               <p className="sp-trust-body">{cfg.trust.body}</p>
             </div>
             <div className="sp-features reveal">
@@ -298,3 +308,4 @@ export default function SolutionPage({ cfg }: { cfg: SolutionConfig }) {
     </>
   );
 }
+

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useBroadcastWaveCanvas } from '../hooks/useBroadcastWaveCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
@@ -17,6 +18,7 @@ export default function EdgeColocation() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useReveal();
+  usePageTitle('Edge Colocation');
   useBroadcastWaveCanvas(heroCanvasRef, { receiverCount:16, waveCount:5, waveSpeed:0.7 });
   useBroadcastWaveCanvas(ctaCanvasRef,  { receiverCount:10, waveCount:4, waveSpeed:0.6, centered:true });
   useHexMapCanvas(hexCanvasRef, hexTipRef, cityIndex, zoom);

@@ -92,11 +92,17 @@ export default function Footer() {
         .footer-bottom-links-new a:hover { color:var(--tx-4); }
 
         @media(max-width:1100px){
-          .footer-top { grid-template-columns:1fr 1fr 1fr; }
+          .footer-top { grid-template-columns:repeat(3,1fr); gap:32px; }
         }
         @media(max-width:680px){
-          .footer-top { grid-template-columns:1fr 1fr; }
-          .footer-bottom-new { flex-direction:column; align-items:flex-start; }
+          .footer-top { grid-template-columns:1fr 1fr; gap:28px; }
+          .footer-top > div:first-child { grid-column:1/-1; }
+          .footer-bottom-new { flex-direction:column; align-items:flex-start; gap:10px; }
+        }
+        @media(max-width:480px){
+          .footer-top { grid-template-columns:1fr; gap:28px; }
+          .footer-bottom-new span { font-size:11px; line-height:1.6; }
+          .footer-bottom-links-new { flex-wrap:wrap; gap:12px; }
         }
       `}</style>
 

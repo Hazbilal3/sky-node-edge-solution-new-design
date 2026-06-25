@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useDroneSwarmCanvas } from '../hooks/useDroneSwarmCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
 
@@ -114,6 +115,7 @@ export default function MetroFabric() {
   const [activeStep, setActiveStep] = useState(0);
 
   useReveal();
+  usePageTitle('Metro Fabric');
   useDroneSwarmCanvas(heroCanvasRef, { nodes: HERO_NODES, count: 18, speed: 1.0, links: 2 });
   useDroneSwarmCanvas(ctaCanvasRef,  { nodes: CTA_NODES,  count: 10, speed: 0.85, links: 2 });
   useMetroFabricCanvas(metroRef1);

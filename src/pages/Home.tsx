@@ -1,6 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useHeroBg } from '../hooks/useHeroBg';
 
 const HERO_CFG = {
@@ -33,6 +34,7 @@ export default function Home() {
   const hexPaths  = useMemo(() => genHexPaths(), []);
 
   useReveal();
+  usePageTitle('');
   useHeroBg(heroBgRef, HERO_CFG);
 
   return (

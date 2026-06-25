@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 type Track = 'customer' | 'property';
 
@@ -75,6 +76,7 @@ export default function Contact() {
   const [poSubmitted, setPoSubmitted]       = useState(false);
 
   useReveal();
+  usePageTitle('Contact');
 
   const toggle = (arr: string[], setArr: (v: string[]) => void, id: string) =>
     setArr(arr.includes(id) ? arr.filter(x => x !== id) : [...arr, id]);

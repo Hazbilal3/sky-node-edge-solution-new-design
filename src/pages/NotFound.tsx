@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function NotFound() {
   const { pathname } = useLocation();
+  useEffect(() => { document.title = '404 Not Found — Skynode Partners'; }, []);
 
   return (
     <>

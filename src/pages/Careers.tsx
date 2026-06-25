@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const VALUES = [
   { title: 'Operators first', body: 'We build infrastructure. We understand what it means to have a transmitter go down at 2am. The people who work here are comfortable with that reality.' },
@@ -10,6 +11,7 @@ const VALUES = [
 
 export default function Careers() {
   useReveal();
+  usePageTitle('Careers');
 
   return (
     <>

@@ -1,4 +1,4 @@
-import SolutionPage, { SolutionConfig } from './SolutionPage';
+import SolutionPage, { type SolutionConfig } from './SolutionPage';
 
 const cfg: SolutionConfig = {
   vertical: 'private-comms',

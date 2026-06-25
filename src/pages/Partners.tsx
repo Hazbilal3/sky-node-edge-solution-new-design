@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const PARTNER_TYPES = [
   {
@@ -53,6 +54,7 @@ const PARTNER_TYPES = [
 
 export default function Partners() {
   useReveal();
+  usePageTitle('Partners');
 
   return (
     <>

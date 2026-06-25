@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { useDroneSwarmCanvas } from '../hooks/useDroneSwarmCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 import { useMetroFabricCanvas } from '../hooks/useMetroFabricCanvas';
@@ -17,6 +18,7 @@ export default function Experimental() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useReveal();
+  usePageTitle('Experimental Systems');
   useDroneSwarmCanvas(heroCanvasRef, {
     links: 2, count: 16, speed: 1.15,
     nodes: [
@@ -245,7 +247,7 @@ export default function Experimental() {
               <div className="usecase-name">Drone &amp; Unmanned Systems</div>
               <p className="usecase-desc">Metro infrastructure for drone operations, mobile robotics, private wireless, and distributed machine control, with communications, transport, and compute positioned close enough, fast enough, and resilient enough.</p>
               <div className="usecase-tags"><span className="ptag">UAS / Drone</span><span className="ptag">Robotics</span><span className="ptag">Private Wireless</span></div>
-              <Link to="/contact" className="usecase-link">Browse UAS sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+              <Link to="/skynodes" className="usecase-link">Browse available nodes <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -255,7 +257,7 @@ export default function Experimental() {
               <div className="usecase-name">AI Spatial Sensing &amp; Detection</div>
               <p className="usecase-desc">Elevated rooftop nodes that supply network, compute, and interconnection for AI-powered sensing platforms analyzing Wi-Fi propagation, movement patterns, or environmental signals across the metro.</p>
               <div className="usecase-tags"><span className="ptag">Spatial AI</span><span className="ptag">Edge Compute</span><span className="ptag">Sensing</span></div>
-              <Link to="/contact" className="usecase-link">Browse sensing sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+              <Link to="/skynodes" className="usecase-link">Browse available nodes <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -265,7 +267,7 @@ export default function Experimental() {
               <div className="usecase-name">Augmented Reality (Field)</div>
               <p className="usecase-desc">Edge compute close enough to the jobsite to cut the delay between sensor input, processing, and AR headset output, for guided maintenance, construction, and inspection use cases.</p>
               <div className="usecase-tags"><span className="ptag">AR / VR</span><span className="ptag">Low Latency</span><span className="ptag">Construction</span></div>
-              <Link to="/contact" className="usecase-link">Browse AR sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+              <Link to="/skynodes" className="usecase-link">Browse available nodes <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -275,7 +277,7 @@ export default function Experimental() {
               <div className="usecase-name">Smart City Infrastructure</div>
               <p className="usecase-desc">Traffic sensing, environmental monitoring, public-safety integration, machine vision, and curbside analytics, the distributed urban platform for collecting, transporting, and processing city-scale data.</p>
               <div className="usecase-tags"><span className="ptag">Smart City</span><span className="ptag">Machine Vision</span><span className="ptag">Analytics</span></div>
-              <Link to="/contact" className="usecase-link">Browse smart-city sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+              <Link to="/skynodes" className="usecase-link">Browse available nodes <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -285,7 +287,7 @@ export default function Experimental() {
               <div className="usecase-name">Smart Building Deployment</div>
               <p className="usecase-desc">Elevated collection points for in-building sensor data, energy management, occupancy sensing, and building-automation systems that need metro-scale connectivity.</p>
               <div className="usecase-tags"><span className="ptag">Building IoT</span><span className="ptag">Energy</span><span className="ptag">Automation</span></div>
-              <Link to="/contact" className="usecase-link">Browse building sites <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+              <Link to="/skynodes" className="usecase-link">Browse available nodes <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
             <div className="usecase-card reveal">
@@ -295,7 +297,7 @@ export default function Experimental() {
               <div className="usecase-name">Utility Metering &amp; Submetering</div>
               <p className="usecase-desc">Elevated rooftop collector points for resilient meter collection, secure transmission, and edge-ready infrastructure across real buildings and cities.</p>
               <div className="usecase-tags"><span className="ptag">Metering</span><span className="ptag">Resilient</span><span className="ptag">Secure</span></div>
-              <Link to="/contact" className="usecase-link">Explore metering <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+              <Link to="/skynodes" className="usecase-link">Browse available nodes <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
 
           </div>
