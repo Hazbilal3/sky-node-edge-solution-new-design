@@ -37,7 +37,7 @@ const FOOTER_COLS = [
       { label: 'Content Delivery / CDN',   href: '/solutions/cdn-edge-node'        },
       { label: 'Network Colocation',       href: '/solutions/network-colocation'   },
       { label: 'Enterprise Edge Compute',  href: '/solutions/enterprise-edge'      },
-      { label: 'AI / Inference',           href: '/edge-colocation/ai-inference'   },
+      { label: 'AI / Inference',           href: '/edge-colocation'                },
       { label: 'Experimental Systems',     href: '/experimental'                   },
       { label: 'Edge Colocation overview →',href: '/edge-colocation'              },
     ],
@@ -60,8 +60,7 @@ const FOOTER_COLS = [
       { label: 'How It Works',       href: '/how-it-works'     },
       { label: 'Solutions Overview', href: '/solutions'        },
       { label: 'For Property Owners',href: '/property-owners'  },
-      { label: 'Partners',           href: '/partners'         },
-      { label: 'Careers',            href: '/careers'          },
+      { label: 'Careers',            href: 'https://skynodepartners.odoo.com/jobs', external: true },
     ],
   },
 ];
@@ -125,6 +124,10 @@ export default function Footer() {
                 <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M3 2h2.5l1 3-1.5 1a8 8 0 003 3l1-1.5 3 1V11a2 2 0 01-2 2C6 13 3 10 3 5a2 2 0 012-3z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>
                 +1 347 200 8058
               </a>
+              <a href="https://www.linkedin.com/company/skynode-partners" target="_blank" rel="noopener noreferrer" className="footer-contact-link">
+                <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.3"/><path d="M4 6.5v5M4 4.5v.01M7 11.5V9c0-1.1.9-2 2-2s2 .9 2 2v2.5M7 6.5v5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+                LinkedIn
+              </a>
               <Link to="/contact" className="footer-contact-link" style={{color:'var(--teal-accent)',fontWeight:700}}>
                 <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 Start an inquiry →
@@ -138,7 +141,11 @@ export default function Footer() {
               <div className="footer-col-title">{col.title}</div>
               <ul className="footer-links">
                 {col.links.map(l => (
-                  <li key={l.href}><Link to={l.href}>{l.label}</Link></li>
+                  <li key={l.href}>
+                    {(l as any).external
+                      ? <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                      : <Link to={l.href}>{l.label}</Link>}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -150,8 +157,6 @@ export default function Footer() {
         <div className="footer-bottom-new">
           <span>© 2026 Skynode Partners Inc. All rights reserved. · New York · Florida · Illinois · Connecticut</span>
           <div className="footer-bottom-links-new">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
             <Link to="/how-it-works">How It Works</Link>
             <Link to="/skynodes">Browse Nodes</Link>
           </div>

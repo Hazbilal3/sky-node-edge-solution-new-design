@@ -40,7 +40,6 @@ const SOL_COLS = [
       { label: 'Content Delivery / CDN',       href: '/solutions/cdn-edge-node'           },
       { label: 'Network Equipment Colocation', href: '/solutions/network-colocation'      },
       { label: 'Enterprise Edge Compute',      href: '/solutions/enterprise-edge'         },
-      { label: 'AI / Inference',               href: '/edge-colocation/ai-inference'      },
       { label: 'Experimental Systems',         href: '/experimental'                      },
     ],
   },

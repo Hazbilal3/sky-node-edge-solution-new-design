@@ -242,7 +242,7 @@ export default function MetroFabric() {
               Infrastructure that connects<br/><span style={{color:'var(--sky-blue)'}}>your infrastructure.</span>
             </h1>
             <p className="mf-hero-sub">
-              Metro Fabric links distributed Skynode locations through point-to-point wireless backhaul, fiber, and high-capacity interconnect — so your sites operate as a coordinated network, not isolated rooftops competing for carrier circuits.
+              Metro Fabric is live across New York — linking every Skynode location through point-to-point wireless backhaul, fiber, and high-capacity interconnect. Available for rapid deployment in Miami and Chicago. Every node in the network is interconnected.
             </p>
             <div className="mf-hero-actions">
               <Link to="/skynodes" className="btn btn-primary">Browse Metro-Fabric-Enabled Nodes</Link>
@@ -252,7 +252,7 @@ export default function MetroFabric() {
               <div className="mf-stat"><div className="mf-stat-val">4</div><div className="mf-stat-lbl">Metro markets</div></div>
               <div className="mf-stat"><div className="mf-stat-val">&lt;5ms</div><div className="mf-stat-lbl">Intra-fabric latency</div></div>
               <div className="mf-stat"><div className="mf-stat-val">99.9%</div><div className="mf-stat-lbl">Target uptime SLA</div></div>
-              <div className="mf-stat"><div className="mf-stat-val">TBC</div><div className="mf-stat-lbl">Interconnected nodes</div></div>
+              <div className="mf-stat"><div className="mf-stat-val">99</div><div className="mf-stat-lbl">Interconnected nodes</div></div>
             </div>
           </div>
         </div>

@@ -15,11 +15,10 @@ export default function Illinois() {
       { title: 'Private 5G demand from enterprise', body: 'Chicago\'s manufacturing facilities, logistics hubs, and enterprise campuses create growing demand for private 5G infrastructure — nodes evaluated for CBRS deployment suitability and metro interconnection.' },
     ],
     nodes: [
-      { id:'0488.IL', neighborhood:'Chicago Loop',       svcs:['Broadcasting','Edge Colocation','AI / Inference','Private Comms'], status:'active'     },
-      { id:'0277.IL', neighborhood:'Chicago North Side', svcs:['Private 5G','IoT / Sensors'],                                      status:'active'     },
-      { id:'0391.IL', neighborhood:'Chicago South Side', svcs:['Broadcasting','P2P Links'],                                        status:'active'     },
-      { id:'0133.IL', neighborhood:'Chicago West Loop',  svcs:['Edge Colocation','Private 5G','P2P Links'],                       status:'evaluating' },
+      { id:'0001.IL', neighborhood:'The Loop',  svcs:['Broadcasting','Edge Colocation','AI / Inference','Private Comms','P2P Links'], status:'active'     },
+      { id:'0002.IL', neighborhood:'Chicago',   svcs:['Broadcasting','Edge Colocation','Private Comms','P2P Links'],                  status:'evaluating' },
+      { id:'0003.IL', neighborhood:'Chicago',   svcs:['Edge Colocation','Private Comms','P2P Links'],                                 status:'evaluating' },
     ],
-    calloutBody: 'Chicago combines broadcast heritage, enterprise edge demand, public safety requirements, and growing private 5G activity into one of the most technically rich deployment markets in the Skynode network. If your system needs to perform in the Midwest, Illinois is the right starting point.',
+    calloutBody: 'The primary Illinois market is Chicago, with integrated Metro Fabric capability. Standalone sites in other Illinois markets — including Springfield — are also available independently for translator, P25, and point-to-point deployments. Contact Skynode to discuss options beyond the core Chicago network.',
   }} />;
 }

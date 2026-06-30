@@ -145,7 +145,7 @@ export default function Broadcasting() {
                 </div>
                 <div className="hero-card-footer">
                   <div className="hero-card-stat">
-                    <div className="hero-card-stat-val">TBC</div>
+                    <div className="hero-card-stat-val">57</div>
                     <div className="hero-card-stat-lbl">Broadcast-rated nodes</div>
                   </div>
                   <div className="hero-card-stat">

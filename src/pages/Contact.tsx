@@ -61,6 +61,8 @@ export default function Contact() {
   const [phone, setPhone]                   = useState('');
   const [howHeard, setHowHeard]             = useState('');
   const [submitted, setSubmitted]           = useState(false);
+  const [loading, setLoading]               = useState(false);
+  const [error, setError]                   = useState('');
 
   /* ── Property owner form state ── */
   const [poName, setPoName]                 = useState('');
@@ -74,6 +76,8 @@ export default function Contact() {
   const [poPower, setPoPower]               = useState('');
   const [poNotes, setPoNotes]               = useState('');
   const [poSubmitted, setPoSubmitted]       = useState(false);
+  const [poLoading, setPoLoading]           = useState(false);
+  const [poError, setPoError]               = useState('');
 
   useReveal();
   usePageTitle('Contact');
@@ -81,51 +85,57 @@ export default function Contact() {
   const toggle = (arr: string[], setArr: (v: string[]) => void, id: string) =>
     setArr(arr.includes(id) ? arr.filter(x => x !== id) : [...arr, id]);
 
-  function handleCustomerSubmit(e: React.FormEvent) {
+  async function handleCustomerSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name || !email) return;
-    const subject = `Skynode Inquiry — ${selectedUseCases.join(', ') || selectedTypes.join(', ') || 'General'}`;
-    const body = [
-      `Name: ${name}`,
-      `Company: ${company}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      '',
-      `Segment: ${selectedTypes.map(id => CUSTOMER_TYPES.find(t => t.id === id)?.label).join(', ') || 'Not specified'}`,
-      `Use Case(s): ${selectedUseCases.map(id => USE_CASES.find(u => u.id === id)?.label).join(', ') || 'Not specified'}`,
-      `Market(s): ${selectedMarkets.map(id => MARKETS.find(m => m.id === id)?.label).join(', ') || 'Not specified'}`,
-      `Specific Area: ${specificArea || 'N/A'}`,
-      `Timeline: ${timeline || 'N/A'}`,
-      `Number of Sites: ${numSites || 'N/A'}`,
-      `How they heard: ${howHeard || 'N/A'}`,
-      '',
-      `Project Details:`,
-      details,
-    ].join('\n');
-    window.location.href = `mailto:info@skynodepartners.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
+    try {
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'customer',
+          primarySegments: selectedTypes,
+          useCases: selectedUseCases,
+          markets: selectedMarkets,
+          specificArea, timeline, numSites, details,
+          name, company, email, phone, howHeard,
+        }),
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || 'Server error');
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong. Please email info@skynodepartners.com directly.');
+    } finally {
+      setLoading(false);
+    }
   }
 
-  function handlePoSubmit(e: React.FormEvent) {
+  async function handlePoSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!poName || !poEmail) return;
-    const subject = `Skynode Property Inquiry — ${poAddress || poBuildingName || 'New Property'}`;
-    const body = [
-      `Name: ${poName}`,
-      `Title: ${poTitle}`,
-      `Company / Building: ${poBuildingName}`,
-      `Email: ${poEmail}`,
-      `Phone: ${poPhone}`,
-      '',
-      `Building Address / Neighborhood: ${poAddress}`,
-      `Building Type: ${poBuildingType}`,
-      `Roof Accessible: ${poRoofAccess}`,
-      `Existing Power on Roof: ${poPower}`,
-      '',
-      `Additional Notes: ${poNotes}`,
-    ].join('\n');
-    window.location.href = `mailto:info@skynodepartners.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setPoSubmitted(true);
+    setPoLoading(true);
+    setPoError('');
+    try {
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'property',
+          poName, poTitle, poBuildingName, poEmail, poPhone,
+          poAddress, poBuildingType, poRoofAccess, poPower, poNotes,
+        }),
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || 'Server error');
+      setPoSubmitted(true);
+    } catch (err: any) {
+      setPoError(err.message || 'Something went wrong. Please email info@skynodepartners.com directly.');
+    } finally {
+      setPoLoading(false);
+    }
   }
 
   const totalSteps = 4;
@@ -173,9 +183,9 @@ export default function Contact() {
                 <div className="qualify-form-wrap qualify-form-wrap--joined">
                   {submitted ? (
                     <div style={{textAlign:'center',padding:'48px 24px'}}>
-                      <div style={{fontSize:'48px',marginBottom:'20px'}}>📡</div>
-                      <h3 style={{fontSize:'20px',fontWeight:900,color:'rgb(var(--fg))',marginBottom:'12px'}}>Message sent.</h3>
-                      <p style={{fontSize:'15px',color:'var(--tx-4)',lineHeight:'1.7',maxWidth:'400px',margin:'0 auto'}}>Your email app has opened with a pre-filled message to Skynode. Send it when ready — we'll follow up within one business day.</p>
+                      <svg viewBox="0 0 48 48" fill="none" width="48" height="48" style={{margin:'0 auto 20px',display:'block'}}><circle cx="24" cy="24" r="22" stroke="var(--teal-accent)" strokeWidth="2"/><path d="M14 24l7 7 13-13" stroke="var(--teal-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <h3 style={{fontSize:'20px',fontWeight:900,color:'rgb(var(--fg))',marginBottom:'12px'}}>Inquiry sent.</h3>
+                      <p style={{fontSize:'15px',color:'var(--tx-4)',lineHeight:'1.7',maxWidth:'400px',margin:'0 auto'}}>Your message has been delivered to the right person at Skynode. Expect a follow-up within one business day. A confirmation has been sent to {email}.</p>
                       <Link to="/" className="btn btn-primary" style={{marginTop:'28px'}}>Back to Home</Link>
                     </div>
                   ) : (
@@ -321,12 +331,13 @@ export default function Contact() {
                           </div>
                           <div className="qualify-nav">
                             <button type="button" className="btn qualify-back" onClick={() => setStep(3)}>← Back</button>
-                            <button type="submit" className="btn btn-primary">
-                              Send to Skynode
-                              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            <button type="submit" className="btn btn-primary" disabled={loading} style={{opacity:loading?0.7:1}}>
+                              {loading ? 'Sending…' : 'Send to Skynode'}
+                              {!loading && <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                             </button>
                           </div>
-                          <p style={{fontSize:'11px',color:'var(--tx-6)',marginTop:'14px',textAlign:'center',lineHeight:'1.5'}}>This opens your email app with a pre-filled message. Your information is used only to respond to your inquiry.</p>
+                          {error && <p style={{fontSize:'13px',color:'#f87171',marginTop:'12px',textAlign:'center',lineHeight:'1.5'}}>{error}</p>}
+                          <p style={{fontSize:'11px',color:'var(--tx-6)',marginTop:'10px',textAlign:'center',lineHeight:'1.5'}}>Your information is used only to respond to your inquiry. A confirmation will be sent to your email.</p>
                         </div>
                       )}
                     </form>
@@ -339,9 +350,9 @@ export default function Contact() {
                 <div className="qualify-form-wrap qualify-form-wrap--joined">
                   {poSubmitted ? (
                     <div style={{textAlign:'center',padding:'48px 24px'}}>
-                      <div style={{fontSize:'48px',marginBottom:'20px'}}>🏢</div>
-                      <h3 style={{fontSize:'20px',fontWeight:900,color:'rgb(var(--fg))',marginBottom:'12px'}}>Inquiry sent.</h3>
-                      <p style={{fontSize:'15px',color:'var(--tx-4)',lineHeight:'1.7',maxWidth:'400px',margin:'0 auto'}}>Your email app has opened with a pre-filled property inquiry. Send it when ready — we'll evaluate your building and follow up within one business day.</p>
+                      <svg viewBox="0 0 48 48" fill="none" width="48" height="48" style={{margin:'0 auto 20px',display:'block'}}><circle cx="24" cy="24" r="22" stroke="var(--teal-accent)" strokeWidth="2"/><path d="M14 24l7 7 13-13" stroke="var(--teal-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <h3 style={{fontSize:'20px',fontWeight:900,color:'rgb(var(--fg))',marginBottom:'12px'}}>Building submitted.</h3>
+                      <p style={{fontSize:'15px',color:'var(--tx-4)',lineHeight:'1.7',maxWidth:'400px',margin:'0 auto'}}>Your building has been submitted for evaluation. We'll follow up within one business day. A confirmation has been sent to {poEmail}.</p>
                       <Link to="/" className="btn btn-primary" style={{marginTop:'28px'}}>Back to Home</Link>
                     </div>
                   ) : (
@@ -405,11 +416,12 @@ export default function Contact() {
                           placeholder="Anything else we should know about the building or your interest in a Skynode partnership…"
                           value={poNotes} onChange={e => setPoNotes(e.target.value)} />
                       </div>
-                      <button type="submit" className="btn btn-primary" style={{width:'100%',justifyContent:'center',marginTop:'8px'}}>
-                        Submit for Evaluation
-                        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <button type="submit" className="btn btn-primary" disabled={poLoading} style={{width:'100%',justifyContent:'center',marginTop:'8px',opacity:poLoading?0.7:1}}>
+                        {poLoading ? 'Submitting…' : 'Submit for Evaluation'}
+                        {!poLoading && <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                       </button>
-                      <p style={{fontSize:'11px',color:'var(--tx-6)',marginTop:'12px',textAlign:'center',lineHeight:'1.5'}}>This opens your email app with a pre-filled message. Your information is used only to respond to your property inquiry.</p>
+                      {poError && <p style={{fontSize:'13px',color:'#f87171',marginTop:'12px',textAlign:'center',lineHeight:'1.5'}}>{poError}</p>}
+                      <p style={{fontSize:'11px',color:'var(--tx-6)',marginTop:'10px',textAlign:'center',lineHeight:'1.5'}}>Your information is used only to evaluate your building. A confirmation will be sent to your email.</p>
                     </form>
                   )}
                 </div>

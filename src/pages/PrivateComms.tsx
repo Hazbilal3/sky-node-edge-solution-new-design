@@ -181,7 +181,7 @@ export default function PrivateComms() {
                   ))}
                 </div>
                 <div className="hero-card-footer">
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">TBC</div><div className="hero-card-stat-lbl">Private-comms nodes</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">99</div><div className="hero-card-stat-lbl">Private-comms nodes</div></div>
                   <div className="hero-card-stat"><div className="hero-card-stat-val">6</div><div className="hero-card-stat-lbl">Service categories supported</div></div>
                 </div>
               </div>

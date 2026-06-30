@@ -138,7 +138,7 @@ export default function EdgeColocation() {
                   ))}
                 </div>
                 <div className="hero-card-footer">
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">TBC<span style={{fontSize:'14px',fontWeight:600}}></span></div><div className="hero-card-stat-lbl">Edge-rated nodes</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">99</div><div className="hero-card-stat-lbl">Edge-rated nodes</div></div>
                   <div className="hero-card-stat"><div className="hero-card-stat-val">&lt;5<span style={{fontSize:'12px'}}>ms</span></div><div className="hero-card-stat-lbl">Metro latency</div></div>
                 </div>
               </div>
@@ -236,8 +236,8 @@ export default function EdgeColocation() {
               <div className="usecase-name">AI Inference &amp; GPU Compute</div>
               <p className="usecase-desc">Deploy GPU racks and inference infrastructure at distributed urban nodes closer to users, cameras, sensors, and operational environments. Support for edge AI, real-time inference, and cascading model architectures.</p>
               <div className="usecase-tags"><span className="ptag">Inference</span><span className="ptag">GPU Racks</span><span className="ptag">Edge AI</span></div>
-              <Link to="/edge-colocation/ai-inference" className="usecase-link">
-                AI inference sub-page
+              <Link to="/contact" className="usecase-link">
+                Discuss AI inference
                 <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
             </div>
@@ -380,8 +380,8 @@ export default function EdgeColocation() {
                 <div>
                   <div style={{fontSize:'13px',fontWeight:700,color:'rgb(var(--fg))',marginBottom:'4px'}}>AI / Inference Colocation</div>
                   <div style={{fontSize:'12px',color:'var(--tx-4)',lineHeight:'1.6',marginBottom:'12px'}}>Distributed GPU and inference infrastructure at urban edge nodes. Closer to users, devices, and cameras — built for the last-mile AI layer.</div>
-                  <Link to="/edge-colocation/ai-inference" className="text-link" style={{fontSize:'12px',fontWeight:700,color:'var(--sky-blue)',display:'inline-flex',alignItems:'center',gap:'5px'}}>
-                    Explore AI Inference →
+                  <Link to="/contact" className="text-link" style={{fontSize:'12px',fontWeight:700,color:'var(--sky-blue)',display:'inline-flex',alignItems:'center',gap:'5px'}}>
+                    Discuss AI Inference →
                   </Link>
                 </div>
               </div>

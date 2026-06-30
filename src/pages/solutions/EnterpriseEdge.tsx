@@ -45,7 +45,7 @@ const cfg: SolutionConfig = {
   related: [
     { name: 'Content Delivery & CDN Node',  href: '/solutions/cdn-edge-node' },
     { name: 'Network Equipment Colocation', href: '/solutions/network-colocation' },
-    { name: 'AI / Inference page',          href: '/edge-colocation/ai-inference' },
+    { name: 'AI / Inference',               href: '/edge-colocation'              },
   ],
 };
 

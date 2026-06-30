@@ -1,5 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+
+function ExternalRedirect({ to }: { to: string }) {
+  useEffect(() => { window.location.href = to; }, [to]);
+  return null;
+}
 import { ThemeProvider } from './contexts/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -8,7 +13,6 @@ import Home           from './pages/Home'
 import Broadcasting   from './pages/Broadcasting'
 import PrivateComms   from './pages/PrivateComms'
 import EdgeColocation from './pages/EdgeColocation'
-import AiInference    from './pages/AiInference'
 import Experimental   from './pages/Experimental'
 import PropertyOwners from './pages/PropertyOwners'
 import Skynodes       from './pages/Skynodes'
@@ -18,8 +22,6 @@ import Solutions      from './pages/Solutions'
 import About          from './pages/About'
 import HowItWorks     from './pages/HowItWorks'
 import Contact        from './pages/Contact'
-import Partners       from './pages/Partners'
-import Careers        from './pages/Careers'
 import NotFound       from './pages/NotFound'
 
 import NewYork        from './pages/markets/NewYork'
@@ -63,15 +65,15 @@ function Layout() {
         <Route path="/broadcasting"                 element={<Broadcasting />}   />
         <Route path="/private-communications"       element={<PrivateComms />}   />
         <Route path="/edge-colocation"              element={<EdgeColocation />} />
-        <Route path="/edge-colocation/ai-inference" element={<AiInference />}   />
+        <Route path="/edge-colocation/ai-inference" element={<Navigate to="/edge-colocation" replace />} />
         <Route path="/experimental"                 element={<Experimental />}   />
         <Route path="/property-owners"              element={<PropertyOwners />} />
         <Route path="/metro-fabric"                 element={<MetroFabric />}    />
         <Route path="/solutions"                    element={<Solutions />}      />
         <Route path="/about"                        element={<About />}          />
         <Route path="/how-it-works"                 element={<HowItWorks />}     />
-        <Route path="/partners"                     element={<Partners />}       />
-        <Route path="/careers"                      element={<Careers />}        />
+        <Route path="/partners"                     element={<Navigate to="/" replace />} />
+        <Route path="/careers"                      element={<ExternalRedirect to="https://skynodepartners.odoo.com/jobs" />} />
         <Route path="/contact"                      element={<Contact />}        />
 
         {/* ─── Skynodes ────────────────────────────────────────── */}

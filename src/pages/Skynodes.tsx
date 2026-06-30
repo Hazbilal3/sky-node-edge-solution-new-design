@@ -217,11 +217,11 @@ export default function Skynodes() {
                 Browse the network.<br/><span style={{color:'var(--sky-blue)'}}>Find your node.</span>
               </h1>
               <p className="sk-hero-sub">
-                22 distributed infrastructure nodes across New York, Connecticut, Florida, and Illinois — each evaluated for broadcasting, private communications, edge colocation, AI inference, and private networking.
+                99 distributed infrastructure nodes across New York, Connecticut, Florida, and Illinois — each evaluated for broadcasting, private communications, edge colocation, AI inference, and private networking.
               </p>
               <div className="sk-stat-row">
                 <div className="sk-stat">
-                  <div className="sk-stat-val">22</div>
+                  <div className="sk-stat-val">99</div>
                   <div className="sk-stat-lbl">Total nodes</div>
                 </div>
                 <div className="sk-stat">
@@ -242,10 +242,10 @@ export default function Skynodes() {
                   <span className="sk-hero-live">Network Active</span>
                 </div>
                 {[
-                  { id:'0001.NY', neighborhood:'Midtown Manhattan',  svcs:['BC','EC','P2P'],  status:'active'     },
-                  { id:'0006.NY', neighborhood:'Financial District', svcs:['BC','EC','AI'],   status:'active'     },
-                  { id:'0001.FL', neighborhood:'Miami',              svcs:['BC','EC','AI'],   status:'evaluating' },
-                  { id:'0001.IL', neighborhood:'Chicago',            svcs:['BC','PC','EC'],   status:'evaluating' },
+                  { id:'0001.NY', neighborhood:'Financial District', svcs:['BC','EC','AI'],   status:'active'     },
+                  { id:'0003.NY', neighborhood:'Midtown / Murray Hill', svcs:['BC','EC','AI'], status:'active'    },
+                  { id:'0001.FL', neighborhood:'Brickell',           svcs:['BC','EC','AI'],   status:'active'     },
+                  { id:'0001.IL', neighborhood:'The Loop',           svcs:['BC','PC','EC'],   status:'active'     },
                   { id:'0001.CT', neighborhood:'Hartford',           svcs:['BC','PC','P2P'],  status:'evaluating' },
                 ].map(n => (
                   <div key={n.id} className="sk-preview-row">
@@ -262,8 +262,8 @@ export default function Skynodes() {
                   </div>
                 ))}
                 <div className="sk-hero-card-foot">
-                  <div><div className="sk-foot-stat-val">14</div><div className="sk-foot-stat-lbl">Nodes active</div></div>
-                  <div><div className="sk-foot-stat-val">8</div><div className="sk-foot-stat-lbl">Evaluating</div></div>
+                  <div><div className="sk-foot-stat-val">90</div><div className="sk-foot-stat-lbl">Nodes active</div></div>
+                  <div><div className="sk-foot-stat-val">9</div><div className="sk-foot-stat-lbl">Evaluating</div></div>
                   <div><div className="sk-foot-stat-val">4</div><div className="sk-foot-stat-lbl">Markets</div></div>
                 </div>
               </div>

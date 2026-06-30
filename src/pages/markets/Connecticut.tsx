@@ -5,20 +5,19 @@ export default function Connecticut() {
     name: 'Connecticut',
     stateLabel: 'Connecticut',
     cityIndex: 1,
-    tagline: 'Strategic elevation|across the Connecticut corridor.',
-    heroSub: 'Connecticut offers unique infrastructure positioning — elevated nodes between the New York and Boston metro areas, with strong RF environments for broadcasting and private communications, and growing demand for edge and IoT infrastructure.',
-    services: ['Broadcasting', 'Private Comms', 'P25', 'P2P Links', 'IoT / Sensors'],
+    tagline: 'Standalone infrastructure|available across Connecticut.',
+    heroSub: 'Connecticut nodes are offered as independent standalone sites — not integrated into the Skynode Metro Fabric, but fully available for individual deployments. Each site is evaluated on its own merits and suited for translator operations, relay points, P25 infrastructure, and point-to-point links that require Connecticut-based elevation.',
+    services: ['Broadcasting', 'Private Comms', 'P25', 'P2P Links'],
     highlights: [
-      { title: 'Corridor positioning between major metros', body: 'Connecticut nodes serve deployments that need coverage and backhaul between the New York and greater Boston markets — ideal for translator chains, relay sites, and point-to-point links that span the I-95 corridor.' },
+      { title: 'Standalone deployment, independently offered', body: 'Connecticut nodes operate as independent sites rather than integrated Metro Fabric nodes. Suitable for single-site deployments, translator operations, relay points, and P25 infrastructure — without requiring a wider network commitment.' },
+      { title: 'Corridor relay and translation', body: 'Connecticut nodes serve deployments that need coverage and relay capability between the New York and Boston markets — translator chains, point-to-point relay sites, and backhaul paths that benefit from Connecticut elevation.' },
       { title: 'Strong RF environments', body: 'Many Connecticut locations offer cleaner RF environments than comparable elevations in denser urban markets — better path clearance, lower interference floors, and stronger potential for LOS links to neighboring sites.' },
       { title: 'P25 and public safety infrastructure', body: 'Connecticut has active demand for public safety radio infrastructure. Skynode nodes in the market are evaluated for P25 compatibility, backhaul quality, and the operational characteristics that government and municipal deployments require.' },
-      { title: 'IoT and smart city demand', body: 'Growing municipal technology initiatives in Connecticut create demand for elevated sensor infrastructure, environmental monitoring nodes, and resilient data collection points across the state.' },
     ],
     nodes: [
-      { id:'0118.CT', neighborhood:'Hartford',   svcs:['Private Comms','IoT / Sensors'], status:'active'     },
-      { id:'0234.CT', neighborhood:'Bridgeport', svcs:['Broadcasting','P2P Links'],      status:'active'     },
-      { id:'0089.CT', neighborhood:'New Haven',  svcs:['Private Comms','Private 5G'],   status:'evaluating' },
+      { id:'0001.CT', neighborhood:'Hartford',  svcs:['Broadcasting', 'Private Comms', 'P2P Links'], status:'evaluating' },
+      { id:'0002.CT', neighborhood:'New Haven', svcs:['Broadcasting', 'Private Comms', 'P2P Links'], status:'evaluating' },
     ],
-    calloutBody: 'Connecticut nodes are particularly well-suited for deployments that span the New York–Boston corridor — translator chains, simulcast receiver sites, P2P relay links, and IoT infrastructure that needs consistent elevation across the state.',
+    calloutBody: 'Connecticut nodes are standalone sites — independently available for translator services, P25 relay, and point-to-point links without requiring integration into a Metro Fabric deployment. Contact Skynode to discuss availability for your specific application.',
   }} />;
 }

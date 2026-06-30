@@ -49,7 +49,7 @@ const VERTICALS = [
     headline: 'GPU Compute, CDN, AI Inference & Network Infrastructure',
     body: 'Secure edge colocation for AI inference, GPU workloads, content delivery, and network equipment — distributed across metropolitan nodes at real urban elevation with power, cooling, and redundant backhaul.',
     solutions: [
-      { name: 'AI Inference & GPU Compute Node', href: '/edge-colocation/ai-inference'         },
+      { name: 'AI Inference & GPU Compute',      href: '/edge-colocation'                      },
       { name: 'Content Delivery & CDN Node',     href: '/solutions/cdn-edge-node'              },
       { name: 'Network Equipment Colocation',    href: '/solutions/network-colocation'         },
       { name: 'Enterprise Edge Compute',         href: '/solutions/enterprise-edge'            },
