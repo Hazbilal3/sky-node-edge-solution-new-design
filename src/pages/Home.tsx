@@ -391,7 +391,7 @@ export default function Home() {
           <div className="about-stats">
             <div className="about-stat reveal"><div className="v">40<span>+</span></div><div className="k">Combined years of broadcast engineering</div></div>
             <div className="about-stat reveal"><div className="v">4</div><div className="k">Active metro markets</div></div>
-            <div className="about-stat reveal"><div className="v">TBC</div><div className="k">Managed node locations</div></div>
+            <div className="about-stat reveal"><div className="v">99</div><div className="k">Managed node locations</div></div>
           </div>
           <p className="caveat reveal" style={{marginTop:'12px'}}>*Combined team experience. Exact node count to be confirmed.</p>
         </div>
