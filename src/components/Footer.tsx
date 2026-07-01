@@ -60,7 +60,7 @@ const FOOTER_COLS = [
       { label: 'How It Works',       href: '/how-it-works'     },
       { label: 'Solutions Overview', href: '/solutions'        },
       { label: 'For Property Owners',href: '/property-owners'  },
-      { label: 'Careers',            href: 'https://skynodepartners.odoo.com/jobs', external: true },
+      { label: 'Careers',            href: '/careers'          },
     ],
   },
 ];

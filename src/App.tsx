@@ -1,10 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
-function ExternalRedirect({ to }: { to: string }) {
-  useEffect(() => { window.location.href = to; }, [to]);
-  return null;
-}
 import { ThemeProvider } from './contexts/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -47,6 +43,7 @@ import PointToPoint     from './pages/solutions/PointToPoint'
 import CdnEdgeNode        from './pages/solutions/CdnEdgeNode'
 import NetworkColocation  from './pages/solutions/NetworkColocation'
 import EnterpriseEdge     from './pages/solutions/EnterpriseEdge'
+import Careers        from './pages/Careers'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -73,7 +70,7 @@ function Layout() {
         <Route path="/about"                        element={<About />}          />
         <Route path="/how-it-works"                 element={<HowItWorks />}     />
         <Route path="/partners"                     element={<Navigate to="/" replace />} />
-        <Route path="/careers"                      element={<ExternalRedirect to="https://skynodepartners.odoo.com/jobs" />} />
+        <Route path="/careers"                      element={<Careers />}        />
         <Route path="/contact"                      element={<Contact />}        />
 
         {/* ─── Skynodes ────────────────────────────────────────── */}
