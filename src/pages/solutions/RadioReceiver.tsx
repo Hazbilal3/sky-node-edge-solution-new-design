@@ -8,10 +8,10 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'Receiver Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
+      { label: 'Elevation', value: 'Per site evaluation' },
       { label: 'Receive path quality', value: 'Evaluated per system and coverage need' },
       { label: 'Voter connectivity backhaul', value: 'IP backhaul â€” fiber / P2P / Metro Fabric' },
-      { label: 'Power requirement', value: 'Lower than transmitter â€” TBC per site' },
+      { label: 'Power requirement', value: 'Lower than transmitter — per site evaluation' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
     ],
     stat: '99',
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'RF noise floor', value: 'TBC', note: 'Measured during site evaluation' },
-    { label: 'Voter IP backhaul latency', value: 'TBC', note: 'Evaluated per site and path' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'RF noise floor', value: 'Per site', note: 'Measured during site evaluation' },
+    { label: 'Voter IP backhaul latency', value: 'Per site', note: 'Evaluated per site and path' },
     { label: 'Power requirement', value: 'Low â€” receive only', note: 'No transmit amplification' },
-    { label: 'GPS for GNSS voting', value: 'TBC', note: 'Where applicable' },
-    { label: 'Metro Fabric availability', value: 'TBC', note: 'Where Metro Fabric is active in market' },
+    { label: 'GPS for GNSS voting', value: 'Per site', note: 'Where applicable' },
+    { label: 'Metro Fabric availability', value: 'Per site', note: 'Where Metro Fabric is active in market' },
   ],
   useCases: [
     { name: 'Voted receiver for P25 system', body: 'P25 trunked systems with voted receive infrastructure benefit from additional receiver sites that extend the receive footprint without adding transmitter complexity.', tags: ['P25', 'Voted', 'Receiver'] },

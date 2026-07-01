@@ -8,8 +8,8 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'Translator / Booster Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
-      { label: 'TX power range', value: 'Up to 250W (translator) â€” TBC per site' },
+      { label: 'Elevation', value: 'Per site evaluation' },
+      { label: 'TX power range', value: 'Up to 250W (translator) — per site evaluation' },
       { label: 'Off-air receive quality', value: 'Evaluated per market RF environment' },
       { label: 'Backhaul options', value: 'IP audio / P2P / Metro Fabric' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'HAAT estimate', value: 'TBC', note: 'Provided for engineering review' },
-    { label: 'Receive path quality', value: 'TBC', note: 'Evaluated per specific parent station' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'HAAT estimate', value: 'Per site', note: 'Provided for engineering review' },
+    { label: 'Receive path quality', value: 'Per site', note: 'Evaluated per specific parent station' },
     { label: 'Max TX power accommodated', value: 'Up to 250W', note: 'FM translator power limits' },
-    { label: 'IP backhaul availability', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Metro Fabric access', value: 'TBC', note: 'Where Metro Fabric is active' },
+    { label: 'IP backhaul availability', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Metro Fabric access', value: 'Per site', note: 'Where Metro Fabric is active' },
   ],
   useCases: [
     { name: 'Urban signal shadow fill', body: 'Translators deployed to fill coverage gaps in downtown cores and dense urban neighborhoods â€” where the primary transmitter can\'t reach street level.', tags: ['Translator', 'Urban', 'Fill'] },

@@ -9,7 +9,7 @@ const cfg: SolutionConfig = {
     title: 'P2P Data Link â€” What to Expect',
     items: [
       { label: 'Link type', value: 'Licensed microwave / millimeter wave' },
-      { label: 'Throughput range', value: 'TBC â€” up to multi-Gbps on licensed paths' },
+      { label: 'Throughput range', value: 'â€” up to multi-Gbps on licensed paths' },
       { label: 'Path evaluation', value: 'LOS confirmed before engagement' },
       { label: 'Latency', value: '<1ms per hop typical' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
@@ -30,9 +30,9 @@ const cfg: SolutionConfig = {
   },
   specs: [
     { label: 'Frequency bands', value: '6 / 11 / 18 / 23 GHz licensed', note: 'Plus 60 GHz unlicensed for short paths' },
-    { label: 'Max throughput', value: 'TBC', note: 'Up to multi-Gbps on higher-order modulation' },
+    { label: 'Max throughput', value: 'Per site', note: 'Up to multi-Gbps on higher-order modulation' },
     { label: 'One-way latency', value: '<1ms per hop', note: 'Depends on path length' },
-    { label: 'Path length range', value: 'TBC', note: 'Evaluated per frequency and antenna' },
+    { label: 'Path length range', value: 'Per site', note: 'Evaluated per frequency and antenna' },
     { label: 'Availability (licensed)', value: '99.999%', note: 'With proper fade margin design' },
     { label: 'FCC licensing', value: 'Included', note: 'Coordination and filing for licensed paths' },
   ],

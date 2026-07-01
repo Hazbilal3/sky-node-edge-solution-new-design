@@ -34,7 +34,7 @@ const BENEFITS = [
     title: 'Bandwidth: dedicated capacity, no shared lanes',
     detail: 'Leased carrier circuits get oversold, throttled at peak, and repriced at renewal. Skynode links are dedicated to your deployment. No shared congestion, no contention penalties.',
     icon: <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><rect x="3" y="7" width="14" height="6" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M7 10h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-    val: 'TBC', valLabel: 'Capacity per link (confirmed per node)',
+    val: 'Per node', valLabel: 'Capacity — confirmed per site evaluation',
   },
   {
     title: 'Connectivity: north-south and east-west',

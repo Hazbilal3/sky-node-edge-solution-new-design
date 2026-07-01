@@ -14,6 +14,7 @@ export interface MarketConfig {
   highlights: { title: string; body: string }[];
   nodes: { id: string; neighborhood: string; svcs: string[]; status: 'active' | 'evaluating' }[];
   calloutBody: string;
+  activeNodes?: string | number;
 }
 
 const SVC_COLORS: Record<string, { color: string; bg: string }> = {
@@ -189,7 +190,7 @@ export default function MarketPage({ cfg }: { cfg: MarketConfig }) {
             <h2 style={{fontSize:'clamp(24px,3vw,38px)',fontWeight:900,letterSpacing:'-0.022em',lineHeight:1.12,color:'rgb(var(--fg))',marginBottom:'14px'}}>
               Active and evaluating nodes<br/><span style={{color:'var(--sky-blue)'}}>in {cfg.name}.</span>
             </h2>
-            <p style={{fontSize:'15px',color:'var(--tx-3)',lineHeight:1.75,maxWidth:'560px'}}>Node details — elevation, confirmed services, and exact specifications — are provided during site evaluation. All specs labeled TBC reflect sites under active evaluation.</p>
+            <p style={{fontSize:'15px',color:'var(--tx-3)',lineHeight:1.75,maxWidth:'560px'}}>Node details — elevation, confirmed services, and exact specifications — are provided during site evaluation. All specs for sites under evaluation are confirmed per engagement.</p>
           </div>
           <div className="mkt-node-grid">
             {cfg.nodes.map(node => {
@@ -238,7 +239,7 @@ export default function MarketPage({ cfg }: { cfg: MarketConfig }) {
             </div>
             <div className="metric-stack">
               <div className="metric-item"><span className="metric-lbl">Market</span><span className="metric-val">{cfg.name}</span></div>
-              <div className="metric-item"><span className="metric-lbl">Active nodes</span><span className="metric-val">TBC</span></div>
+              <div className="metric-item"><span className="metric-lbl">Active nodes</span><span className="metric-val">{cfg.activeNodes ?? '—'}</span></div>
               <div className="metric-item"><span className="metric-lbl">Service categories</span><span className="metric-val">{cfg.services.join(' · ')}</span></div>
               <div className="metric-item"><span className="metric-lbl">Metro Fabric</span><span className="metric-val">Available across connected nodes</span></div>
             </div>

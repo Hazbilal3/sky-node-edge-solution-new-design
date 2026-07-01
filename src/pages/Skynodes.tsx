@@ -412,7 +412,7 @@ export default function Skynodes() {
           {/* Network note */}
           <div style={{ borderTop: '1px solid var(--border-dark)', paddingTop: '28px', marginTop: '12px' }}>
             <p style={{ fontSize: '12px', color: 'var(--tx-6)', lineHeight: '1.7', maxWidth: '640px' }}>
-              Node count, elevation data, and service availability are representative of the network in evaluation and active deployment. Actual confirmed figures for specific sites are provided during inquiry. All node listings labeled TBC reflect sites under active evaluation — final specifications confirmed per engagement.
+              Node count, elevation data, and service availability are representative of the network in evaluation and active deployment. Actual confirmed figures for specific sites are provided during inquiry. Sites under evaluation have specifications confirmed per engagement.
             </p>
           </div>
         </div>

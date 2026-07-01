@@ -8,7 +8,7 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'Radio Transmitter Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
+      { label: 'Elevation', value: 'Per site evaluation' },
       { label: 'System compatibility', value: 'P25, DMR, NXDN, analog conventional' },
       { label: 'Power availability', value: 'Commercial + generator backup evaluated' },
       { label: 'Backhaul options', value: 'Fiber / P2P / Metro Fabric' },
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'HAAT estimate', value: 'TBC', note: 'Provided for coverage analysis' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'HAAT estimate', value: 'Per site', note: 'Provided for coverage analysis' },
     { label: 'System protocols', value: 'P25 / DMR / NXDN / Analog', note: 'Evaluated per engagement' },
-    { label: 'Generator backup', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'GPS availability', value: 'TBC', note: 'Required for simulcast timing' },
-    { label: 'IP backhaul', value: 'TBC', note: 'Fiber / P2P evaluated per site' },
+    { label: 'Generator backup', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'GPS availability', value: 'Per site', note: 'Required for simulcast timing' },
+    { label: 'IP backhaul', value: 'Per site', note: 'Fiber / P2P evaluated per site' },
   ],
   useCases: [
     { name: 'Enterprise radio system transmitter', body: 'Corporate campuses, logistics operations, and healthcare systems with private radio networks need transmitter sites that deliver reliable coverage across their operations area.', tags: ['Enterprise', 'Radio', 'Trunked'] },

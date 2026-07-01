@@ -8,9 +8,9 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'Backup / Auxiliary Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
+      { label: 'Elevation', value: 'Per site evaluation' },
       { label: 'Power availability', value: 'Commercial + generator evaluated per site' },
-      { label: 'Activation lead time', value: 'TBC â€” confirmed per engagement' },
+      { label: 'Activation lead time', value: 'â€” confirmed per engagement' },
       { label: 'Backhaul options', value: 'Fiber / IP / Metro Fabric' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
     ],
@@ -29,11 +29,11 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'Generator availability', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'ATS rating', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Activation time (est.)', value: 'TBC', note: 'Confirmed per engagement setup' },
-    { label: 'Backhaul redundancy', value: 'TBC', note: 'Primary + backup paths evaluated' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'Generator availability', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'ATS rating', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Activation time (est.)', value: 'Per site', note: 'Confirmed per engagement setup' },
+    { label: 'Backhaul redundancy', value: 'Per site', note: 'Primary + backup paths evaluated' },
     { label: 'FCC data package', value: 'Included', note: 'For auxiliary authorization filing' },
   ],
   useCases: [

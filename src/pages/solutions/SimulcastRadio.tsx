@@ -9,7 +9,7 @@ const cfg: SolutionConfig = {
     title: 'Simulcast Network â€” What to Expect',
     items: [
       { label: 'GPS timing availability', value: 'Required â€” evaluated per site' },
-      { label: 'Backhaul latency', value: 'Low-latency required â€” TBC per path' },
+      { label: 'Backhaul latency', value: 'Low-latency required — evaluated per path' },
       { label: 'Site-to-site sync', value: 'Via Metro Fabric or dedicated IP paths' },
       { label: 'System compatibility', value: 'P25, DMR, LTR, analog simulcast' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'GPS signal availability', value: 'TBC', note: 'Confirmed per site rooftop survey' },
-    { label: 'Backhaul latency (one-way)', value: 'TBC', note: 'Measured per path during qualification' },
-    { label: 'Backhaul jitter', value: 'TBC', note: 'Measured per path â€” critical for simulcast' },
-    { label: 'Site-to-site interconnect', value: 'Metro Fabric / dedicated IP', note: 'TBC per market' },
-    { label: 'Max transmitter separation', value: 'TBC', note: 'Per RF planning model' },
-    { label: 'System protocol', value: 'P25 / DMR / Analog', note: 'TBC per engagement' },
+    { label: 'GPS signal availability', value: 'Per site', note: 'Confirmed per site rooftop survey' },
+    { label: 'Backhaul latency (one-way)', value: 'Per site', note: 'Measured per path during qualification' },
+    { label: 'Backhaul jitter', value: 'Per site', note: 'Measured per path â€” critical for simulcast' },
+    { label: 'Site-to-site interconnect', value: 'Metro Fabric / dedicated IP', note: 'Where Metro Fabric is active' },
+    { label: 'Max transmitter separation', value: 'Per site', note: 'Per RF planning model' },
+    { label: 'System protocol', value: 'P25 / DMR / Analog', note: 'Confirmed per engagement' },
   ],
   useCases: [
     { name: 'Wide-area coverage for enterprise radio', body: 'Enterprise radio systems covering large campuses, logistics networks, or multi-facility operations need simulcast to deliver consistent coverage without dead zones.', tags: ['Enterprise', 'Wide Area', 'Simulcast'] },

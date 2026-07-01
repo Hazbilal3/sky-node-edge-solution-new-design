@@ -154,7 +154,7 @@ export default function Experimental() {
                   ))}
                 </div>
                 <div className="hero-card-footer">
-                  <div className="hero-card-stat"><div className="hero-card-stat-val">TBC</div><div className="hero-card-stat-lbl">Experimental-rated nodes<br/>(to be confirmed)</div></div>
+                  <div className="hero-card-stat"><div className="hero-card-stat-val">99</div><div className="hero-card-stat-lbl">nodes available for experimental deployments</div></div>
                   <div className="hero-card-stat"><div className="hero-card-stat-val">6</div><div className="hero-card-stat-lbl">Application categories<br/>supported</div></div>
                 </div>
               </div>

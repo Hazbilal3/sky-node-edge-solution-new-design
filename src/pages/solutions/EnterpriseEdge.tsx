@@ -8,10 +8,10 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'Enterprise Edge Compute â€” What to Expect',
     items: [
-      { label: 'Rack space', value: 'TBC per site â€” evaluated per engagement' },
-      { label: 'Power (per rack)', value: 'TBC â€” evaluated per site' },
+      { label: 'Rack space', value: 'per site â€” evaluated per engagement' },
+      { label: 'Power (per rack)', value: 'â€” evaluated per site' },
       { label: 'GPU / AI inference', value: 'Evaluated per site power and cooling' },
-      { label: 'Network latency to metro', value: 'TBC per site â€” measured during qualification' },
+      { label: 'Network latency to metro', value: 'per site â€” measured during qualification' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
     ],
     stat: '99',
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Rack space available', value: 'TBC', note: 'Confirmed per site engagement' },
-    { label: 'Power per rack (kW)', value: 'TBC', note: 'Evaluated per site â€” GPU workloads are power-dense' },
-    { label: 'Cooling for GPU deployments', value: 'TBC', note: 'Evaluated per site â€” thermal capacity varies' },
-    { label: 'Network latency to metro core', value: 'TBC', note: 'Measured during qualification' },
-    { label: 'Metro Fabric connectivity', value: 'TBC', note: 'Where active in market' },
-    { label: 'Physical security level', value: 'TBC', note: 'Evaluated per site' },
+    { label: 'Rack space available', value: 'Per site', note: 'Confirmed per site engagement' },
+    { label: 'Power per rack (kW)', value: 'Per site', note: 'Evaluated per site â€” GPU workloads are power-dense' },
+    { label: 'Cooling for GPU deployments', value: 'Per site', note: 'Evaluated per site â€” thermal capacity varies' },
+    { label: 'Network latency to metro core', value: 'Per site', note: 'Measured during qualification' },
+    { label: 'Metro Fabric connectivity', value: 'Per site', note: 'Where active in market' },
+    { label: 'Physical security level', value: 'Per site', note: 'Evaluated per site' },
   ],
   useCases: [
     { name: 'AI inference at metropolitan scale', body: 'Enterprises running real-time AI inference for applications like computer vision, NLP processing, and recommendation engines benefit from inference infrastructure placed within the markets they serve.', tags: ['AI', 'Inference', 'Real-Time'] },

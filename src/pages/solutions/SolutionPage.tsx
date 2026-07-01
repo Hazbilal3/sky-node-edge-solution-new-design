@@ -228,7 +228,7 @@ export default function SolutionPage({ cfg }: { cfg: SolutionConfig }) {
               <h2 style={{fontSize:'clamp(24px,3vw,38px)',fontWeight:900,letterSpacing:'-0.022em',lineHeight:1.12,color:'rgb(var(--fg))',marginBottom:'8px'}}>
                 What to expect from a <span style={{color:t.accent}}>{cfg.breadcrumb.toLowerCase()}.</span>
               </h2>
-              <p style={{fontSize:'13px',color:'var(--tx-5)',fontStyle:'italic'}}>All specifications are TBC and confirmed per engagement during site evaluation.</p>
+              <p style={{fontSize:'13px',color:'var(--tx-5)',fontStyle:'italic'}}>Specifications are confirmed per engagement during site evaluation.</p>
             </div>
             <div className="sp-specs-grid">
               {cfg.specs.map((s, i) => (

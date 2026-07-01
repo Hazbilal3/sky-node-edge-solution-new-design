@@ -8,7 +8,7 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'LPFM Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
+      { label: 'Elevation', value: 'Per site evaluation' },
       { label: 'TX power range', value: '10Wâ€“100W accommodated' },
       { label: 'Backhaul options', value: 'IP audio / P2P / Metro Fabric' },
       { label: 'Power requirement', value: 'Standard commercial service' },
@@ -29,11 +29,11 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'HAAT estimate', value: 'TBC', note: 'Provided for engineering review' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'HAAT estimate', value: 'Per site', note: 'Provided for engineering review' },
     { label: 'Max TX power accommodated', value: 'Up to 100W', note: 'LPFM range' },
     { label: 'Power service', value: 'Standard commercial', note: 'Generator not required at LPFM levels' },
-    { label: 'Internet backhaul', value: 'TBC', note: 'Evaluated per site' },
+    { label: 'Internet backhaul', value: 'Per site', note: 'Evaluated per site' },
     { label: 'FCC data package', value: 'Included', note: 'Elevation, coordinates, AGL' },
   ],
   useCases: [

@@ -8,8 +8,8 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'Network Colocation â€” What to Expect',
     items: [
-      { label: 'Rack space', value: 'TBC per site â€” evaluated per engagement' },
-      { label: 'Power (per rack)', value: 'TBC â€” evaluated per site capacity' },
+      { label: 'Rack space', value: 'per site â€” evaluated per engagement' },
+      { label: 'Power (per rack)', value: 'â€” evaluated per site capacity' },
       { label: 'Physical security', value: 'Evaluated per site â€” access controlled' },
       { label: 'Network connectivity', value: 'Fiber / Metro Fabric / P2P' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Rack space available', value: 'TBC', note: 'Confirmed per site engagement' },
-    { label: 'Power per rack (kW)', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'UPS availability', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Generator backup', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Fiber availability', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Physical security level', value: 'TBC', note: 'Evaluated per site' },
+    { label: 'Rack space available', value: 'Per site', note: 'Confirmed per site engagement' },
+    { label: 'Power per rack (kW)', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'UPS availability', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Generator backup', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Fiber availability', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Physical security level', value: 'Per site', note: 'Evaluated per site' },
   ],
   useCases: [
     { name: 'ISP aggregation and distribution point', body: 'Internet service providers building out urban distribution infrastructure need access points positioned within the metro â€” Skynode nodes provide secured, powered colocation for aggregation routers and distribution switches.', tags: ['ISP', 'Aggregation', 'Distribution'] },

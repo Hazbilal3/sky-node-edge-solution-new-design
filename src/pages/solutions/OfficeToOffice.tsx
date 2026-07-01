@@ -9,8 +9,8 @@ const cfg: SolutionConfig = {
     title: 'Office-to-Office Network â€” What to Expect',
     items: [
       { label: 'Link type', value: 'Licensed or unlicensed microwave P2P' },
-      { label: 'Path length', value: 'TBC â€” evaluated per location pair' },
-      { label: 'Throughput', value: 'TBC â€” evaluated per path and frequency' },
+      { label: 'Path length', value: 'â€” evaluated per location pair' },
+      { label: 'Throughput', value: 'â€” evaluated per path and frequency' },
       { label: 'Latency', value: '<5ms where LOS path available' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
     ],
@@ -30,10 +30,10 @@ const cfg: SolutionConfig = {
   },
   specs: [
     { label: 'Link type', value: 'Licensed 6/11/18/23 GHz or unlicensed 60 GHz', note: 'Based on path length and throughput' },
-    { label: 'Path length (max)', value: 'TBC', note: 'Depends on frequency and antenna' },
-    { label: 'Throughput', value: 'TBC', note: 'Up to multi-Gbps on licensed bands' },
+    { label: 'Path length (max)', value: 'Per site', note: 'Depends on frequency and antenna' },
+    { label: 'Throughput', value: 'Per site', note: 'Up to multi-Gbps on licensed bands' },
     { label: 'One-way latency', value: '<5ms (LOS path)', note: 'Depends on path length' },
-    { label: 'Availability target', value: '99.999% (licensed path)', note: 'TBC per path diversity' },
+    { label: 'Availability target', value: '99.999% (licensed path)', note: 'Per path diversity' },
     { label: 'FCC licensing', value: 'Included for licensed paths', note: 'Coordination and filing support' },
   ],
   useCases: [

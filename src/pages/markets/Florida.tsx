@@ -19,6 +19,7 @@ export default function Florida() {
       { id:'0156.FL', neighborhood:'Orlando Metro', svcs:['Broadcasting','Private Comms'],                  status:'active'     },
       { id:'0312.FL', neighborhood:'Tampa Bay',     svcs:['Edge Colocation','Private 5G','IoT / Sensors'], status:'evaluating' },
     ],
+    activeNodes: 2,
     calloutBody: 'Florida\'s combination of high broadcast activity, multi-market geography, and growing tech sector makes it one of Skynode\'s most strategically valuable markets. Broadcast operators, private communications teams, and edge infrastructure deployments all find a strong fit here.',
   }} />;
 }

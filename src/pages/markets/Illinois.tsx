@@ -19,6 +19,7 @@ export default function Illinois() {
       { id:'0002.IL', neighborhood:'Chicago',   svcs:['Broadcasting','Edge Colocation','Private Comms','P2P Links'],                  status:'evaluating' },
       { id:'0003.IL', neighborhood:'Chicago',   svcs:['Edge Colocation','Private Comms','P2P Links'],                                 status:'evaluating' },
     ],
+    activeNodes: 1,
     calloutBody: 'The primary Illinois market is Chicago, with integrated Metro Fabric capability. Standalone sites in other Illinois markets — including Springfield — are also available independently for translator, P25, and point-to-point deployments. Contact Skynode to discuss options beyond the core Chicago network.',
   }} />;
 }

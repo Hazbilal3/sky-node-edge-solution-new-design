@@ -8,7 +8,7 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'FM Primary Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
+      { label: 'Elevation', value: 'Per site evaluation' },
       { label: 'Power availability', value: 'Commercial + generator backup' },
       { label: 'Backhaul options', value: 'Fiber / point-to-point / Metro Fabric' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'AGL equivalent', value: 'TBC', note: 'Confirmed per coverage modeling' },
-    { label: 'Max TX power accommodated', value: 'TBC', note: 'Varies by market and site' },
-    { label: 'Generator backup', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Fiber availability', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Coax run length (est.)', value: 'TBC', note: 'Confirmed during site walk' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'AGL equivalent', value: 'Per site', note: 'Confirmed per coverage modeling' },
+    { label: 'Max TX power accommodated', value: 'Per site', note: 'Varies by market and site' },
+    { label: 'Generator backup', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Fiber availability', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Coax run length (est.)', value: 'Per site', note: 'Confirmed during site walk' },
   ],
   useCases: [
     { name: 'Replacing a legacy tower lease', body: 'FM operators looking to move off aging or overloaded tower agreements find Skynode nodes offer comparable elevation without the complexity of multi-tenant tower relationships.', tags: ['FM', 'Primary', 'Tower Migration'] },

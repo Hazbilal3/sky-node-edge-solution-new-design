@@ -8,9 +8,9 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'TV Broadcast Site â€” What to Expect',
     items: [
-      { label: 'Elevation', value: 'TBC per site evaluation' },
+      { label: 'Elevation', value: 'Per site evaluation' },
       { label: 'Structural capacity', value: 'Evaluated per antenna weight / wind load' },
-      { label: 'Power capacity', value: 'High-draw TX accommodated â€” TBC per site' },
+      { label: 'Power capacity', value: 'High-draw TX accommodated — per site evaluation' },
       { label: 'Backhaul options', value: 'Fiber / microwave / Metro Fabric' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
     ],
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Elevation above grade', value: 'TBC', note: 'Confirmed during site evaluation' },
-    { label: 'Max antenna wind load', value: 'TBC', note: 'Per structural assessment' },
-    { label: 'Max TX power draw (kW)', value: 'TBC', note: 'Varies by site and utility service' },
-    { label: 'Generator backup', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'GPS / timing availability', value: 'TBC', note: 'Required for SFN' },
-    { label: 'Fiber availability', value: 'TBC', note: 'Evaluated per site' },
+    { label: 'Elevation above grade', value: 'Per site', note: 'Confirmed during site evaluation' },
+    { label: 'Max antenna wind load', value: 'Per site', note: 'Per structural assessment' },
+    { label: 'Max TX power draw (kW)', value: 'Per site', note: 'Varies by site and utility service' },
+    { label: 'Generator backup', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'GPS / timing availability', value: 'Per site', note: 'Required for SFN' },
+    { label: 'Fiber availability', value: 'Per site', note: 'Evaluated per site' },
   ],
   useCases: [
     { name: 'Primary TV transmitter site', body: 'Full-power TV stations seeking a primary transmitter location in a Skynode market can qualify nodes against their coverage engineering and structural requirements.', tags: ['TV', 'Full Power', 'Primary'] },

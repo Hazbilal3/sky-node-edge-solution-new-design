@@ -18,6 +18,7 @@ export default function Connecticut() {
       { id:'0001.CT', neighborhood:'Hartford',  svcs:['Broadcasting', 'Private Comms', 'P2P Links'], status:'evaluating' },
       { id:'0002.CT', neighborhood:'New Haven', svcs:['Broadcasting', 'Private Comms', 'P2P Links'], status:'evaluating' },
     ],
+    activeNodes: 'Evaluating',
     calloutBody: 'Connecticut nodes are standalone sites — independently available for translator services, P25 relay, and point-to-point links without requiring integration into a Metro Fabric deployment. Contact Skynode to discuss availability for your specific application.',
   }} />;
 }

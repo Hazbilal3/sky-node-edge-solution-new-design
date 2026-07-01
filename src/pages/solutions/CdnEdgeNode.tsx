@@ -8,8 +8,8 @@ const cfg: SolutionConfig = {
   heroCard: {
     title: 'CDN Edge Node â€” What to Expect',
     items: [
-      { label: 'Rack space', value: 'TBC per site â€” evaluated per engagement' },
-      { label: 'Power (per rack)', value: 'TBC â€” evaluated per site capacity' },
+      { label: 'Rack space', value: 'per site â€” evaluated per engagement' },
+      { label: 'Power (per rack)', value: 'â€” evaluated per site capacity' },
       { label: 'Network connectivity', value: 'Fiber / Metro Fabric / P2P uplink' },
       { label: 'Cooling', value: 'Evaluated per site capacity and layout' },
       { label: 'Markets served', value: 'New York Â· Florida Â· Illinois Â· Connecticut' },
@@ -29,12 +29,12 @@ const cfg: SolutionConfig = {
     ],
   },
   specs: [
-    { label: 'Rack space available', value: 'TBC', note: 'Confirmed per site engagement' },
-    { label: 'Power per rack (kW)', value: 'TBC', note: 'Evaluated per site infrastructure' },
-    { label: 'Cooling method', value: 'TBC', note: 'Air / mechanical â€” evaluated per site' },
-    { label: 'Fiber availability', value: 'TBC', note: 'Evaluated per site' },
-    { label: 'Metro Fabric access', value: 'TBC', note: 'Where active in market' },
-    { label: 'Network latency to city center', value: 'TBC', note: 'Measured per site' },
+    { label: 'Rack space available', value: 'Per site', note: 'Confirmed per site engagement' },
+    { label: 'Power per rack (kW)', value: 'Per site', note: 'Evaluated per site infrastructure' },
+    { label: 'Cooling method', value: 'Per site', note: 'Air / mechanical â€” evaluated per site' },
+    { label: 'Fiber availability', value: 'Per site', note: 'Evaluated per site' },
+    { label: 'Metro Fabric access', value: 'Per site', note: 'Where active in market' },
+    { label: 'Network latency to city center', value: 'Per site', note: 'Measured per site' },
   ],
   useCases: [
     { name: 'Streaming media edge caching', body: 'Video streaming platforms deploying edge caching nodes to reduce latency and improve quality of experience for urban subscribers â€” particularly for live streaming where buffering is not tolerable.', tags: ['Streaming', 'Video', 'Caching'] },

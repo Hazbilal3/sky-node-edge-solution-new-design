@@ -125,7 +125,7 @@ export default function NodeDetail() {
               </div>
               <div className="nd-card-row">
                 <span className="nd-card-lbl">AGL</span>
-                <span className="nd-card-val" style={{color:'var(--teal-accent)'}}>TBC</span>
+                <span className="nd-card-val" style={{color:'var(--teal-accent)'}}>Per site</span>
               </div>
               <div className="nd-card-row">
                 <span className="nd-card-lbl">Status</span>
@@ -179,18 +179,18 @@ export default function NodeDetail() {
             <h2 style={{fontSize:'clamp(22px,2.8vw,34px)',fontWeight:900,letterSpacing:'-0.022em',color:'rgb(var(--fg))',lineHeight:1.12,marginBottom:'10px'}}>
               Confirmed during <span style={{color:'var(--teal-accent)'}}>site evaluation.</span>
             </h2>
-            <p style={{fontSize:'13px',color:'var(--tx-5)',fontStyle:'italic'}}>All specifications are TBC and confirmed per engagement after site survey. Values below are placeholders.</p>
+            <p style={{fontSize:'13px',color:'var(--tx-5)',fontStyle:'italic'}}>Specifications are confirmed per engagement after site survey.</p>
           </div>
           <div className="nd-spec-grid">
             {[
-              { label:'Elevation ASL',    value:'TBC', note:'Confirmed per site survey'       },
-              { label:'Height AGL',       value:'TBC', note:'Confirmed per engagement'         },
-              { label:'Power available',  value:'TBC', note:'kW capacity — evaluated per site' },
-              { label:'Generator backup', value:'TBC', note:'Evaluated per site'               },
-              { label:'Fiber access',     value:'TBC', note:'Evaluated per site'               },
-              { label:'Metro Fabric',     value:'TBC', note:'Where active in market'           },
-              { label:'GPS timing',       value:'TBC', note:'Required for simulcast / P25'     },
-              { label:'Rack space',       value:'TBC', note:'For edge colocation use cases'    },
+              { label:'Elevation ASL',    value:'Per site', note:'Confirmed per site survey'       },
+              { label:'Height AGL',       value:'Per site', note:'Confirmed per engagement'         },
+              { label:'Power available',  value:'Per site', note:'kW capacity — evaluated per site' },
+              { label:'Generator backup', value:'Per site', note:'Evaluated per site'               },
+              { label:'Fiber access',     value:'Per site', note:'Evaluated per site'               },
+              { label:'Metro Fabric',     value:'Per site', note:'Where active in market'           },
+              { label:'GPS timing',       value:'Per site', note:'Required for simulcast / P25'     },
+              { label:'Rack space',       value:'Per site', note:'For edge colocation use cases'    },
             ].map((s,i) => (
               <div key={i} className="nd-spec-card reveal">
                 <div className="nd-spec-lbl">{s.label}</div>

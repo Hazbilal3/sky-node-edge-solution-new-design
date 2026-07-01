@@ -21,6 +21,7 @@ export default function NewYork() {
       { id:'0277.NY', neighborhood:'The Bronx',          svcs:['Broadcasting','Private Comms'],                              status:'active'     },
       { id:'0391.NY', neighborhood:'Upper Manhattan',    svcs:['Edge Colocation','AI / Inference','P2P Links'],              status:'evaluating' },
     ],
+    activeNodes: 87,
     calloutBody: 'New York is Skynode\'s most active market — with the broadest range of service types, the densest node distribution, and the most developed Metro Fabric coverage. If your deployment needs to start anywhere, New York is the right first conversation.',
   }} />;
 }
