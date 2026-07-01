@@ -5,41 +5,42 @@ import { usePageTitle } from '../hooks/usePageTitle';
 import { useDroneSwarmCanvas } from '../hooks/useDroneSwarmCanvas';
 import { useHexMapCanvas, CITIES } from '../hooks/useHexMapCanvas';
 
+
 /* ─── Shared node dataset ──────────────────────────────────────────── */
 import { NODES, SVC_META, ALL_SVCS } from '../data/nodes';
 import type { SvcCode } from '../data/nodes';
 
-const MARKETS = ['All','New York','Connecticut','Florida','Illinois'] as const;
+const MARKETS = ['All', 'New York', 'Connecticut', 'Florida', 'Illinois'] as const;
 type MarketFilter = typeof MARKETS[number];
 
 /* ─── Drone swarm node positions ────────────────────────────────── */
 
 const DRONE_NODES = [
-  {rx:0.05,ry:0.14},{rx:0.18,ry:0.07},{rx:0.32,ry:0.18},{rx:0.48,ry:0.09},{rx:0.63,ry:0.21},{rx:0.78,ry:0.11},{rx:0.92,ry:0.24},
-  {rx:0.11,ry:0.38},{rx:0.26,ry:0.48},{rx:0.44,ry:0.40},{rx:0.59,ry:0.52},{rx:0.74,ry:0.43},{rx:0.88,ry:0.56},
-  {rx:0.07,ry:0.68},{rx:0.22,ry:0.76},{rx:0.38,ry:0.63},{rx:0.54,ry:0.78},{rx:0.70,ry:0.68},{rx:0.84,ry:0.80},{rx:0.96,ry:0.62},
+  { rx: 0.05, ry: 0.14 }, { rx: 0.18, ry: 0.07 }, { rx: 0.32, ry: 0.18 }, { rx: 0.48, ry: 0.09 }, { rx: 0.63, ry: 0.21 }, { rx: 0.78, ry: 0.11 }, { rx: 0.92, ry: 0.24 },
+  { rx: 0.11, ry: 0.38 }, { rx: 0.26, ry: 0.48 }, { rx: 0.44, ry: 0.40 }, { rx: 0.59, ry: 0.52 }, { rx: 0.74, ry: 0.43 }, { rx: 0.88, ry: 0.56 },
+  { rx: 0.07, ry: 0.68 }, { rx: 0.22, ry: 0.76 }, { rx: 0.38, ry: 0.63 }, { rx: 0.54, ry: 0.78 }, { rx: 0.70, ry: 0.68 }, { rx: 0.84, ry: 0.80 }, { rx: 0.96, ry: 0.62 },
 ];
 
 const CITY_NAMES = CITIES.map(c => c.name);
 
 /* Maps market filter → hex map city index (CITIES has 4 entries: NYC, Chicago, Miami, New Haven) */
 const MARKET_TO_CITY_IDX: Partial<Record<MarketFilter, number>> = {
-  'New York':    0,
-  'Illinois':    1,
-  'Florida':     2,
+  'New York': 0,
+  'Illinois': 1,
+  'Florida': 2,
   'Connecticut': 3,
 };
 const CITY_IDX_TO_MARKET: MarketFilter[] = ['New York', 'Illinois', 'Florida', 'Connecticut'];
 
 export default function Skynodes() {
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
-  const hexCanvasRef  = useRef<HTMLCanvasElement>(null);
-  const hexTipRef     = useRef<HTMLDivElement>(null);
+  const hexCanvasRef = useRef<HTMLCanvasElement>(null);
+  const hexTipRef = useRef<HTMLDivElement>(null);
 
-  const [market, setMarket]   = useState<MarketFilter>('All');
-  const [svcs, setSvcs]       = useState<SvcCode[]>([]);
+  const [market, setMarket] = useState<MarketFilter>('All');
+  const [svcs, setSvcs] = useState<SvcCode[]>([]);
   const [cityIdx, setCityIdx] = useState(0);
-  const [zoom, setZoom]       = useState(1);
+  const [zoom, setZoom] = useState(1);
 
   useReveal();
   usePageTitle('Skynodes');
@@ -213,8 +214,8 @@ export default function Skynodes() {
                 <span className="city-tag">Illinois</span>
               </div>
               <div className="eyebrow eyebrow--light">The Skynode Network</div>
-              <h1 className="sk-hero-h1" style={{fontSize:'clamp(36px,4.8vw,62px)',fontWeight:900,lineHeight:1.08,letterSpacing:'-0.025em',color:'rgb(var(--fg))',marginBottom:'20px'}}>
-                Browse the network.<br/><span style={{color:'var(--sky-blue)'}}>Find your node.</span>
+              <h1 className="sk-hero-h1" style={{ fontSize: 'clamp(36px,4.8vw,62px)', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.025em', color: 'rgb(var(--fg))', marginBottom: '20px' }}>
+                Browse the network.<br /><span style={{ color: 'var(--sky-blue)' }}>Find your node.</span>
               </h1>
               <p className="sk-hero-sub">
                 99 distributed infrastructure nodes across New York, Connecticut, Florida, and Illinois — each evaluated for broadcasting, private communications, edge colocation, AI inference, and private networking.
@@ -242,21 +243,21 @@ export default function Skynodes() {
                   <span className="sk-hero-live">Network Active</span>
                 </div>
                 {[
-                  { id:'0001.NY', neighborhood:'Financial District', svcs:['BC','EC','AI'],   status:'active'     },
-                  { id:'0003.NY', neighborhood:'Midtown / Murray Hill', svcs:['BC','EC','AI'], status:'active'    },
-                  { id:'0001.FL', neighborhood:'Brickell',           svcs:['BC','EC','AI'],   status:'active'     },
-                  { id:'0001.IL', neighborhood:'The Loop',           svcs:['BC','PC','EC'],   status:'active'     },
-                  { id:'0001.CT', neighborhood:'Hartford',           svcs:['BC','PC','P2P'],  status:'evaluating' },
+                  { id: '0001.NY', neighborhood: 'Financial District', svcs: ['BC', 'EC', 'AI'], status: 'active' },
+                  { id: '0003.NY', neighborhood: 'Midtown / Murray Hill', svcs: ['BC', 'EC', 'AI'], status: 'active' },
+                  { id: '0001.FL', neighborhood: 'Brickell', svcs: ['BC', 'EC', 'AI'], status: 'active' },
+                  { id: '0001.IL', neighborhood: 'The Loop', svcs: ['BC', 'PC', 'EC'], status: 'active' },
+                  { id: '0001.CT', neighborhood: 'Hartford', svcs: ['BC', 'PC', 'P2P'], status: 'evaluating' },
                 ].map(n => (
                   <div key={n.id} className="sk-preview-row">
                     <div className="sk-preview-id">
-                      <span className={`sk-preview-dot sk-preview-dot--${n.status === 'active' ? 'active' : 'eval'}`}/>
+                      <span className={`sk-preview-dot sk-preview-dot--${n.status === 'active' ? 'active' : 'eval'}`} />
                       {n.id}
-                      <span style={{fontSize:'12px',color:'var(--tx-5)',fontWeight:400}}>{n.neighborhood}</span>
+                      <span style={{ fontSize: '12px', color: 'var(--tx-5)', fontWeight: 400 }}>{n.neighborhood}</span>
                     </div>
                     <div className="sk-preview-svc">
                       {(n.svcs as SvcCode[]).map(s => (
-                        <span key={s} className="sk-preview-badge" style={{background:SVC_META[s].bg,color:SVC_META[s].color}}>{s}</span>
+                        <span key={s} className="sk-preview-badge" style={{ background: SVC_META[s].bg, color: SVC_META[s].color }}>{s}</span>
                       ))}
                     </div>
                   </div>
@@ -282,7 +283,7 @@ export default function Skynodes() {
           ))}
         </div>
         <div className="sk-svc-chips">
-          <span style={{fontSize:'11px',fontWeight:700,color:'var(--tx-5)',alignSelf:'center',marginRight:'4px',whiteSpace:'nowrap'}}>Filter:</span>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--tx-5)', alignSelf: 'center', marginRight: '4px', whiteSpace: 'nowrap' }}>Filter:</span>
           {ALL_SVCS.map(s => (
             <button
               key={s}
@@ -311,17 +312,19 @@ export default function Skynodes() {
                   Node distribution — {market === 'All' ? CITY_NAMES[cityIdx] : market}
                 </span>
                 <div className="sk-zoom-row">
-                  <button className="sk-zoom-btn" onClick={() => setZoom(z => Math.min(z+0.25, 2.5))}>+</button>
-                  <button className="sk-zoom-btn" onClick={() => setZoom(z => Math.max(z-0.25, 0.5))}>−</button>
+                  <button className="sk-zoom-btn" onClick={() => setZoom(z => Math.min(z + 0.25, 2.5))}>+</button>
+                  <button className="sk-zoom-btn" onClick={() => setZoom(z => Math.max(z - 0.25, 0.5))}>−</button>
                 </div>
               </div>
-              <div style={{padding:'4px 0'}}>
-                <div style={{display:'flex',gap:0,borderBottom:'1px solid var(--border-dark)'}}>
+              <div style={{ padding: '4px 0' }}>
+                <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--border-dark)' }}>
                   {CITY_NAMES.map((name, i) => (
                     <button key={name}
-                      style={{flex:1,padding:'9px 4px',fontSize:'11px',fontWeight:700,background:'transparent',border:'none',
-                        borderBottom:`2px solid ${cityIdx === i ? 'var(--sky-blue)' : 'transparent'}`,
-                        color: cityIdx === i ? 'var(--sky-blue)' : 'var(--tx-5)', cursor:'pointer', transition:'all .15s'}}
+                      style={{
+                        flex: 1, padding: '9px 4px', fontSize: '11px', fontWeight: 700, background: 'transparent', border: 'none',
+                        borderBottom: `2px solid ${cityIdx === i ? 'var(--sky-blue)' : 'transparent'}`,
+                        color: cityIdx === i ? 'var(--sky-blue)' : 'var(--tx-5)', cursor: 'pointer', transition: 'all .15s'
+                      }}
                       onClick={() => { setCityIdx(i); setMarket(CITY_IDX_TO_MARKET[i] ?? 'All'); }}>
                       {name}
                     </button>
@@ -329,12 +332,12 @@ export default function Skynodes() {
                 </div>
               </div>
               <canvas ref={hexCanvasRef} id="skHexCanvas" width={480} height={340} />
-              <div ref={hexTipRef} className="hex-tip" style={{display:'none'}} />
+              <div ref={hexTipRef} className="hex-tip" style={{ display: 'none' }} />
               <div className="sk-map-legend">
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#A78BFA'}}/> FM Radio</div>
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#6BC0DD'}}/> Television</div>
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#5BE49B'}}/> LPFM</div>
-                <div className="sk-leg-item"><span className="sk-leg-dot" style={{background:'#F59E0B'}}/> Translator</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{ background: '#A78BFA' }} /> FM Radio</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{ background: '#6BC0DD' }} /> Television</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{ background: '#5BE49B' }} /> LPFM</div>
+                <div className="sk-leg-item"><span className="sk-leg-dot" style={{ background: '#F59E0B' }} /> Translator</div>
               </div>
             </div>
 
@@ -371,7 +374,7 @@ export default function Skynodes() {
                       <div className="sk-node-asl">Elevation: {node.asl}</div>
                       <div className="sk-node-svcs">
                         {node.services.map(s => (
-                          <span key={s} className="sk-node-svc" style={{background:SVC_META[s].bg,color:SVC_META[s].color}}>
+                          <span key={s} className="sk-node-svc" style={{ background: SVC_META[s].bg, color: SVC_META[s].color }}>
                             {SVC_META[s].label}
                           </span>
                         ))}
@@ -379,9 +382,9 @@ export default function Skynodes() {
                       <div className="sk-node-foot">
                         <Link to={`/skynodes/${node.id}`} className="sk-node-link">
                           View node details
-                          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                         </Link>
-                        <Link to="/contact" style={{fontSize:'11px',color:'var(--tx-5)',textDecoration:'none'}}>
+                        <Link to="/contact" style={{ fontSize: '11px', color: 'var(--tx-5)', textDecoration: 'none' }}>
                           Inquire →
                         </Link>
                       </div>
@@ -399,16 +402,16 @@ export default function Skynodes() {
                   </div>
                 </div>
                 <div className="sk-cant-find-btns">
-                  <Link to="/contact" className="btn btn-primary" style={{justifyContent:'center'}}>Talk to Skynode</Link>
-                  <Link to="/contact" className="btn btn-outline-dark" style={{justifyContent:'center',fontSize:'13px'}}>Submit a building</Link>
+                  <Link to="/contact" className="btn btn-primary" style={{ justifyContent: 'center' }}>Talk to Skynode</Link>
+                  <Link to="/contact" className="btn btn-outline-dark" style={{ justifyContent: 'center', fontSize: '13px' }}>Submit a building</Link>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Network note */}
-          <div style={{borderTop:'1px solid var(--border-dark)',paddingTop:'28px',marginTop:'12px'}}>
-            <p style={{fontSize:'12px',color:'var(--tx-6)',lineHeight:'1.7',maxWidth:'640px'}}>
+          <div style={{ borderTop: '1px solid var(--border-dark)', paddingTop: '28px', marginTop: '12px' }}>
+            <p style={{ fontSize: '12px', color: 'var(--tx-6)', lineHeight: '1.7', maxWidth: '640px' }}>
               Node count, elevation data, and service availability are representative of the network in evaluation and active deployment. Actual confirmed figures for specific sites are provided during inquiry. All node listings labeled TBC reflect sites under active evaluation — final specifications confirmed per engagement.
             </p>
           </div>
@@ -418,12 +421,12 @@ export default function Skynodes() {
       {/* ═══ FINAL CTA ═══ */}
       <section className="sk-final section-light">
         <div className="container">
-          <div className="eyebrow eyebrow--dark" style={{justifyContent:'center'}}>Ready to Deploy</div>
-          <h2>Found your node?<br/><em>Let's make it yours.</em></h2>
+          <div className="eyebrow eyebrow--dark" style={{ justifyContent: 'center' }}>Ready to Deploy</div>
+          <h2>Found your node?<br /><em>Let's make it yours.</em></h2>
           <p>Tell us the node, the service type, and your timeline. We'll confirm availability and move forward.</p>
           <div className="sk-final-btns">
-            <Link to="/contact" className="btn btn-primary" style={{padding:'16px 32px',fontSize:'15px'}}>Talk to Skynode</Link>
-            <Link to="/contact" className="btn btn-outline-dark" style={{padding:'16px 32px',fontSize:'15px'}}>Submit a Property</Link>
+            <Link to="/contact" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>Talk to Skynode</Link>
+            <Link to="/contact" className="btn btn-outline-dark" style={{ padding: '16px 32px', fontSize: '15px' }}>Submit a Property</Link>
           </div>
         </div>
       </section>
