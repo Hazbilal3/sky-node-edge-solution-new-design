@@ -90,24 +90,37 @@ export default function Contact() {
     if (!name || !email) return;
     setLoading(true);
     setError('');
+    const segmentLabels = selectedTypes.map(id => CUSTOMER_TYPES.find(t => t.id === id)?.label).filter(Boolean).join(', ') || 'General';
+    const useCaseLabels = selectedUseCases.map(id => USE_CASES.find(u => u.id === id)?.label).filter(Boolean).join(', ') || '—';
+    const marketLabels  = selectedMarkets.map(id => MARKETS.find(m => m.id === id)?.label).filter(Boolean).join(', ') || '—';
     try {
-      const r = await fetch('/api/contact', {
+      const r = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          type: 'customer',
-          primarySegments: selectedTypes,
-          useCases: selectedUseCases,
-          markets: selectedMarkets,
-          specificArea, timeline, numSites, details,
-          name, company, email, phone, howHeard,
+          access_key: 'af413406-1e06-484a-9ded-990dddb8c285',
+          subject: `[${segmentLabels}] Skynode Inquiry — ${name}`,
+          from_name: name,
+          replyto: email,
+          'Name':           name,
+          'Company':        company || '—',
+          'Email':          email,
+          'Phone':          phone || '—',
+          'Segment':        segmentLabels,
+          'Use Case(s)':    useCaseLabels,
+          'Market(s)':      marketLabels,
+          'Specific Area':  specificArea || '—',
+          'Timeline':       timeline || '—',
+          'Number of Sites':numSites || '—',
+          'How they heard': howHeard || '—',
+          'Project Details':details || '—',
         }),
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || 'Server error');
+      if (!data.success) throw new Error(data.message || 'Submission failed');
       setSubmitted(true);
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please email info@skynodepartners.com directly.');
+      setError('Something went wrong. Please email info@skynodepartners.com directly.');
     } finally {
       setLoading(false);
     }
@@ -119,20 +132,31 @@ export default function Contact() {
     setPoLoading(true);
     setPoError('');
     try {
-      const r = await fetch('/api/contact', {
+      const r = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          type: 'property',
-          poName, poTitle, poBuildingName, poEmail, poPhone,
-          poAddress, poBuildingType, poRoofAccess, poPower, poNotes,
+          access_key: 'af413406-1e06-484a-9ded-990dddb8c285',
+          subject: `[Property Inquiry] Skynode — ${poBuildingName || poName}`,
+          from_name: poName,
+          replyto: poEmail,
+          'Name':              poName,
+          'Title':             poTitle || '—',
+          'Building / Company':poBuildingName || '—',
+          'Email':             poEmail,
+          'Phone':             poPhone || '—',
+          'Address / Area':    poAddress || '—',
+          'Building Type':     poBuildingType || '—',
+          'Roof Accessible':   poRoofAccess || '—',
+          'Power on Roof':     poPower || '—',
+          'Notes':             poNotes || '—',
         }),
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || 'Server error');
+      if (!data.success) throw new Error(data.message || 'Submission failed');
       setPoSubmitted(true);
     } catch (err: any) {
-      setPoError(err.message || 'Something went wrong. Please email info@skynodepartners.com directly.');
+      setPoError('Something went wrong. Please email info@skynodepartners.com directly.');
     } finally {
       setPoLoading(false);
     }
