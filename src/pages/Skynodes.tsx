@@ -243,10 +243,10 @@ export default function Skynodes() {
                   <span className="sk-hero-live">Network Active</span>
                 </div>
                 {[
-                  { id: '0001.NY', neighborhood: 'Financial District', svcs: ['BC', 'EC', 'AI'], status: 'active' },
-                  { id: '0003.NY', neighborhood: 'Midtown / Murray Hill', svcs: ['BC', 'EC', 'AI'], status: 'active' },
-                  { id: '0001.FL', neighborhood: 'Brickell', svcs: ['BC', 'EC', 'AI'], status: 'active' },
-                  { id: '0001.IL', neighborhood: 'The Loop', svcs: ['BC', 'PC', 'EC'], status: 'active' },
+                  { id: '0312.NY', neighborhood: 'Financial District', svcs: ['BC', 'EC', 'AI'], status: 'active' },
+                  { id: '0329.NY', neighborhood: 'Midtown / Murray Hill', svcs: ['BC', 'EC', 'AI'], status: 'active' },
+                  { id: '0333.FL', neighborhood: 'Brickell', svcs: ['BC', 'EC', 'AI'], status: 'active' },
+                  { id: '0327.IL', neighborhood: 'The Loop', svcs: ['BC', 'PC', 'EC'], status: 'active' },
                   { id: '0001.CT', neighborhood: 'Hartford', svcs: ['BC', 'PC', 'P2P'], status: 'evaluating' },
                 ].map(n => (
                   <div key={n.id} className="sk-preview-row">

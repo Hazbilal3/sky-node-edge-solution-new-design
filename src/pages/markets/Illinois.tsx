@@ -15,9 +15,9 @@ export default function Illinois() {
       { title: 'Private 5G demand from enterprise', body: 'Chicago\'s manufacturing facilities, logistics hubs, and enterprise campuses create growing demand for private 5G infrastructure — nodes evaluated for CBRS deployment suitability and metro interconnection.' },
     ],
     nodes: [
-      { id:'0001.IL', neighborhood:'The Loop',  svcs:['Broadcasting','Edge Colocation','AI / Inference','Private Comms','P2P Links'], status:'active'     },
-      { id:'0002.IL', neighborhood:'Chicago',   svcs:['Broadcasting','Edge Colocation','Private Comms','P2P Links'],                  status:'evaluating' },
-      { id:'0003.IL', neighborhood:'Chicago',   svcs:['Edge Colocation','Private Comms','P2P Links'],                                 status:'evaluating' },
+      { id:'0327.IL', neighborhood:'The Loop',  svcs:['Broadcasting','Edge Colocation','AI / Inference','Private Comms','P2P Links'], status:'active'     },
+      { id:'0318.IL', neighborhood:'Chicago',   svcs:['Broadcasting','Edge Colocation','Private Comms','P2P Links'],                  status:'evaluating' },
+      { id:'0319.IL', neighborhood:'Chicago',   svcs:['Edge Colocation','Private Comms','P2P Links'],                                 status:'evaluating' },
     ],
     activeNodes: 1,
     calloutBody: 'The primary Illinois market is Chicago, with integrated Metro Fabric capability. Standalone sites in other Illinois markets — including Springfield — are also available independently for translator, P25, and point-to-point deployments. Contact Skynode to discuss options beyond the core Chicago network.',

@@ -15,9 +15,9 @@ export default function Florida() {
       { title: 'Edge infrastructure growth', body: 'Rapid population growth and increasing financial services and tech sector presence in Miami make it a growing market for edge colocation — proximity to Latin American connectivity infrastructure adds additional strategic value.' },
     ],
     nodes: [
-      { id:'0445.FL', neighborhood:'Miami–Dade',    svcs:['Broadcasting','Edge Colocation','P2P Links'],    status:'active'     },
-      { id:'0156.FL', neighborhood:'Orlando Metro', svcs:['Broadcasting','Private Comms'],                  status:'active'     },
-      { id:'0312.FL', neighborhood:'Tampa Bay',     svcs:['Edge Colocation','Private 5G','IoT / Sensors'], status:'evaluating' },
+      { id:'0333.FL', neighborhood:'Brickell',           svcs:['Broadcasting','Edge Colocation','P2P Links'],    status:'active'     },
+      { id:'0302.FL', neighborhood:'Miami',              svcs:['Broadcasting','Private Comms'],                  status:'evaluating' },
+      { id:'0383.FL', neighborhood:'Dadeland / Kendall', svcs:['Edge Colocation','Private 5G','IoT / Sensors'], status:'active'     },
     ],
     activeNodes: 2,
     calloutBody: 'Florida\'s combination of high broadcast activity, multi-market geography, and growing tech sector makes it one of Skynode\'s most strategically valuable markets. Broadcast operators, private communications teams, and edge infrastructure deployments all find a strong fit here.',

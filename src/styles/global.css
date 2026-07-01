@@ -117,7 +117,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 nav.nav--scrolled { background:var(--nav-bg-scrolled); }
 .nav-inner { display:flex; align-items:center; justify-content:space-between; height:68px; max-width:var(--max-w); margin:0 auto; padding:0 28px; }
 .nav-logo { display:flex; align-items:center; }
-.nav-logo img { height:34px; width:auto; }
+.nav-logo img { height:48px; width:auto; }
 .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
 .nav-links a { font-size:14px; font-weight:500; color:var(--tx-3); transition:color .15s; }
 .nav-links a:hover, .nav-links a.active { color:var(--sky-blue); }
