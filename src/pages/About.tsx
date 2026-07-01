@@ -10,7 +10,7 @@ const VALUES = [
 ];
 
 const STATS = [
-  { val: 'TBC', lbl: 'Active nodes in network'     },
+  { val: '99',  lbl: 'Managed node locations'       },
   { val: '4',   lbl: 'Metro markets'                },
   { val: '40+', lbl: 'Combined years rooftop experience' },
   { val: '7',   lbl: 'Service categories supported' },

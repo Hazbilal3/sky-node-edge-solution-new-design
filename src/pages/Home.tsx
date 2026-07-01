@@ -385,7 +385,6 @@ export default function Home() {
             <p className="sec-lead">Skynode is built around the practical realities of deploying and managing infrastructure in dense urban environments, serving technical, operational, and financial teams alike.</p>
             <div style={{display:'flex',gap:'24px',flexWrap:'wrap',marginTop:'20px'}}>
               <Link to="/about" className="text-link">About Us <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
-              <Link to="/partners" className="text-link">Partner Program <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
               <Link to="/careers" className="text-link">Careers <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             </div>
           </div>
